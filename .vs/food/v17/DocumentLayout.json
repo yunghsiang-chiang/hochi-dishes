@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\food\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\new_dishes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\new_dishes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\new_dishes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\new_dishes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "New_dishes.aspx",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\New_dishes.aspx",
+              "RelativeDocumentMoniker": "food\\New_dishes.aspx",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\New_dishes.aspx",
+              "RelativeToolTip": "food\\New_dishes.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-06-03T02:41:04.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "New_dishes.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\New_dishes.aspx.cs",
+              "RelativeDocumentMoniker": "food\\New_dishes.aspx.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\New_dishes.aspx.cs",
+              "RelativeToolTip": "food\\New_dishes.aspx.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAAwCMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T02:32:33.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Default.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Default.aspx.cs",
+              "RelativeDocumentMoniker": "food\\Default.aspx.cs",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Default.aspx.cs",
+              "RelativeToolTip": "food\\Default.aspx.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAADwv6gAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T09:41:42.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Default.aspx",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Default.aspx",
+              "RelativeDocumentMoniker": "food\\Default.aspx",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Default.aspx",
+              "RelativeToolTip": "food\\Default.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-05-16T02:37:20.722Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
