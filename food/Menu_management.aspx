@@ -8,6 +8,30 @@
             <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0">
                 <ajaxToolkit:TabPanel runat="server" HeaderText="菜單管理1" ID="TabPanel1">
                     <ContentTemplate>
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_new" name="TabPanel1bt_new" class="btn btn-secondary btn-lg">新增</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_edit" name="TabPanel1bt_edit" class="btn btn-secondary btn-lg">編輯</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_view" name="TabPanel1bt_view" class="btn btn-secondary btn-lg">查看</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_copy" name="TabPanel1bt_copy" class="btn btn-secondary btn-lg">複製</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_search" name="TabPanel1bt_search" class="btn btn-secondary btn-lg">搜尋</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_exit" name="TabPanel1bt_exit" class="btn btn-secondary btn-lg">離開</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_delete" name="TabPanel1bt_delete" class="btn btn-danger btn-lg">刪除</button>
+                            </div>
+                        </div>
+                        <hr />
                         <img src="images/菜單管理1.png" alt="菜單管理1" class="img-thumbnail img-fluid">
                         <p>1. 菜單主題（下拉選項：幸福印記盛典、老人家紀念會、年菜、一天班會、兩天班會、三天班會...七天班會）</p>
                         <p>2. 餐別（下拉選項：早餐、午餐、晚餐、下午茶、早午餐）</p>
@@ -28,6 +52,14 @@
                 </ajaxToolkit:TabPanel>
                 <ajaxToolkit:TabPanel runat="server" HeaderText="菜單管理2" ID="TabPanel2">
                     <ContentTemplate>
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel2bt_new" name="TabPanel2bt_new" class="btn btn-secondary btn-lg">新增</button>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel2bt_copy" name="TabPanel2bt_copy" class="btn btn-secondary btn-lg">複製</button>
+                            </div>
+                        </div>
                         <img src="images/菜單管理2.png" alt="菜單管理2" class="img-thumbnail img-fluid">
                         <p>1. 黃標為 過往菜單標示為主菜，但依據設定不符合者，需討論：</p>
                         <p>'(1) 主菜是否應設置“全穀根莖類”類別</p>
