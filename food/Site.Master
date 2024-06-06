@@ -4,7 +4,7 @@
 
 <html lang="zh">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - 服務體 菜單系統</title>
@@ -12,9 +12,9 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
     <script>
         window.onload = function () {
             islogin();
@@ -53,12 +53,12 @@
             }
             return value;
         }
-        
+
     </script>
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server" EnableCdn="true">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -72,6 +72,7 @@
                 <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery-ui-1.13.2.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
             </Scripts>
@@ -89,7 +90,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">主頁面</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/編輯菜色</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Menu_management">菜單管理</a></li>
-                        <li class="nav-item"><a id ="login_inout" class="nav-link" runat="server" href="~/login">管理登入</a></li>
+                        <li class="nav-item"><a id="login_inout" class="nav-link" runat="server" href="~/login">管理登入</a></li>
                     </ul>
                 </div>
             </div>

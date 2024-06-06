@@ -53,19 +53,19 @@
                     location.replace("http://10.10.3.75:8080/New_dishes?dishes_name=" + $(this).text())
                     //let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
                     //console.log(api_url);
-                    //(function () {
-                    //    //var myAPI = "http://10.10.3.75:8082/api/dishes";
-                    //    //var api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
-                    //    var myAPI = api_url;
-                    //    $.getJSON(myAPI, {
-                    //        format: "json"
-                    //    })
-                    //        .done(function (data) {
-                    //            console.log(data);
-                    //            //doSomething(data);
-                    //            alert("Load was performed.");
-                    //        });
-                    //})();
+                    (function () {
+                        //var myAPI = "http://10.10.3.75:8082/api/dishes";
+                        //var api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
+                        var myAPI = api_url;
+                        $.getJSON(myAPI, {
+                            format: "json"
+                        })
+                            .done(function (data) {
+                                console.log(data);
+                                //doSomething(data);
+                                alert("Load was performed.");
+                            });
+                    })();
 
                     //function doSomething(data) {
                     //    for (var i = 0; i < data.length; i++) {
