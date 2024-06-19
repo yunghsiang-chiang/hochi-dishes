@@ -48,24 +48,24 @@
         $(document).ready(function () {
             $('table tbody tr td').click(function () {
                 if ($(this).text().includes('範例')) {
-/*                    invokeAlert();*/
+                    /*                    invokeAlert();*/
                     //alert('進入 ' + $(this).text() + ' 內容頁面');
                     location.replace("http://10.10.3.75:8080/New_dishes?dishes_name=" + $(this).text())
-                    //let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
-                    //console.log(api_url);
-                    (function () {
-                        //var myAPI = "http://10.10.3.75:8082/api/dishes";
-                        //var api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
-                        var myAPI = api_url;
-                        $.getJSON(myAPI, {
-                            format: "json"
-                        })
-                            .done(function (data) {
-                                console.log(data);
-                                //doSomething(data);
-                                alert("Load was performed.");
-                            });
-                    })();
+                        //let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
+                        //console.log(api_url);
+                        (function () {
+                            //var myAPI = "http://10.10.3.75:8082/api/dishes";
+                            //var api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
+                            var myAPI = api_url;
+                            $.getJSON(myAPI, {
+                                format: "json"
+                            })
+                                .done(function (data) {
+                                    console.log(data);
+                                    //doSomething(data);
+                                    alert("Load was performed.");
+                                });
+                        })();
 
                     //function doSomething(data) {
                     //    for (var i = 0; i < data.length; i++) {
@@ -98,54 +98,75 @@
             </div>
             <hr />
             <div class="container row">
-                <div class="input-group sm-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-dishes_name">菜色名稱</span>
+
+                <div class="col-sm">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-dishes_name">菜色名稱</span>
+                        </div>
+                        <div>
+                            <input type="text" id="dishes_name_text" name="dishes_name_text" class="form-control" aria-label="Default" aria-describedby="inputGroup-dishes_name" />
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <input type="text" id="dishes_name_text" name="dishes_name_text" class="form-control" aria-label="Default" aria-describedby="inputGroup-dishes_name" />
-                    </div>
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-dishes_type">順序</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <asp:DropDownList ID="ddl_newdishes_type" runat="server" class="form-select" aria-describedby="inputGroup-dishes_type" OnSelectedIndexChanged="ddl_newdishes_type_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                </div>
+                <div class="col-sm">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-dishes_type">順序</span>
+                        </div>
+                        <div>
+                            <asp:DropDownList ID="ddl_newdishes_type" runat="server" class="form-select" aria-describedby="inputGroup-dishes_type" OnSelectedIndexChanged="ddl_newdishes_type_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="container row">
-                <div class="input-group sm-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-dishes_method">烹飪手法</span>
+
+                <div class="col-sm">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-dishes_method">烹飪手法</span>
+                        </div>
+                        <div>
+                            <asp:DropDownList ID="ddl_cooking_method" runat="server" class="form-select" aria-describedby="inputGroup-dishes_method" OnSelectedIndexChanged="ddl_cooking_method_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <asp:DropDownList ID="ddl_cooking_method" runat="server" class="form-select" aria-describedby="inputGroup-dishes_method" OnSelectedIndexChanged="ddl_cooking_method_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
-                    </div>
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-dishes_material">食材</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="text" id="dishes_material_text" name="dishes_material_text" class="form-control" aria-label="Default" aria-describedby="inputGroup-dishes_material" />
+                </div>
+                <div class="col-sm">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-dishes_material">食材</span>
+                        </div>
+                        <div>
+                            <input type="text" id="dishes_material_text" name="dishes_material_text" class="form-control" aria-label="Default" aria-describedby="inputGroup-dishes_material" />
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="container row">
-                <div class="form-inline">
-                    <div class="form-group d-flex align-items-center justify-content-start position-relative">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-time-consuming_switch">前置耗時</span>
+
+                <div class="col-sm">
+                    <div class="form-inline">
+                        <div class="form-group d-flex align-items-center justify-content-start">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-time-consuming_switch">前置耗時</span>
+                                </div>
+                                <div class="col align-self-center">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="time-consuming_switch" name="time-consuming_switch" aria-describedby="inputGroup-time-consuming_switch">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="time-consuming_switch" name="time-consuming_switch" aria-describedby="inputGroup-time-consuming_switch">
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-cooking_time">烹飪時間</span>
                         </div>
-                        <div class="col-sm-3">
+                        <div>
                             <input type="text" id="dishes_cooking_time_text" name="dishes_cooking_time_text" class="form-control" aria-label="Default" aria-describedby="inputGroup-cooking_time" />
                         </div>
                     </div>
@@ -155,7 +176,7 @@
             <div class="container">
                 <asp:GridView ID="gv_view" runat="server" OnRowDataBound="gv_view_RowDataBound" Class="table" RowStyle-CssClass="GvGrid">
                 </asp:GridView>
-<%--                <div id="alert">
+                <%--                <div id="alert">
                     <p>提醒即將跳轉至菜色頁面</p>
                     <button id="close" onclick="closeDialog()">取消</button>
                     <button id="jump_page" onclick="jumpDialog()">跳轉</button>
