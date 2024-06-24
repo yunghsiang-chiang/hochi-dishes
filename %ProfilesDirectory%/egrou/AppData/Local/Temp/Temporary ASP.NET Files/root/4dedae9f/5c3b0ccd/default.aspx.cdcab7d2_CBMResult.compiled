@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="7" virtualPath="/Default.aspx" hash="ecb31238b" filehash="b2fd294d4" flags="100000" CCUpreservationFileName="default.aspx.cdcab7d2_CBMResult.ccu">
+    <filedeps>
+        <filedep name="/Default.aspx" />
+        <filedep name="/Site.Master" />
+    </filedeps>
+</preserve>

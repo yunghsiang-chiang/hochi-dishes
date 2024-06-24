@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="7" virtualPath="/Menu_management.aspx" hash="ecb31238b" filehash="f78d3e711" flags="100000" CCUpreservationFileName="menu_management.aspx.cdcab7d2_CBMResult.ccu">
+    <filedeps>
+        <filedep name="/Menu_management.aspx" />
+        <filedep name="/Site.Master" />
+    </filedeps>
+</preserve>

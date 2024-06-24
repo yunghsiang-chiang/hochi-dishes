@@ -1,0 +1,20 @@
+[2fec:0001][2024-06-20T11:26:03] Creating new ExperimentationService
+[2fec:0001][2024-06-20T11:26:03] Telemetry property VS.ABExp.Flights : lazytoolboxinit;fwlargebuffer;refactoring;spmoretempsbtn1;asloff;keybindgoldbarext;asynccsproj;vsfricheditor;completionapi;typeimportcompletion:30562486;vsttk:30514303;4f604693:30775293;i4588376:30751670;fijh5155:30690136;8ig0d248:30783238;85ihc887:30842123;chat_aa_t:30915623;enablecontextinhistoryt:30979417
+[2fec:0001][2024-06-20T11:26:04] Telemetry property VS.SetupEngine.ActivityId : 2869031e-130e-4bde-995a-b04a5212531f
+[2fec:0001][2024-06-20T11:26:04] Telemetry property VS.SetupEngine.IsChildProcess : False
+[2fec:0001][2024-06-20T11:26:04] Telemetry property VS.SetupEngine.IsUpdateCheckOnly : True
+[2fec:0001][2024-06-20T11:26:04] BEGIN: Update Check
+[2fec:0001][2024-06-20T11:26:04] BEGIN: Check for updates
+[2fec:000a][2024-06-20T11:26:04] Telemetry property VS.SetupEngine.ChannelUpdateDisabled : False
+[2fec:0006][2024-06-20T11:26:04] Authentication Environment variable setting value: null
+[2fec:0006][2024-06-20T11:26:04] Authenticate: True
+[2fec:0016][2024-06-20T11:26:04] Download requested: https://download.visualstudio.microsoft.com/download/pr/165d4174-7d65-4baa-83d5-4652a3e56211/b7b6e697a43cca4ca13fa708b261d52f52b5ed871934480609da851359b2bb33/VisualStudio.17.Release.chman
+[2fec:0017][2024-06-20T11:26:04] Attempting download 'https://download.visualstudio.microsoft.com/download/pr/165d4174-7d65-4baa-83d5-4652a3e56211/b7b6e697a43cca4ca13fa708b261d52f52b5ed871934480609da851359b2bb33/VisualStudio.17.Release.chman' using engine 'WebClient'
+[2fec:0017][2024-06-20T11:26:05] Download of 'https://download.visualstudio.microsoft.com/download/pr/165d4174-7d65-4baa-83d5-4652a3e56211/b7b6e697a43cca4ca13fa708b261d52f52b5ed871934480609da851359b2bb33/VisualStudio.17.Release.chman' succeeded using engine 'WebClient'
+[2fec:0017][2024-06-20T11:26:05] Channel 'https://aka.ms/vs/17/release/channel' was not modified. IfModifiedSince: 2024/6/14 上午 01:55:53 +00:00, LastModifiedDate: 2024/6/14 上午 09:55:53 +08:00
+[2fec:0017][2024-06-20T11:26:05] Channel manifest for https://aka.ms/vs/17/release/channel is already up to date.
+[2fec:0001][2024-06-20T11:26:05] The cache manifest and downloaded manifest had the same version for instance: 9d36f098. Did not compute update information.
+[2fec:0001][2024-06-20T11:26:05] No restart manager available. Assuming no reboot required for instance state.
+[2fec:0001][2024-06-20T11:26:05] END: Check for updates
+[2fec:0001][2024-06-20T11:26:05] Update check only operation exits with code: 0
+[2fec:0001][2024-06-20T11:26:05] END: Update Check

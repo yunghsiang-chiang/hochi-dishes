@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.Services;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
+using System.Web.DynamicData;
 
 namespace food
 {
@@ -38,21 +39,6 @@ namespace food
                 ddl_cooking_method.DataBind();
                 ddl_cooking_method.Items.Insert(0, new ListItem("請選擇", "--"));
             }
-        }
-
-        [WebMethod]        
-        public static string dishes_name_text_TextChanged(string dishes_name_text)
-        {
-            //DataTable table = new DataTable();
-            //String cs = "server=10.10.3.75;UId=root; Pwd =hochi_Taoyuan;database=purchase_sale_storeroom;maximumpoolsize=150";
-            //MySqlConnection conn = new MySqlConnection(cs);
-            //MySqlDataAdapter da = new MySqlDataAdapter();
-            //da.SelectCommand = new MySqlCommand("SQLCommand", conn);
-            //da.SelectCommand.CommandTimeout = 0;
-            //da.Fill(table);
-            //conn.Close();
-            //conn.Dispose();
-            return dishes_name_text;
         }
 
         protected void ddl_cooking_method_SelectedIndexChanged(object sender, EventArgs e)

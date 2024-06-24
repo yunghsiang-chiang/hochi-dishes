@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
+        <br />
+        <br />
+        <br />
         <h2 id="title"><%: Title %>.</h2>
         <h3>此處建立新菜品</h3>
         <strong>菜色系統之食材需求量，應以「十人份」食材需求計算</strong>
@@ -11,13 +14,13 @@
                     <asp:Button ID="bt_newdishes_save" runat="server" Text="儲存" class="btn btn-success btn-lg" />
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_print" runat="server" Text="列印" class="btn btn-success btn-lg" />
+                    <asp:Button ID="bt_newdishes_print" runat="server" Text="列印" class="btn btn-secondary btn-lg" />
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_delete" runat="server" Text="刪除" class="btn btn-success btn-lg" />
+                    <asp:Button ID="bt_newdishes_delete" runat="server" Text="刪除" class="btn btn-secondary btn-lg" />
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_leave" runat="server" Text="離開" class="btn btn-success btn-lg" />
+                    <asp:Button ID="bt_newdishes_leave" runat="server" Text="離開" class="btn btn-secondary btn-lg" />
                 </div>
             </div>
             <hr />
@@ -70,7 +73,7 @@
             <div class="container row">
                 <div class="col-sm-4">
                     <string>請點選</string>
-                    <button type="button" ID="btn_step" class="btn btn-success btn-sm">➕</button>
+                    <button type="button" id="btn_step" class="btn btn-success btn-sm">➕</button>
                     <div class="container" id="cooking_step">
                     </div>
                 </div>
@@ -144,7 +147,7 @@
                                 $("#div_material").append(div_chlid);
                             }
                             if (data["seasoning"] === null) {
-/*                                console.log('seasoning is null');*/
+                                /*                                console.log('seasoning is null');*/
                             } else {
                                 //console.log('seasoning not null');
                                 //console.log(data["seasoning"]);
@@ -159,23 +162,21 @@
         var stepindex = 0;
         var materialindex = 0;
         $("#btn_material").bind("click", function () {
-            var div_chlid = '<div class="row"><div class="col" style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">1<select id="myselect' + materialindex.toString() + '"></seclect></div ><div class="col" style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">2</div><div class="col" style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">3</div></div >';
+            var div_chlid = `<div class="row">
+                <div class="input-group input-group-sm-3 col-sm">
+                    <span class="input-group-text" id="inputGroup-material_name">食材</span>
+                    <input type="text" class="form-control" aria-label="material of dishes" aria-describedby="inputGroup-material_name">
+                </div>
+                <div class="input-group input-group-sm-3 col-sm">
+                    <span class="input-group-text" id="inputGroup-material_qty">數量</span>
+                    <input type="text" class="form-control" aria-label="material of dishes" aria-describedby="inputGroup-material_qty">
+                </div>
+                <div class="input-group input-group-sm-3 col-sm">
+                    <span class="input-group-text" id="inputGroup-material_unit">單位</span>
+                    <input type="text" class="form-control" aria-label="material of dishes" aria-describedby="inputGroup-material_unit">
+                </div>
+            </div >`;
             $("#div_material").append(div_chlid);
-            var selectValues = {
-                "1": "test 1",
-                "2": "test 2"
-            };
-            var $mySelect = $('#myselect' + materialindex.toString());
-            $(function () {
-                $.each(selectValues, function (key, value) {
-                    var $option = $("<option/>", {
-                        value: key,
-                        text: value
-                    });
-                    $mySelect.append($option);
-                });
-            });
-            materialindex += 1;
         })
         $("#btn_step").bind("click", function () {
             stepindex += 1;
@@ -202,8 +203,10 @@
                 .done(function (data, textStatus, jqXHR) {
                     if (data.status !== 'success') {
                         alert('上傳成功!');
+                        console.log(data.length);
                         for (var i = 0; i < data.length; i++) {
-                            $("#blah").attr("src", "http://10.10.3.75:8081/" + data[i]);
+                            console.log("http://10.10.3.75:8081" + data[i]);
+                            $("#MainContent_blah").attr("src", "http://10.10.3.75:8081" + data[i]);
                         }
                         console.log("file upload success");
                     }

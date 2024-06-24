@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="7" virtualPath="/New_dishes.aspx" hash="ecb31238b" filehash="fffffff324d51693" flags="100000" CCUpreservationFileName="new_dishes.aspx.cdcab7d2_CBMResult.ccu">
+    <filedeps>
+        <filedep name="/New_dishes.aspx" />
+        <filedep name="/Site.Master" />
+    </filedeps>
+</preserve>

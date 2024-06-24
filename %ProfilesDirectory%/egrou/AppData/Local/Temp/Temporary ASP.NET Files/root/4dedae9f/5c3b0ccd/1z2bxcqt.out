@@ -1,0 +1,6 @@
+﻿C:\Users\egrou\source\repos\food> "C:\Users\egrou\source\repos\food\food\bin\roslyn\csc.exe" /shared /keepalive:"10" /noconfig  /fullpaths @"C:\Users\egrou\source\repos\food\%ProfilesDirectory%\egrou\AppData\Local\Temp\Temporary ASP.NET Files\root\4dedae9f\5c3b0ccd\1z2bxcqt.cmdline"
+
+
+Microsoft (R) Visual C# Compiler version 4.1.0-5.22114.11 (260d16a8)
+Copyright (C) Microsoft Corporation. All rights reserved.
+

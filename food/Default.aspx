@@ -46,7 +46,7 @@
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('table tbody tr td').click(function () {
+            $('#MainContent_gv_view tbody tr td').click(function () {
                 if ($(this).text().includes('範例')) {
                     /*                    invokeAlert();*/
                     //alert('進入 ' + $(this).text() + ' 內容頁面');
@@ -74,12 +74,46 @@
                     //        $(div).append(label);
                     //        $('#result').append(div);
                     //    }
-                    //}
+                    //} 
                 }
+            });
+            $.makeTable = function (mydata) {
+                var table = $('<table cellspacing="0" rules="all" class="table" border="1" id="gv_view" style="border-collapse:collapse;"><tbody>');
+                var tblHeader = "<tr>";
+                tblHeader += '<th scope="col">名稱</th><th scope="col">順序</th><th scope="col">手法</th><th scope="col">食材</th>';
+                tblHeader += "</tr>";
+                $(tblHeader).appendTo(table);
+                $.each(mydata, function (index, item) {
+                    var TableRow = '<tr class="GvGrid">';
+                    TableRow += "<td>" + item.dishes_name + "</td>" + "<td>" + item.dishes_type + "</td>" + "<td>" + item.cooking_method + "</td>" + "<td>" + item.material_id_names + "</td>";
+                    TableRow += "</tr>";
+                    $(table).append(TableRow);
+                });
+                $(table).append('</tbody>');
+                return ($(table));
+            };
+
+            $("#dishes_name_text").change(function () {
+                //var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_words/" + $("#dishes_name_text").val();
+                //var myAPI = api_url;
+                //$.getJSON(myAPI, {
+                //    format: "json"
+                //}).done(function (data) {
+                //    if (data.length > 0) {
+                //        var mydata = data;
+                //        var table = $.makeTable(mydata);
+                //        $(table).appendTo("#test_div");
+
+                //    };
+                //});
+                console.log('製作中');
             });
         });
     </script>
     <main>
+        <br />
+        <br />
+        <br />
         <section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">主頁面</h1>
             <div class="container row">
@@ -173,7 +207,7 @@
                 </div>
             </div>
             <hr />
-            <div class="container">
+            <div class="container" id="test_div" name="test_div">
                 <asp:GridView ID="gv_view" runat="server" OnRowDataBound="gv_view_RowDataBound" Class="table" RowStyle-CssClass="GvGrid">
                 </asp:GridView>
                 <%--                <div id="alert">
@@ -186,38 +220,30 @@
             <img src="images/菜色查詢.png" alt="菜色查詢" class="img-thumbnail img-fluid">--%>
         </section>
     </main>
-    <script>
+<%--    <script>
         $(function () {
             $("#dishes_name_text").change(function () {
-                $.ajax({
-                    //post
-                    type: "Post",
-                    url: "Default.aspx/dishes_name_text_TextChanged",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify($('dishes_name_text').val()),
-                    dataType: "json",
-                    contentType: "application/json",
-                    success: function (data) {
-                        alert(data.d);
-                    },
-                    error: function (err) {
-                        alert(err);
-                    }
-                });
+                console.log($('#dishes_name_text').val());
+                //$.ajax({
+                    
+                //    ////post
+                //    //type: "Post",
+                //    //url: "Default.aspx/dishes_name_text_TextChanged",
+                //    //contentType: "application/json; charset=utf-8",
+                //    //data: JSON.stringify($('dishes_name_text').val()),
+                //    //dataType: "json",
+                //    //contentType: "application/json",
+                //    //success: function (data) {
+                //    //    alert(data.d);
+                //    //},
+                //    //error: function (err) {
+                //    //    alert(err);
+                //    //}
+                //});
                 //
-                return false;
+                //return false;
             });
         });
-        //var alertDiv = document.getElementById("alert");
-        //function invokeAlert() {
-        //    alertDiv.style.display = "block";
-        //}
-        //function closeDialog() {
-        //    alertDiv.style.display = "none";
-        //}
-        //function jumpDialog() {
-        //    alertDiv.style.display = "none";
 
-        //}
-    </script>
+    </script>--%>
 </asp:Content>
