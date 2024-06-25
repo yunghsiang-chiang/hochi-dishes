@@ -15,42 +15,6 @@ namespace food
     {
 
         /// <summary>
-        /// bt_newdishes_save 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bt_newdishes_save;
-
-        /// <summary>
-        /// bt_newdishes_print 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bt_newdishes_print;
-
-        /// <summary>
-        /// bt_newdishes_delete 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bt_newdishes_delete;
-
-        /// <summary>
-        /// bt_newdishes_leave 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bt_newdishes_leave;
-
-        /// <summary>
         /// ddl_newdishes_type 控制項。
         /// </summary>
         /// <remarks>

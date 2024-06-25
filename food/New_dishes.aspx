@@ -11,16 +11,16 @@
         <section>
             <div class="row">
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_save" runat="server" Text="儲存" class="btn btn-success btn-lg" />
+                    <button type="button" ID="bt_newdishes_save" class="btn btn-success btn-lg">儲存</button>
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_print" runat="server" Text="列印" class="btn btn-secondary btn-lg" />
+                    <button type="button" ID="bt_newdishes_print" class="btn btn-secondary btn-lg">列印</button>
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_delete" runat="server" Text="刪除" class="btn btn-secondary btn-lg" />
+                    <button type="button" ID="bt_newdishes_delete" class="btn btn-secondary btn-lg">刪除</button>
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_leave" runat="server" Text="離開" class="btn btn-secondary btn-lg" />
+                    <button type="button" ID="bt_newdishes_leave" class="btn btn-secondary btn-lg">離開</button>
                 </div>
             </div>
             <hr />
@@ -160,7 +160,36 @@
             //console.log('載入完成');
         });
         var stepindex = 0;
-        var materialindex = 0;
+        var materialindex = 0; 
+        $('#bt_newdishes_save').bind("click", function () {
+            var material_array = '';
+            var dishes_step = '';
+            var material_array_index = 0;
+            var dishes_step_index = 0;
+            //console.log('按了儲存按鈕');
+            //console.log($('#div_material .row .form-control').length);
+            console.log($('#MainContent_ddl_newdishes_type option:selected').text());
+            console.log($('#MainContent_ddl_cooking_method option:selected').text());
+            $('#div_material .row .form-control').each(function () {
+                if (material_array_index != 0 && material_array_index % 3 == 0) {
+                    material_array += ',';
+                } else if (material_array_index != 0 && material_array_index % 3 != 0) {
+                    material_array += '-';
+                }
+                material_array += $(this).val();
+                material_array_index += 1;
+            });
+            console.log(material_array);
+            console.log($('#seasoning_text').val());
+            $('#cooking_step .form-floating .form-control').each(function () {
+                if (dishes_step_index !=0) {
+                    dishes_step += ';';
+                }
+                dishes_step += $(this).val();
+                dishes_step_index += 1;
+            });
+            console.log(dishes_step);
+        });
         $("#btn_material").bind("click", function () {
             var div_chlid = `<div class="row">
                 <div class="input-group input-group-sm-3 col-sm">
@@ -177,7 +206,7 @@
                 </div>
             </div >`;
             $("#div_material").append(div_chlid);
-        })
+        });
         $("#btn_step").bind("click", function () {
             stepindex += 1;
             var div_chlid = '<div class="form-floating"><textarea class="form-control" placeholder = "Leave a comment here" id = "floatingTextarea' + stepindex.toString() + '" style = "height: 100px" ></textarea ><label for="floatingTextarea">步驟' + stepindex.toString() + '</label></div > ';
@@ -207,6 +236,7 @@
                         for (var i = 0; i < data.length; i++) {
                             console.log("http://10.10.3.75:8081" + data[i]);
                             $("#MainContent_blah").attr("src", "http://10.10.3.75:8081" + data[i]);
+                            document.cookie = "dishes_image=http://10.10.3.75:8081"+ data[i]; 
                         }
                         console.log("file upload success");
                     }
