@@ -118,16 +118,16 @@
             <h1 id="aspnetTitle">主頁面</h1>
             <div class="container row">
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_save" runat="server" Text="新增" class="btn btn-secondary btn-lg" />
+                    <button type="button" ID="bt_newdishes_append" class="btn btn-secondary btn-lg">新增</button>
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_print" runat="server" Text="編輯" class="btn btn-secondary btn-lg" />
+                    <button type="button" ID="bt_newdishes_edit" class="btn btn-secondary btn-lg">編輯</button>
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_delete" runat="server" Text="搜尋" class="btn btn-success btn-lg" />
+                    <button type="button" ID="bt_newdishes_search" class="btn btn-success btn-lg">搜尋</button>
                 </div>
                 <div class="col">
-                    <asp:Button ID="bt_newdishes_leave" runat="server" Text="刪除" class="btn btn-secondary btn-lg" />
+                    <button type="button" ID="bt_newdishes_drop" class="btn btn-secondary btn-lg">刪除</button>
                 </div>
             </div>
             <hr />

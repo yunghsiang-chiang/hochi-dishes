@@ -114,6 +114,8 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\admin_wp.aspx" />
+    <Content Include="Admin\parameter_settings.aspx" />
+    <Content Include="Admin\temp_test.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -259,6 +261,20 @@
     </Compile>
     <Compile Include="Admin\admin_wp.aspx.designer.cs">
       <DependentUpon>admin_wp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\parameter_settings.aspx.cs">
+      <DependentUpon>parameter_settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\parameter_settings.aspx.designer.cs">
+      <DependentUpon>parameter_settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\temp_test.aspx.cs">
+      <DependentUpon>temp_test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\temp_test.aspx.designer.cs">
+      <DependentUpon>temp_test.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\clsDB.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

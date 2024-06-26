@@ -7,38 +7,29 @@
 // </自動產生>
 //------------------------------------------------------------------------------
 
-namespace food
+namespace food.Admin
 {
 
 
-    public partial class _Default
+    public partial class TEST
     {
 
         /// <summary>
-        /// ddl_newdishes_type 控制項。
+        /// form1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_newdishes_type;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ddl_cooking_method 控制項。
+        /// ScriptManager1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_cooking_method;
-
-        /// <summary>
-        /// gv_view 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_view;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
     }
 }

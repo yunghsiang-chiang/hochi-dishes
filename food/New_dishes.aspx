@@ -9,7 +9,7 @@
         <h3>此處建立新菜品</h3>
         <strong>菜色系統之食材需求量，應以「十人份」食材需求計算</strong>
         <section>
-            <div class="row">
+            <div class="row" id="control_items" >
                 <div class="col">
                     <button type="button" ID="bt_newdishes_save" class="btn btn-success btn-lg">儲存</button>
                 </div>
@@ -27,14 +27,22 @@
             <table>
                 <tbody>
                     <tr>
-                        <td>一、依順序</td>
+                        <td>一、菜色名稱</td>
+                        <td>
+                            <input type="text" id="dishesName" class="form-control" aria-label="dishesName">
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>二、依順序</td>
                         <td>
                             <asp:DropDownList ID="ddl_newdishes_type" runat="server" class="form-select"></asp:DropDownList></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>二、依烹飪手法</td>
+                        <td>三、依烹飪手法</td>
                         <td>
                             <asp:DropDownList ID="ddl_cooking_method" runat="server" class="form-select"></asp:DropDownList></td>
                         <td></td>
@@ -45,7 +53,7 @@
             <hr />
             <table>
                 <tr>
-                    <td>三、添加食材</td>
+                    <td>四、添加食材</td>
                 </tr>
             </table>
             <div class="container row" id="div_material">
@@ -67,7 +75,7 @@
             <hr />
             <table>
                 <tr>
-                    <td>四、烹飪步驟</td>
+                    <td>五、烹飪步驟</td>
                 </tr>
             </table>
             <div class="container row">
@@ -105,6 +113,7 @@
                     urlParams[decode(match[1])] = decode(match[2]);
             })();
             if (typeof urlParams["dishes_name"] == "string") {
+                $('#dishesName').val(urlParams["dishes_name"]);
                 //儲存按鈕 灰色
                 $('input[ID*="bt_newdishes_save"]').removeClass("btn btn-success btn-lg");
                 $('input[ID*="bt_newdishes_save"]').addClass("btn btn-secondary btn-lg");
@@ -153,9 +162,15 @@
                                 //console.log(data["seasoning"]);
                                 $("#seasoning_text").val(data["seasoning"]);
                             }
+                            $('#div_material .row:nth-child(even)').css("background-color","lightgray");
+                            $('#cooking_step .form-floating:nth-child(odd) .form-control').css("background-color","lightgray");
                             //doSomething(data);
                         });
                 })();
+                $('#control_items').css("display", "none");
+                $('#btn_material').css("display", "none");
+                $('#btn_step').css("display", "none");
+                $('#imgInp').css("display", "none");
             }
             //console.log('載入完成');
         });
@@ -166,6 +181,7 @@
             var dishes_step = '';
             var material_array_index = 0;
             var dishes_step_index = 0;
+            console.log($('#dishesName').val());
             //console.log('按了儲存按鈕');
             //console.log($('#div_material .row .form-control').length);
             console.log($('#MainContent_ddl_newdishes_type option:selected').text());
@@ -189,6 +205,10 @@
                 dishes_step_index += 1;
             });
             console.log(dishes_step);
+            if (document.cookie.indexOf('dishes_image=')!=-1) {
+                let dishes_image = getCookie("dishes_image");
+                console.log(dishes_image);
+            };
         });
         $("#btn_material").bind("click", function () {
             var div_chlid = `<div class="row">
@@ -252,5 +272,20 @@
                     console.log("always");
                 });
         });
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        };
     </script>
 </asp:Content>
