@@ -190,6 +190,7 @@
     <Content Include="login.aspx" />
     <Content Include="Menu_management.aspx" />
     <Content Include="New_dishes.aspx" />
+    <Content Include="Scripts\Admin\admin_wp.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

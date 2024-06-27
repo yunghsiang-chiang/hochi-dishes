@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\food\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\new_dishes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\new_dishes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\admin\\admin_wp.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\admin\\admin_wp.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,24 +22,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "New_dishes.aspx",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\New_dishes.aspx",
-              "RelativeDocumentMoniker": "food\\New_dishes.aspx",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\New_dishes.aspx",
-              "RelativeToolTip": "food\\New_dishes.aspx",
+              "DocumentIndex": 1,
+              "Title": "admin_wp.aspx",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Admin\\admin_wp.aspx",
+              "RelativeDocumentMoniker": "food\\Admin\\admin_wp.aspx",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Admin\\admin_wp.aspx",
+              "RelativeToolTip": "food\\Admin\\admin_wp.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-06-24T06:00:41.985Z",
+              "WhenOpened": "2024-06-27T09:03:57.931Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "admin_wp.js",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\Admin\\admin_wp.js",
+              "RelativeDocumentMoniker": "food\\Scripts\\Admin\\admin_wp.js",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\Admin\\admin_wp.js",
+              "RelativeToolTip": "food\\Scripts\\Admin\\admin_wp.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-06-27T08:38:30.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "login.aspx.cs",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\login.aspx.cs",
               "RelativeDocumentMoniker": "food\\login.aspx.cs",

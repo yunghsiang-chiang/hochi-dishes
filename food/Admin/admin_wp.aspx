@@ -8,7 +8,9 @@
     <title>菜色管理後台</title>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css" />
+    <script src="../Scripts/jquery-3.7.0.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/Admin/admin_wp.js"></script>
 </head>
 <body>
     <style>
@@ -82,6 +84,9 @@
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
+                                            <div class="container" id="cooking-method-container">
+
+                                            </div>
                                             <div class="cooking-method">
                                                 <h2>三杯</h2>
                                                 <p>三杯是一種經典的台灣料理，使用三種主要調料：米酒、醬油和麻油，通常用於雞肉或海鮮。</p>
@@ -177,104 +182,8 @@
                                     </h2>
                                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <div class="seasoning-method">
-                                                <h2>糖</h2>
-                                                <p>糖是常用的調味料，能夠增加食物的甜味，平衡酸味或辣味。</p>
-                                            </div>
+                                            <div class="container" id="seasoning_container">
 
-                                            <div class="seasoning-method">
-                                                <h2>鹽</h2>
-                                                <p>鹽是基本的調味料，能夠提升食物的風味，並用於保存食物。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>高鮮</h2>
-                                                <p>高鮮是一種調味粉，能夠增加食物的鮮味，常用於湯品和炒菜。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>米酒</h2>
-                                                <p>米酒用於去腥增香，常在烹調魚肉或海鮮時使用。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>醬油膏</h2>
-                                                <p>醬油膏是一種濃稠的醬油，適合用於醃漬和調味。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>醬油</h2>
-                                                <p>醬油是中式料理中常用的調味料，具有鹹香味，用於各種烹飪方式。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>香油</h2>
-                                                <p>香油是由芝麻製成的油，具有濃郁的香味，常用於涼拌或最後調味。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>胡椒粒</h2>
-                                                <p>胡椒粒具有辛辣的味道，常用於肉類烹調，提升風味。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>胡椒鹽</h2>
-                                                <p>胡椒鹽是胡椒和鹽的混合調味料，常用於烤肉或炒菜。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>素沙茶醬</h2>
-                                                <p>素沙茶醬是一種以花生和香料製成的醬料，常用於素食火鍋或炒菜。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>素蠔油</h2>
-                                                <p>素蠔油是一種用素食材料製成的調味醬，適合素食者使用，增加鮮味。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>香椿醬</h2>
-                                                <p>香椿醬由香椿葉製成，具有獨特的香氣，常用於拌麵或炒菜。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>豆瓣醬</h2>
-                                                <p>豆瓣醬是一種發酵的豆製品，味道濃郁，常用於川菜中。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>辣豆瓣醬</h2>
-                                                <p>辣豆瓣醬是加入辣椒的豆瓣醬，味道辛辣濃郁，常用於麻辣料理。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>義大利香料</h2>
-                                                <p>義大利香料是多種香草混合的調味料，常用於披薩、義大利麵等西式料理。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>迷迭香</h2>
-                                                <p>迷迭香是一種具有松香味的香草，常用於烤肉和烤蔬菜。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>咖哩粉</h2>
-                                                <p>咖哩粉是多種香料的混合粉末，用於製作咖哩菜餚，風味濃郁。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>豆鼓</h2>
-                                                <p>豆鼓是一種發酵過的黑豆，具有獨特的香氣和味道，常用於魚類料理中。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>味增</h2>
-                                                <p>味增是由大豆發酵而成的醬料，常用於味增湯或醃漬食材。</p>
-                                            </div>
-
-                                            <div class="seasoning-method">
-                                                <h2>番茄醬</h2>
-                                                <p>番茄醬是一種由番茄製成的醬料，味道酸甜，常用於意大利麵和漢堡。</p>
                                             </div>
                                         </div>
                                     </div>
