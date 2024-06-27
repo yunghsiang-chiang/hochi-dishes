@@ -9,18 +9,18 @@
         <h3>此處建立新菜品</h3>
         <strong>菜色系統之食材需求量，應以「十人份」食材需求計算</strong>
         <section>
-            <div class="row" id="control_items" >
+            <div class="row" id="control_items">
                 <div class="col">
-                    <button type="button" ID="bt_newdishes_save" class="btn btn-success btn-lg">儲存</button>
+                    <button type="button" id="bt_newdishes_save" class="btn btn-success btn-lg">儲存</button>
                 </div>
                 <div class="col">
-                    <button type="button" ID="bt_newdishes_print" class="btn btn-secondary btn-lg">列印</button>
+                    <button type="button" id="bt_newdishes_print" class="btn btn-secondary btn-lg">列印</button>
                 </div>
                 <div class="col">
-                    <button type="button" ID="bt_newdishes_delete" class="btn btn-secondary btn-lg">刪除</button>
+                    <button type="button" id="bt_newdishes_delete" class="btn btn-secondary btn-lg">刪除</button>
                 </div>
                 <div class="col">
-                    <button type="button" ID="bt_newdishes_leave" class="btn btn-secondary btn-lg">離開</button>
+                    <button type="button" id="bt_newdishes_leave" class="btn btn-secondary btn-lg">離開</button>
                 </div>
             </div>
             <hr />
@@ -86,6 +86,18 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">六、介紹/叮嚀</span>
+                        </div>
+                        <input type="text" id="dishesCommentary" class="form-control" placeholder="介紹/叮嚀" aria-label="dishesCommentary" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">烹飪分鐘</span>
+                        </div>
+                        <input type="text" id="cooking_time" class="form-control" aria-label="Amount">
+                    </div>
                     <div class="file-upload-container">
                         <string>照片上傳/觀看</string>
                         <%--                    <asp:FileUpload ID="FileUpload1" runat="server" />
@@ -162,8 +174,10 @@
                                 //console.log(data["seasoning"]);
                                 $("#seasoning_text").val(data["seasoning"]);
                             }
-                            $('#div_material .row:nth-child(even)').css("background-color","lightgray");
-                            $('#cooking_step .form-floating:nth-child(odd) .form-control').css("background-color","lightgray");
+                            $('#dishesCommentary').val(data["commentary"]);
+                            $('#div_material .row:nth-child(even)').css("background-color", "lightgray");
+                            $('#cooking_step .form-floating:nth-child(odd) .form-control').css("background-color", "lightgray");
+                            $('#cooking_time').val(data["cooking_time"]);
                             //doSomething(data);
                         });
                 })();
@@ -175,12 +189,15 @@
             //console.log('載入完成');
         });
         var stepindex = 0;
-        var materialindex = 0; 
+        var materialindex = 0;
         $('#bt_newdishes_save').bind("click", function () {
             var material_array = '';
             var dishes_step = '';
             var material_array_index = 0;
             var dishes_step_index = 0;
+            var dishes_name = "string";
+            dishes_name = $('#dishesName').val();
+            var dishes_image = '';
             console.log($('#dishesName').val());
             //console.log('按了儲存按鈕');
             //console.log($('#div_material .row .form-control').length);
@@ -198,17 +215,99 @@
             console.log(material_array);
             console.log($('#seasoning_text').val());
             $('#cooking_step .form-floating .form-control').each(function () {
-                if (dishes_step_index !=0) {
+                if (dishes_step_index != 0) {
                     dishes_step += ';';
                 }
                 dishes_step += $(this).val();
                 dishes_step_index += 1;
             });
             console.log(dishes_step);
-            if (document.cookie.indexOf('dishes_image=')!=-1) {
-                let dishes_image = getCookie("dishes_image");
+            if (document.cookie.indexOf('dishes_image=') != -1) {
+                dishes_image = getCookie("dishes_image");
                 console.log(dishes_image);
+                //把cookie 丟掉
+                document.cookie = 'dishes_image=; Max-Age=0; path=/; domain=' + location.hostname;
             };
+
+            console.log($('#dishesCommentary').val());
+            //取得流水號
+            let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_id_like/" + $('#MainContent_ddl_newdishes_type option:selected').val() + $('#MainContent_ddl_cooking_method option:selected').val();
+            console.log(api_url);
+            (function () {
+                var myAPI = api_url;
+                $.getJSON(myAPI, {
+                    format: "json"
+                }).done(function (data) {
+                    var dishes_id = '';
+                    if (typeof data === "undefined") {
+                        dishes_id = $('#MainContent_ddl_newdishes_type option:selected').val() + $('#MainContent_ddl_cooking_method option:selected').val() + '0001';
+                        console.log(dishes_id);
+                        $.ajax({
+                            type: "POST",
+                            url: "http://10.10.3.75:8082/api/dishes/appendNewdishes",
+                            data: JSON.stringify({
+                                "dishes_id": dishes_id,
+                                "dishes_name": dishes_name,
+                                "dishes_type": $('#MainContent_ddl_newdishes_type option:selected').val(),
+                                "cooking_method": $('#MainContent_ddl_cooking_method option:selected').val(),
+                                "material_id_items": "",
+                                "material_id_names": material_array,
+                                "cooking_step": dishes_step,
+                                "cooking_time": $('#cooking_time').val(),
+                                "dishes_image": encodeURI(dishes_image),
+                                "commentary": $('#dishesCommentary').val(),
+                                "seasoning": $('#seasoning_text').val()
+                            }),
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            success: function (data) {
+                                alert('上傳成功!');
+                            },
+                            error: function (data) {
+                                console.log(data);
+                            }
+                        });
+                    } else {
+                        if (data.hasOwnProperty('dishes_id')) {
+                            let index_str = data["dishes_id"].substring(4);
+                            let next_index = parseInt(index_str) + 1;
+                            dishes_id = $('#MainContent_ddl_newdishes_type option:selected').val() + $('#MainContent_ddl_cooking_method option:selected').val() + ("000" + next_index).slice(-4);
+                            console.log(dishes_id);
+                            $.ajax({
+                                type: "POST",
+                                url: "http://10.10.3.75:8082/api/dishes/appendNewdishes",
+                                data: JSON.stringify({
+                                    "dishes_id": dishes_id,
+                                    "dishes_name": dishes_name,
+                                    "dishes_type": $('#MainContent_ddl_newdishes_type option:selected').val(),
+                                    "cooking_method": $('#MainContent_ddl_cooking_method option:selected').val(),
+                                    "material_id_items": "",
+                                    "material_id_names": material_array,
+                                    "cooking_step": dishes_step,
+                                    "cooking_time": $('#cooking_time').val(),
+                                    "dishes_image": encodeURI(dishes_image),
+                                    "commentary": $('#dishesCommentary').val(),
+                                    "seasoning": $('#seasoning_text').val()
+                                }),
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                success: function (data) {
+                                    alert('上傳成功!');
+                                },
+                                error: function (data) {
+                                    console.log(data);
+                                }
+                            });
+                        }
+                    }
+
+                });
+            })();
+
         });
         $("#btn_material").bind("click", function () {
             var div_chlid = `<div class="row">
@@ -251,12 +350,12 @@
             })
                 .done(function (data, textStatus, jqXHR) {
                     if (data.status !== 'success') {
-                        alert('上傳成功!');
+                        alert('圖片上傳成功!');
                         console.log(data.length);
                         for (var i = 0; i < data.length; i++) {
                             console.log("http://10.10.3.75:8081" + data[i]);
                             $("#MainContent_blah").attr("src", "http://10.10.3.75:8081" + data[i]);
-                            document.cookie = "dishes_image=http://10.10.3.75:8081"+ data[i]; 
+                            document.cookie = "dishes_image=http://10.10.3.75:8081" + data[i];
                         }
                         console.log("file upload success");
                     }

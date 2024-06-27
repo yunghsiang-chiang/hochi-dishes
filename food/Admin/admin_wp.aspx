@@ -15,9 +15,10 @@
         .seasoning-method {
             margin-bottom: 20px;
         }
-        .seasoning-method h2 {
-            color: #2c3e50;
-        }
+
+            .seasoning-method h2 {
+                color: #2c3e50;
+            }
     </style>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -286,21 +287,24 @@
             <ajaxToolkit:TabPanel ID="TabPanel2" runat="server">
                 <HeaderTemplate>食材管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>食材筆數1千多、91個營養欄位 全部顯示沒有必要也沒有意義</string></h2>
+                    <h2>
+                        <string>食材筆數1千多、91個營養欄位 全部顯示沒有必要也沒有意義</string></h2>
                     <p>預計設計 "可選擇" 即將顯示欄位</p>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanel3" runat="server">
                 <HeaderTemplate>菜色管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>主廚於前台可以新增 菜色，但後台 服務體能修改與停止菜色</string></h2>
+                    <h2>
+                        <string>主廚於前台可以新增 菜色，但後台 服務體能修改與停止菜色</string></h2>
                     <p>搜尋功能 與前台相同，但後台管理不考慮手機介面體驗</p>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanel4" runat="server">
                 <HeaderTemplate>菜單管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>菜單管理雷同菜色，菜單 用"餐"區分 而 菜色 用"道"</string></h2>
+                    <h2>
+                        <string>菜單管理雷同菜色，菜單 用"餐"區分 而 菜色 用"道"</string></h2>
                     <p>好比午餐有6道菜，因此會有"時間/時機"資訊</p>
                     <p>餐別有</p>
                     <p>早餐</p>
@@ -313,7 +317,8 @@
             <ajaxToolkit:TabPanel ID="TabPanel5" runat="server">
                 <HeaderTemplate>課程活動菜單管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>活動會有天數/主題/時間區間</string></h2>
+                    <h2>
+                        <string>活動會有天數/主題/時間區間</string></h2>
                     <p>在起初2022年規劃中 希望從活動報名資訊連接人數</p>
                     <p>並且建立菜單後會有食材用量評估採購單</p>
                     <p>方便目視需要好比日曆一次呈現多天</p>
@@ -322,7 +327,8 @@
             <ajaxToolkit:TabPanel ID="TabPanel6" runat="server">
                 <HeaderTemplate>報表分析</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>費用/回饋 分析報表</string></h2>
+                    <h2>
+                        <string>費用/回饋 分析報表</string></h2>
                     <p>活動/班會 食材開銷表</p>
                     <p>菜色問卷統計分析表</p>
                 </ContentTemplate>
@@ -330,7 +336,8 @@
             <ajaxToolkit:TabPanel ID="TabPanel7" runat="server">
                 <HeaderTemplate>採購管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>2024 5月會議提到廠商資訊管理</string></h2>
+                    <h2>
+                        <string>2024 5月會議提到廠商資訊管理</string></h2>
                     <p>廠商資訊:名稱/電話/地址/備註</p>
                     <p>採購金額/品項/數量</p>
                     <p>鑒於傳統市場沒有細項,因此廠商備註資訊與發生金額就變成很重要!!!</p>
