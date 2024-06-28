@@ -84,10 +84,12 @@
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
+                                            <table class="table table-striped" id="method-table-container">
+                                            </table>
+                                            <%--                                            
                                             <div class="container" id="cooking-method-container">
-
-                                            </div>
-                                            <div class="cooking-method">
+                                            </div>--%>
+                                            <%--<div class="cooking-method">
                                                 <h2>三杯</h2>
                                                 <p>三杯是一種經典的台灣料理，使用三種主要調料：米酒、醬油和麻油，通常用於雞肉或海鮮。</p>
                                             </div>
@@ -170,7 +172,7 @@
                                             <div class="cooking-method">
                                                 <h2>糖醋</h2>
                                                 <p>糖醋是使用糖和醋調製的醬汁，酸甜開胃，常用於魚類和肉類料理。</p>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -182,9 +184,10 @@
                                     </h2>
                                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <div class="container" id="seasoning_container">
-
-                                            </div>
+                                            <table class="table table-striped" id="seasoning_table">
+                                            </table>
+                                            <%--                           <div class="container" id="seasoning_container">
+                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
