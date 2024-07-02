@@ -61,6 +61,7 @@ namespace food
 
             DataTable logindt = new DataTable();
             logindt = clsDB.MySQL_Select("SELECT person_id, person_name, person_password, person_area, person_subinv FROM hochi_config.c_fellow_hochi_learners where person_id = '" + str_accound + "' and person_password = MD5('" + str_password + "')");
+            Response.Write("<script>console.log('"+ "SELECT person_id, person_name, person_password, person_area, person_subinv FROM hochi_config.c_fellow_hochi_learners where person_id = '" + str_accound + "' and person_password = MD5('" + str_password + "')" + "');</script>");
             if (logindt.Rows.Count > 0)
             {
                 //產生一個Cookie

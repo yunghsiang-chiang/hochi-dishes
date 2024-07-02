@@ -16,46 +16,8 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
-    <script>
-        window.onload = function () {
-            islogin();
-        };
-
-        function islogin() {
-            if ($("#menu_infor").length > 0) {
-                //console.log('有找到元件');
-                at_start = document.cookie.indexOf("person=");
-                if (at_start != -1) {
-                    //console.log('有找到cookie');
-                    //console.log(decodeURI(document.cookie.split(';')[0].split('&')[1]).split('=')[1]);
-                    document.getElementById("menu_infor").innerHTML = decodeURI(document.cookie.split(';')[0].split('&')[1]).split('=')[1] + " 登入中";
-                    document.getElementById("login_inout").innerHTML = "管理登出";
-                } else {
-                    document.getElementById("menu_infor").innerHTML = "菜單系統";
-                    document.getElementById("login_inout").innerHTML = "管理登入";
-                }
-            }
-        }
-        function parseCookie() {
-            var cookieObj = {};
-            var cookieAry = document.cookie.split(';');
-            var cookie;
-            for (var i = 0, l = cookieAry.length; i < l; ++i) {
-                cookie = jQuery.trim(cookieAry[i]);
-                cookie = cookie.split('=');
-                cookieObj[cookie[0]] = cookie[1];
-            }
-            return cookieObj;
-        }
-        function getCookieByName(name) {
-            var value = parseCookie()[name];
-            if (value) {
-                value = decodeURIComponent(value);
-            }
-            return value;
-        }
-
-    </script>
+    <script src="Scripts/jquery-3.7.0.js"></script>
+    <script src="Scripts/RootPage/Site_Master.js"></script>
 </head>
 <body>
     <form runat="server">
@@ -88,8 +50,8 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">主頁面</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/編輯菜色</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">菜色搜尋</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/瀏覽菜色</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Menu_management">菜單管理</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Admin/admin_wp">後台設定</a></li>
                         <li class="nav-item"><a id="login_inout" class="nav-link" runat="server" href="~/login">管理登入</a></li>

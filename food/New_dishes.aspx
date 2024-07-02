@@ -7,8 +7,8 @@
         <br />
         <br />
         <br />
-        <h2 id="title"><%: Title %>.</h2>
-        <h3>此處建立新菜品</h3>
+<%--        <h2 id="title"><%: Title %>.</h2>--%>
+        <h2>建立/瀏覽菜色</h2>
         <strong>菜色系統之食材需求量，應以「十人份」食材需求計算</strong>
         <section>
             <div class="row" id="control_items">
@@ -19,10 +19,10 @@
                     <button type="button" id="bt_newdishes_print" class="btn btn-secondary btn-lg">列印</button>
                 </div>
                 <div class="col">
-                    <button type="button" id="bt_newdishes_delete" class="btn btn-secondary btn-lg">刪除</button>
+                    <%--<button type="button" id="bt_newdishes_delete" class="btn btn-secondary btn-lg">刪除</button>--%>
                 </div>
                 <div class="col">
-                    <button type="button" id="bt_newdishes_leave" class="btn btn-secondary btn-lg">離開</button>
+                    <%--<button type="button" id="bt_newdishes_leave" class="btn btn-secondary btn-lg">離開</button>--%>
                 </div>
             </div>
             <hr />
@@ -67,11 +67,11 @@
                 </div>
             </div>
             <div class="container row" id="div_seasoning">
-                <div class="input-group sm-6">
-                    <div class="input-group-prepend"><span class="input-group-text" id="inputGroup-dishes_name">調味料資訊</span></div>
-                    <div class="col">
-                        <input type="text" id="seasoning_text" name="seasoning_text" class="form-control" aria-label="Default" aria-describedby="inputGroup-dishes_name" />
-                    </div>
+                <div class="col">調味名稱</div>
+                <div class="col">調味用量</div>
+                <div class="col">
+                    單位
+                    <button type="button" id="btn_seasoning" class="btn btn-success btn-sm">➕</button>
                 </div>
             </div>
             <hr />

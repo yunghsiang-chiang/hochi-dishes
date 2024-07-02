@@ -3,101 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //菜單主題 資訊至網頁中
-            let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_type";
-            //console.log(api_url);
-            (function () {
-                var myAPI = api_url;
-                $.getJSON(myAPI, {
-                    format: "json"
-                })
-                    .done(function (data) {
-                        for (var i = 0; i < data.length; i++) {
-                            $('#TabPanel1select_type').append($('<option>', {
-                                value: data[i].dishes_type_id,
-                                text: data[i].dishes_type_name
-                            }));
-                        }
-                        //console.log(data);
-                        //doSomething(data);
-                    });
-            })();
-            //餐別 資訊至網頁中
-            api_url = "http://10.10.3.75:8082/api/dishes/get_cooking_method";
-            (function () {
-                var myAPI = api_url;
-                $.getJSON(myAPI, {
-                    format: "json"
-                })
-                    .done(function (data) {
-                        for (var i = 0; i < data.length; i++) {
-                            $('#TabPanel1select_method').append($('<option>', {
-                                value: data[i].cooking_method_id,
-                                text: data[i].cooking_method
-                            }));
-                        }
-                        //console.log(data);
-                        //doSomething(data);
-                    });
-            })();
-            //班會天數 資訊至Select
-            var selectValues = {
-                "1": "1天",
-                "2": "2天",
-                "3": "3天",
-                "4": "4天",
-                "5": "5天",
-                "6": "6天"
-            };
-            var $mySelect = $('#TabPanel1select_days');
-            $(function () {
-                $.each(selectValues, function (key, value) {
-                    var $option = $("<option/>", {
-                        value: key,
-                        text: value
-                    });
-                    $mySelect.append($option);
-                });
-            });
-            $(function () {
-
-                var dateFormat = "yy/mm/dd",
-                    from = $("#from")
-                        .datepicker({
-                            defaultDate: "+1w",
-                            changeMonth: true,
-                            numberOfMonths: 1,
-                            dateFormat: "yy/mm/dd"
-
-                        })
-                        .on("change", function () {
-                            to.datepicker("option", "minDate", getDate(this));
-                        }),
-                    to = $("#to").datepicker({
-                        defaultDate: "+1w",
-                        changeMonth: true,
-                        numberOfMonths: 1,
-                        dateFormat: "yy/mm/dd"
-                    })
-                        .on("change", function () {
-                            from.datepicker("option", "maxDate", getDate(this));
-                        });
-
-                function getDate(element) {
-                    var date;
-                    try {
-                        date = $.datepicker.parseDate(dateFormat, element.value);
-                    } catch (error) {
-                        date = null;
-                    }
-
-                    return date;
-                }
-            });
-        });
-    </script>
+    <script src="Scripts/RootPage/Menu_management.js"></script>
     <main>
         <br />
         <br />
@@ -258,7 +164,7 @@
                     <ContentTemplate>
                         <div class="row">
                             <div class="col-sm-1">
-                                <button type="button" id="TabPanel4bt_new" name="TabPanel4bt_new" class="btn btn-secondary btn-lg">新增</button>
+                                <button type="button" id="TabPanel4bt_new" name="TabPanel4bt_new" class="btn btn-success btn-lg">新增</button>
                             </div>
                             <div class="col-sm-1">
                                 <button type="button" id="TabPanel4bt_copy" name="TabPanel4bt_copy" class="btn btn-secondary btn-lg">複製</button>
@@ -277,6 +183,54 @@
                             </div>
                         </div>
                         <hr />
+                        <table id="create_menu_table" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">班會日期</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">菜單主題</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">餐別</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主食</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＿濕）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＿乾）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＋纖維質）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（時蔬＋菇等＿2種以上食材）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（葉菜類以外的蔬菜,如瓜類、茄子）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（翠綠葉菜）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（根莖類）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">鹹湯</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">甜湯</th>
+                                </tr>
+                            </tbody>
+                        </table>
                         <img src="images/菜單管理4.png" alt="菜單管理4" class="img-thumbnail img-fluid">
                         <p>1. 這邊的複製/查看無功能</p>
                     </ContentTemplate>
