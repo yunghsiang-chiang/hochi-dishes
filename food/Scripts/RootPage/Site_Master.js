@@ -41,6 +41,7 @@
                 document.cookie = "seasoning=" + unit;
             });
     }
+
     //加速資料載入使用,若沒有cookie則網頁載入時取得web api資料至cookie
     //get 單位cookie
     if (getCookie("ingredients_unit") == "") {
@@ -61,6 +62,28 @@
                 document.cookie = "ingredients_unit=" + unit;
             });
     }
+
+    //加速資料載入使用,若沒有cookie則網頁載入時取得web api資料至cookie
+    //get 水果cookie
+    if (getCookie("fruits") == "") {
+        //將單位資訊取得 並丟到cookie裡
+        let api_url = "http://10.10.3.75:8082/api/dishes/get_fruits";
+        var myAPI = api_url;
+        $.getJSON(myAPI, {
+            format: "json"
+        })
+            .done(function (data) {
+                let unit = '';
+                for (var i = 0; i < data.length; i++) {
+                    if (i != 0) {
+                        unit += ',';
+                    }
+                    unit += data[i].fruits_chinese;
+                }
+                document.cookie = "fruits=" + unit;
+            });
+    }
+
 
     if (getCookie("get_dishes_type")=="") {
         //將單位資訊取得 並丟到cookie裡

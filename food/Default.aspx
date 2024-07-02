@@ -44,72 +44,7 @@
             bottom: 10px;
         }
     </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#MainContent_gv_view tbody tr td').click(function () {
-                if ($(this).text().includes('範例')) {
-                    /*                    invokeAlert();*/
-                    //alert('進入 ' + $(this).text() + ' 內容頁面');
-                    location.replace("http://10.10.3.75:8080/New_dishes?dishes_name=" + $(this).text())
-                        //let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
-                        //console.log(api_url);
-                        (function () {
-                            //var myAPI = "http://10.10.3.75:8082/api/dishes";
-                            //var api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_by_name/" + $(this).text();
-                            var myAPI = api_url;
-                            $.getJSON(myAPI, {
-                                format: "json"
-                            })
-                                .done(function (data) {
-                                    console.log(data);
-                                    //doSomething(data);
-                                    alert("Load was performed.");
-                                });
-                        })();
-
-                    //function doSomething(data) {
-                    //    for (var i = 0; i < data.length; i++) {
-                    //        var div = $("<div>");
-                    //        var label = $("<label>").text(data[i].DisplayValue);
-                    //        $(div).append(label);
-                    //        $('#result').append(div);
-                    //    }
-                    //} 
-                }
-            });
-            $.makeTable = function (mydata) {
-                var table = $('<table cellspacing="0" rules="all" class="table" border="1" id="gv_view" style="border-collapse:collapse;"><tbody>');
-                var tblHeader = "<tr>";
-                tblHeader += '<th scope="col">名稱</th><th scope="col">順序</th><th scope="col">手法</th><th scope="col">食材</th>';
-                tblHeader += "</tr>";
-                $(tblHeader).appendTo(table);
-                $.each(mydata, function (index, item) {
-                    var TableRow = '<tr class="GvGrid">';
-                    TableRow += "<td>" + item.dishes_name + "</td>" + "<td>" + item.dishes_type + "</td>" + "<td>" + item.cooking_method + "</td>" + "<td>" + item.material_id_names + "</td>";
-                    TableRow += "</tr>";
-                    $(table).append(TableRow);
-                });
-                $(table).append('</tbody>');
-                return ($(table));
-            };
-
-            $("#dishes_name_text").change(function () {
-                //var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_words/" + $("#dishes_name_text").val();
-                //var myAPI = api_url;
-                //$.getJSON(myAPI, {
-                //    format: "json"
-                //}).done(function (data) {
-                //    if (data.length > 0) {
-                //        var mydata = data;
-                //        var table = $.makeTable(mydata);
-                //        $(table).appendTo("#test_div");
-
-                //    };
-                //});
-                console.log('製作中');
-            });
-        });
-    </script>
+    <script src="Scripts/RootPage/Default.js"></script>
     <main>
         <br />
         <br />
@@ -179,7 +114,7 @@
             </div>
             <div class="container row">
 
-                <div class="col-sm">
+                <%--<div class="col-sm">
                     <div class="form-inline">
                         <div class="form-group d-flex align-items-center justify-content-start">
                             <div class="input-group">
@@ -194,7 +129,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--%>
                 <div class="col-sm">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -210,40 +145,9 @@
             <div class="container" id="test_div" name="test_div">
                 <asp:GridView ID="gv_view" runat="server" OnRowDataBound="gv_view_RowDataBound" Class="table" RowStyle-CssClass="GvGrid">
                 </asp:GridView>
-                <%--                <div id="alert">
-                    <p>提醒即將跳轉至菜色頁面</p>
-                    <button id="close" onclick="closeDialog()">取消</button>
-                    <button id="jump_page" onclick="jumpDialog()">跳轉</button>
-                </div>--%>
             </div>
             <%--<p class="lead">主頁面用於查詢/觀看 菜品相關資訊</p>
             <img src="images/菜色查詢.png" alt="菜色查詢" class="img-thumbnail img-fluid">--%>
         </section>
     </main>
-<%--    <script>
-        $(function () {
-            $("#dishes_name_text").change(function () {
-                console.log($('#dishes_name_text').val());
-                //$.ajax({
-                    
-                //    ////post
-                //    //type: "Post",
-                //    //url: "Default.aspx/dishes_name_text_TextChanged",
-                //    //contentType: "application/json; charset=utf-8",
-                //    //data: JSON.stringify($('dishes_name_text').val()),
-                //    //dataType: "json",
-                //    //contentType: "application/json",
-                //    //success: function (data) {
-                //    //    alert(data.d);
-                //    //},
-                //    //error: function (err) {
-                //    //    alert(err);
-                //    //}
-                //});
-                //
-                //return false;
-            });
-        });
-
-    </script>--%>
 </asp:Content>

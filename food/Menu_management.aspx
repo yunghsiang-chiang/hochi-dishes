@@ -10,7 +10,7 @@
         <br />
         <section>
             <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0">
-                <ajaxToolkit:TabPanel runat="server" HeaderText="菜單管理1" ID="TabPanel1">
+                <ajaxToolkit:TabPanel runat="server" HeaderText="菜單_查詢" ID="TabPanel1">
                     <ContentTemplate>
                         <div class="row">
                             <div class="col-sm-1">
@@ -53,8 +53,8 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-floating">
-                                    <select class="form-select" id="TabPanel1select_method" aria-label="TabPanel1 Select dishes method"></select>
-                                    <label for="TabPanel1select_method">餐別</label>
+                                    <select class="form-select" id="TabPanel1meal_type" aria-label="TabPanel1 Select dishes method"></select>
+                                    <label for="TabPanel1meal_type">餐別</label>
                                 </div>
                             </div>
                             <div class="col-sm-8">
@@ -160,18 +160,18 @@
                         <p>4.如何找到編輯到一半的資料繼續編輯？使用在菜單管理框1的搜尋功能</p>
                     </ContentTemplate>
                 </ajaxToolkit:TabPanel>
-                <ajaxToolkit:TabPanel runat="server" HeaderText="菜單管理4" ID="TabPanel4">
+                <ajaxToolkit:TabPanel runat="server" HeaderText="菜單_新增" ID="TabPanel4">
                     <ContentTemplate>
                         <div class="row">
                             <div class="col-sm-1">
                                 <button type="button" id="TabPanel4bt_new" name="TabPanel4bt_new" class="btn btn-success btn-lg">新增</button>
                             </div>
-                            <div class="col-sm-1">
+                            <%--<div class="col-sm-1">
                                 <button type="button" id="TabPanel4bt_copy" name="TabPanel4bt_copy" class="btn btn-secondary btn-lg">複製</button>
                             </div>
                             <div class="col-sm-1">
                                 <button type="button" id="TabPanel4bt_search" name="TabPanel4bt_search" class="btn btn-secondary btn-lg">查看</button>
-                            </div>
+                            </div>--%>
                             <div class="col-sm-1">
                                 <button type="button" id="TabPanel4bt_save" name="TabPanel4bt_save" class="btn btn-secondary btn-lg">儲存</button>
                             </div>
@@ -229,10 +229,13 @@
                                 <tr>
                                     <th scope="row">甜湯</th>
                                 </tr>
+                                <tr>
+                                    <th scope="row">水果</th>
+                                </tr>
                             </tbody>
                         </table>
-                        <img src="images/菜單管理4.png" alt="菜單管理4" class="img-thumbnail img-fluid">
-                        <p>1. 這邊的複製/查看無功能</p>
+                        <%--<img src="images/菜單管理4.png" alt="菜單管理4" class="img-thumbnail img-fluid">--%>
+                        <%--<p>1. 這邊的複製/查看無功能</p>--%>
                     </ContentTemplate>
                 </ajaxToolkit:TabPanel>
             </ajaxToolkit:TabContainer>
