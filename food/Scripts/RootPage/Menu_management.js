@@ -1,7 +1,7 @@
 ﻿//注意! javascript放在最上面，下方的元件還沒有產生,所以互動都放在ready function 才不用擔心創立順序
 $(document).ready(function () {
     //菜單主題 資訊至網頁中
-    let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_type";
+    let api_url = "http://10.10.3.75:8082/api/dishes/get_activity_name";
     //console.log(api_url);
     (function () {
         var myAPI = api_url;
@@ -9,18 +9,18 @@ $(document).ready(function () {
             format: "json"
         })
             .done(function (data) {
+                $('#TabPanel1select_type').append('<option value="default">不選擇</option>');
                 for (var i = 0; i < data.length; i++) {
                     $('#TabPanel1select_type').append($('<option>', {
-                        value: data[i].dishes_type_id,
-                        text: data[i].dishes_type_name
+                        value: data[i].activity_name,
+                        text: data[i].activity_name
                     }));
                 }
-                //console.log(data);
-                //doSomething(data);
             });
     })();
     //餐別 資訊至網頁中
     var meal_type = ['早餐', '午餐', '晚餐'];
+    $('#TabPanel1meal_type').append('<option value="default">不選擇</option>');
     for (let i = 0; i < meal_type.length;i++) {
         $('#TabPanel1meal_type').append('<option value="' + meal_type[i] +'">' + meal_type[i] +'</option>');
     }
@@ -34,6 +34,7 @@ $(document).ready(function () {
         "6": "6天"
     };
     var $mySelect = $('#TabPanel1select_days');
+    $('#TabPanel1select_days').append('<option value="default">不選擇</option>');
     $(function () {
         $.each(selectValues, function (key, value) {
             var $option = $("<option/>", {
@@ -79,8 +80,7 @@ $(document).ready(function () {
         }
     });
 
-    //新增 按鈕
-    //從cookie取值並且產生對應元件
+    //新增 按鈕 從cookie取值並且產生對應元件
     $('#TabPanel4bt_new').click(function () {
         //打勾 確認框
         $('#create_menu_table thead tr').append('<th scope="col"><input type="checkbox" class="cb_col"/></th>');
@@ -249,7 +249,66 @@ $(document).ready(function () {
         $('#create_menu_table tbody tr:nth-child(14)').append('<td>' + fruits_select + '</td>');
     });
 
-    
+    $('#TabPanel1bt_search').click(function () {
+        if ($('#TabPanel1select_days').find(":selected").val() != "default") {
+            var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byday/" + $('#TabPanel1select_days').find(":selected").val();
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    var mydata = data;
+                    var table = $.makeSearchTable(mydata);
+                    table.appendTo("#search_div");
+                };
+            });
+        } else if ($('#TabPanel1select_type').find(":selected").val() != "default") {
+            var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byname/" + $('#TabPanel1select_type').find(":selected").text();
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    var mydata = data;
+                    var table = $.makeSearchTable(mydata);
+                    table.appendTo("#search_div");
+                };
+            });
+        } else if ($('#TabPanel1meal_type').find(":selected").val() != "default") {
+            var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_bymealtype/" + $('#TabPanel1meal_type').find(":selected").text();
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    var mydata = data;
+                    var table = $.makeSearchTable(mydata);
+                    table.appendTo("#search_div");
+                };
+            });
+        } else {
+            $('#gv_search_view').remove();
+        }
+    })
+
+
+    $.makeSearchTable = function (mydata) {
+        $('#gv_search_view').remove();
+        var table = $('<table cellspacing="0" rules="all" class="table table-striped" border="1" id="gv_search_view" style="border-collapse:collapse;"><tbody>');
+        var tblHeader = "<tr>";
+        tblHeader += '<th scope="col"></th><th scope="col">活動名稱</th><th scope="col">餐別</th><th scope="col">活動天數</th><th scope="col">活動日期</th><th scope="col">活動期間</th><th scope="col">最後編輯者</th>';
+        tblHeader += "</tr>";
+        $(tblHeader).appendTo(table);
+        $.each(mydata, function (index, item) {
+            var TableRow = '<tr class="GvGrid">';
+            TableRow += '<td><input type="checkbox" class="cb_col"/></td><td>' + item.activity_name + '</td>' + '<td>' + item.meal_type + '</td>' + '<td>' + item.activity_days + '</td>' + '<td>' + item.activity_date.replace("T00:00:00","") + '</td>' + "<td>" + item.during_the_activity + '</td>' + '<td>' + item.lm_user + '</td>';
+            TableRow += "</tr>";
+            $(table).append(TableRow);
+        });
+        $(table).append('</tbody></table>');
+        return ($(table));
+    };
+
 });
 
 //使動態元件 日期生效 並且指定格式 yyyy/MM/dd

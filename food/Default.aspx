@@ -112,9 +112,9 @@
                     </div>
                 </div>
             </div>
-            <div class="container row">
+            <%--<div class="container row">
 
-                <%--<div class="col-sm">
+                <div class="col-sm">
                     <div class="form-inline">
                         <div class="form-group d-flex align-items-center justify-content-start">
                             <div class="input-group">
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                     </div>
-                </div>--%>
+                </div>
                 <div class="col-sm">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
             <hr />
             <div class="container" id="test_div" name="test_div">
                 <asp:GridView ID="gv_view" runat="server" OnRowDataBound="gv_view_RowDataBound" Class="table" RowStyle-CssClass="GvGrid">

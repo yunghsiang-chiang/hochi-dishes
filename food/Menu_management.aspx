@@ -13,26 +13,26 @@
                 <ajaxToolkit:TabPanel runat="server" HeaderText="菜單_查詢" ID="TabPanel1">
                     <ContentTemplate>
                         <div class="row">
+<%--                            <div class="col-sm-1">
+                                <button type="button" id="TabPanel1bt_new" name="TabPanel1bt_new" class="btn btn-secondary">新增</button>
+                            </div>--%>
                             <div class="col-sm-1">
-                                <button type="button" id="TabPanel1bt_new" name="TabPanel1bt_new" class="btn btn-secondary btn-lg">新增</button>
+                                <button type="button" id="TabPanel1bt_edit" name="TabPanel1bt_edit" class="btn btn-secondary">編輯</button>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" id="TabPanel1bt_edit" name="TabPanel1bt_edit" class="btn btn-secondary btn-lg">編輯</button>
+                                <button type="button" id="TabPanel1bt_view" name="TabPanel1bt_view" class="btn btn-secondary">查看</button>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" id="TabPanel1bt_view" name="TabPanel1bt_view" class="btn btn-secondary btn-lg">查看</button>
+                                <button type="button" id="TabPanel1bt_copy" name="TabPanel1bt_copy" class="btn btn-secondary">複製</button>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" id="TabPanel1bt_copy" name="TabPanel1bt_copy" class="btn btn-secondary btn-lg">複製</button>
+                                <button type="button" id="TabPanel1bt_search" name="TabPanel1bt_search" class="btn btn-success">搜尋</button>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" id="TabPanel1bt_search" name="TabPanel1bt_search" class="btn btn-secondary btn-lg">搜尋</button>
+                                <button type="button" id="TabPanel1bt_exit" name="TabPanel1bt_exit" class="btn btn-secondary">離開</button>
                             </div>
                             <div class="col-sm-1">
-                                <button type="button" id="TabPanel1bt_exit" name="TabPanel1bt_exit" class="btn btn-secondary btn-lg">離開</button>
-                            </div>
-                            <div class="col-sm-1">
-                                <button type="button" id="TabPanel1bt_delete" name="TabPanel1bt_delete" class="btn btn-secondary btn-lg">刪除</button>
+                                <button type="button" id="TabPanel1bt_delete" name="TabPanel1bt_delete" class="btn btn-secondary">刪除</button>
                             </div>
                         </div>
                         <hr />
@@ -71,7 +71,10 @@
                             </div>
                         </div>
                         <hr />
-                        <img src="images/菜單管理1.png" alt="菜單管理1" class="img-thumbnail img-fluid">
+                        <div id="search_div">
+
+                        </div>
+                        <%--<img src="images/菜單管理1.png" alt="菜單管理1" class="img-thumbnail img-fluid">--%>
                         <p>1. 菜單主題（下拉選項：幸福印記盛典、老人家紀念會、年菜、一天班會、兩天班會、三天班會...七天班會）</p>
                         <p>2. 餐別（下拉選項：早餐、午餐、晚餐、下午茶、早午餐）</p>
                         <p>3. 期間不等於班會期間，可任意選擇兩日期內的資料，此舉是為了縮小搜尋的範圍，不至於跑出來太多資料</p>

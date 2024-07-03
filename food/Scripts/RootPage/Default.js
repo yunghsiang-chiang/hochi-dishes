@@ -24,33 +24,64 @@
 
     //查詢菜色 by 菜色名稱
     $("#dishes_name_text").change(function () {
-        var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_words/" + $("#dishes_name_text").val();
-        var myAPI = api_url;
-        $.getJSON(myAPI, {
-            format: "json"
-        }).done(function (data) {
-            if (data.length > 0) {
-                var mydata = data;
-                var table = $.makeTable(mydata);
-                $(table).appendTo("#test_div");
+        if ($('#dishes_material_text').val().trim().length > 0) {
+            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_wordsAndMaterial/" + $("#dishes_name_text").val() + "/" + $('#dishes_material_text').val();
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    var mydata = data;
+                    var table = $.makeTable(mydata);
+                    $(table).appendTo("#test_div");
 
-            };
-        });
+                };
+            });
+        } else {
+            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_words/" + $("#dishes_name_text").val();
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    var mydata = data;
+                    var table = $.makeTable(mydata);
+                    $(table).appendTo("#test_div");
+
+                };
+            });
+        }
+
     });
 
     //查詢菜色 by 材料名稱
     $("#dishes_material_text").change(function () {
-        var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_material/" + $("#dishes_material_text").val();
-        var myAPI = api_url;
-        $.getJSON(myAPI, {
-            format: "json"
-        }).done(function (data) {
-            if (data.length > 0) {
-                var mydata = data;
-                var table = $.makeTable(mydata);
-                $(table).appendTo("#test_div");
-            };
-        });
+        if ($('#dishes_name_text').val().trim().length > 0) {
+            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_wordsAndMaterial/" + $("#dishes_name_text").val() + "/" + $('#dishes_material_text').val();
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    var mydata = data;
+                    var table = $.makeTable(mydata);
+                    $(table).appendTo("#test_div");
+                };
+            });
+        } else {
+            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_material/" + $("#dishes_material_text").val();
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    var mydata = data;
+                    var table = $.makeTable(mydata);
+                    $(table).appendTo("#test_div");
+                };
+            });
+        }
+
     });
 });
 
