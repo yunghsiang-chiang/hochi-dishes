@@ -21,8 +21,8 @@ $(document).ready(function () {
     //餐別 資訊至網頁中
     var meal_type = ['早餐', '午餐', '晚餐'];
     $('#TabPanel1meal_type').append('<option value="default">不選擇</option>');
-    for (let i = 0; i < meal_type.length;i++) {
-        $('#TabPanel1meal_type').append('<option value="' + meal_type[i] +'">' + meal_type[i] +'</option>');
+    for (let i = 0; i < meal_type.length; i++) {
+        $('#TabPanel1meal_type').append('<option value="' + meal_type[i] + '">' + meal_type[i] + '</option>');
     }
     //班會天數 資訊至Select
     var selectValues = {
@@ -89,7 +89,7 @@ $(document).ready(function () {
         //菜單主題
         $('#create_menu_table tbody tr:nth-child(2)').append('<td><input type="text" name="name" class="form-control" style="background-color:Pink" /></td>');
         //餐別
-        var dishes_type_array = ['早餐','午餐','晚餐'];
+        var dishes_type_array = ['早餐', '午餐', '晚餐'];
         var dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-dishes_type">';
         for (var i = 0; i < dishes_type_array.length; i++) {
             dishes_type_select += '<option value="' + dishes_type_array[i] + '">' + dishes_type_array[i] + '</option>';
@@ -100,14 +100,14 @@ $(document).ready(function () {
         var get_dishes_type_name = getCookie("get_dishes_type_name");
         var get_dishes_type_name_array_temp = get_dishes_type_name.split(',');
         var get_dishes_type_name_array = [];
-        for (let i = 0; i < get_dishes_type_name_array_temp.length;i++) {
+        for (let i = 0; i < get_dishes_type_name_array_temp.length; i++) {
             var get_type = get_dishes_type_name_array_temp[i].split('＊')[1];
-            if (get_type=="00") {
+            if (get_type == "00") {
                 get_dishes_type_name_array.push(get_dishes_type_name_array_temp[i].split('＊')[0]);
             }
         }
         dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish">';
-        for (let i = 0; i < get_dishes_type_name_array.length;i++) {
+        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_name_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
@@ -250,45 +250,65 @@ $(document).ready(function () {
     });
 
     $('#TabPanel1bt_search').click(function () {
-        if ($('#TabPanel1select_days').find(":selected").val() != "default") {
-            var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byday/" + $('#TabPanel1select_days').find(":selected").val();
-            var myAPI = api_url;
-            $.getJSON(myAPI, {
-                format: "json"
-            }).done(function (data) {
-                if (data.length > 0) {
-                    var mydata = data;
-                    var table = $.makeSearchTable(mydata);
-                    table.appendTo("#search_div");
-                };
-            });
-        } else if ($('#TabPanel1select_type').find(":selected").val() != "default") {
-            var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byname/" + $('#TabPanel1select_type').find(":selected").text();
-            var myAPI = api_url;
-            $.getJSON(myAPI, {
-                format: "json"
-            }).done(function (data) {
-                if (data.length > 0) {
-                    var mydata = data;
-                    var table = $.makeSearchTable(mydata);
-                    table.appendTo("#search_div");
-                };
-            });
-        } else if ($('#TabPanel1meal_type').find(":selected").val() != "default") {
-            var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_bymealtype/" + $('#TabPanel1meal_type').find(":selected").text();
-            var myAPI = api_url;
-            $.getJSON(myAPI, {
-                format: "json"
-            }).done(function (data) {
-                if (data.length > 0) {
-                    var mydata = data;
-                    var table = $.makeSearchTable(mydata);
-                    table.appendTo("#search_div");
-                };
-            });
-        } else {
-            $('#gv_search_view').remove();
+
+        var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_search?activity_name=" + $('#TabPanel1select_type').find(":selected").val() + "&meal_type=" + $('#TabPanel1meal_type').find(":selected").val() + "&activity_days=" + $('#TabPanel1select_days').find(":selected").val();
+        if ($('#from').val().length > 0) {
+            api_url += "&activity_start=" + $('#from').val();
         }
+        if ($('#to').val().length > 0) {
+            api_url += "&activity_end=" + $('#to').val();
+        }
+        var myAPI = api_url;
+        $.getJSON(myAPI, {
+            format: "json"
+        }).done(function (data) {
+            if (data.length > 0) {
+                var mydata = data;
+                var table = $.makeSearchTable(mydata);
+                table.appendTo("#search_div");
+            } else {
+                $('#gv_search_view').remove();
+            }
+        })
+        //if ($('#TabPanel1select_days').find(":selected").val() != "default") {
+        //    var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byday/" + $('#TabPanel1select_days').find(":selected").val();
+        //    var myAPI = api_url;
+        //    $.getJSON(myAPI, {
+        //        format: "json"
+        //    }).done(function (data) {
+        //        if (data.length > 0) {
+        //            var mydata = data;
+        //            var table = $.makeSearchTable(mydata);
+        //            table.appendTo("#search_div");
+        //        };
+        //    });
+        //} else if ($('#TabPanel1select_type').find(":selected").val() != "default") {
+        //    var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byname/" + $('#TabPanel1select_type').find(":selected").text();
+        //    var myAPI = api_url;
+        //    $.getJSON(myAPI, {
+        //        format: "json"
+        //    }).done(function (data) {
+        //        if (data.length > 0) {
+        //            var mydata = data;
+        //            var table = $.makeSearchTable(mydata);
+        //            table.appendTo("#search_div");
+        //        };
+        //    });
+        //} else if ($('#TabPanel1meal_type').find(":selected").val() != "default") {
+        //    var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_bymealtype/" + $('#TabPanel1meal_type').find(":selected").text();
+        //    var myAPI = api_url;
+        //    $.getJSON(myAPI, {
+        //        format: "json"
+        //    }).done(function (data) {
+        //        if (data.length > 0) {
+        //            var mydata = data;
+        //            var table = $.makeSearchTable(mydata);
+        //            table.appendTo("#search_div");
+        //        };
+        //    });
+        //} else {
+        //    $('#gv_search_view').remove();
+        //}
     })
 
 
@@ -301,7 +321,7 @@ $(document).ready(function () {
         $(tblHeader).appendTo(table);
         $.each(mydata, function (index, item) {
             var TableRow = '<tr class="GvGrid">';
-            TableRow += '<td><input type="checkbox" class="cb_col"/></td><td>' + item.activity_name + '</td>' + '<td>' + item.meal_type + '</td>' + '<td>' + item.activity_days + '</td>' + '<td>' + item.activity_date.replace("T00:00:00","") + '</td>' + "<td>" + item.during_the_activity + '</td>' + '<td>' + item.lm_user + '</td>';
+            TableRow += '<td><input type="checkbox" class="cb_col"/></td><td>' + item.activity_name + '</td>' + '<td>' + item.meal_type + '</td>' + '<td>' + item.activity_days + '</td>' + '<td>' + item.activity_date.replace("T00:00:00", "") + '</td>' + "<td>" + item.during_the_activity + '</td>' + '<td>' + item.lm_user + '</td>';
             TableRow += "</tr>";
             $(table).append(TableRow);
         });
@@ -309,10 +329,12 @@ $(document).ready(function () {
         return ($(table));
     };
 
+
+
 });
 
 //使動態元件 日期生效 並且指定格式 yyyy/MM/dd
-$(document).on('click', $('.datepicker'),function () {
+$(document).on('click', $('.datepicker'), function () {
     $('.datepicker').datepicker({
         defaultDate: "+1w",
         changeMonth: true,
@@ -343,3 +365,29 @@ $(document).on('change', $('input[name="date"]'), function () {
     })
 })
 
+//取得TabPanel1 table Double click 資訊 已知BUG th也會列入雙擊事件
+$(document).one('dblclick', $('#gv_search_view tbody tr'), function () {
+    let correct_row = '';
+    $('#gv_search_view tbody').on('dblclick', 'tr', function () {
+        correct_row += $(this).text();
+        console.log(correct_row);
+        let correct_array = [];
+        $('#gv_search_view tbody tr td').each(function () {
+            $(this).each(function () {
+                if ($(this).text().length > 0) {
+                    correct_array.push($(this).text());
+                }
+            })
+        })
+        for (var i = 0; i < correct_array.length / 6; i++) {
+            if ((correct_array.slice((6 * i) + 0, (6 * i) + 6)).join("") == correct_row) {
+                console.log(correct_array.slice((6 * i) + 0, (6 * i) + 6));
+                document.cookie = "dblclickrow=" + (correct_array.slice((6 * i) + 0, (6 * i) + 6)).join(",");
+                $('#TabPanel1').removeClass("ajax__tab_active");
+                $('#TabPanel2').addClass("ajax__tab_active");
+
+            }
+        }
+    })
+
+})
