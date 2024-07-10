@@ -68,6 +68,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Cors, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.3.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -229,6 +232,8 @@
     <Content Include="Scripts\jquery-ui-1.13.2.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\RootPage\Default.js" />
+    <Content Include="Scripts\RootPage\FileSaver.js" />
+    <Content Include="Scripts\RootPage\jquery.wordexport.js" />
     <Content Include="Scripts\RootPage\Menu_management.js" />
     <Content Include="Scripts\RootPage\New_dishes.js" />
     <Content Include="Scripts\RootPage\Site_Master.js" />

@@ -2,12 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script src="Scripts/RootPage/New_dishes.js"></script>
-
-    <main aria-labelledby="title">
+    <script src="Scripts/RootPage/FileSaver.js"></script>
+    <script src="Scripts/RootPage/jquery.wordexport.js"></script>
+    <main aria-labelledby="title" id="page-content">
         <br />
         <br />
         <br />
-<%--        <h2 id="title"><%: Title %>.</h2>--%>
+        <%--        <h2 id="title"><%: Title %>.</h2>--%>
         <h2>建立/瀏覽菜色</h2>
         <strong>菜色系統之食材需求量，應以「十人份」食材需求計算</strong>
         <section>
@@ -81,18 +82,19 @@
                 </tr>
             </table>
             <div class="container row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <string>請點選</string>
                     <button type="button" id="btn_step" class="btn btn-success btn-sm">➕</button>
                     <div class="container" id="cooking_step">
                     </div>
                 </div>
-                <div class="col-sm-8">
-                    <div class="input-group">
+                <div class="col-sm-6">
+                    <div class="input-group row">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">六、介紹/叮嚀</span>
                         </div>
-                        <input type="text" id="dishesCommentary" class="form-control" placeholder="介紹/叮嚀" aria-label="dishesCommentary" aria-describedby="basic-addon1">
+                        <textarea class="form-control" id="dishesCommentary" style="height: auto; "></textarea>
+                        <%--<input type="text" id="dishesCommentary" class="form-control" placeholder="介紹/叮嚀" aria-label="dishesCommentary" aria-describedby="basic-addon1">--%>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">

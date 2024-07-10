@@ -122,7 +122,7 @@
                     //console.log(data["cooking_step"].split(';'));
                     //console.log(data["cooking_step"].split(';').length);
                     for (let i = 1; i <= data["cooking_step"].split(';').length; i++) {
-                        var div_chlid = '<div class="form-floating"><textarea class="form-control" placeholder = "Leave a comment here" id = "floatingTextarea' + i.toString() + '" style = "height: 100px" >' + step_content[i - 1] + '</textarea ><label for="floatingTextarea">步驟' + i.toString() + '</label></div > ';
+                        var div_chlid = '<div class="form-floating row"><textarea class="form-control" id = "floatingTextarea' + i.toString() + '" style = "height:auto" >' + step_content[i - 1] + '</textarea ><label for="floatingTextarea">步驟' + i.toString() + '</label></div > ';
                         $("#cooking_step").append(div_chlid)
                     }
                     var material_content = data["material_id_names"].split(',');
@@ -153,7 +153,8 @@
                 });
         })();
         //將編輯按鈕隱藏
-        $('#control_items').css("display", "none");
+        //$('#control_items').css("display", "none");
+        $('#bt_newdishes_save').css('display', 'none');
         $('#btn_material').css("display", "none");
         $('#btn_seasoning').css("display", "none");
         $('#btn_step').css("display", "none");
@@ -303,6 +304,11 @@
 
     });
 
+    $('#bt_newdishes_print').bind('click',function () {
+        console.log('print button active!');
+        $("#page-content").wordExport();
+    })
+
     $('#btn_seasoning').on("click", function () {
         var cookie_unit = getCookie("ingredients_unit");
         var cookie_unit_array = cookie_unit.split(',');
@@ -366,7 +372,7 @@
     });
     $("#btn_step").bind("click", function () {
         stepindex += 1;
-        var div_chlid = '<div class="form-floating"><textarea class="form-control" placeholder = "Leave a comment here" id = "floatingTextarea' + stepindex.toString() + '" style = "height: 100px" ></textarea ><label for="floatingTextarea">步驟' + stepindex.toString() + '</label></div > ';
+        var div_chlid = '<div class="form-floating row"><textarea class="form-control" id = "floatingTextarea' + stepindex.toString() + '" style = "height:auto" ></textarea ><label for="floatingTextarea">步驟' + stepindex.toString() + '</label></div > ';
         $("#cooking_step").append(div_chlid);
     })
     //imgInp.onchange = evt => {

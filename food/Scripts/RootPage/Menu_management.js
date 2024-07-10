@@ -81,8 +81,7 @@ $(document).ready(function () {
     });
 
     //查詢活動菜單資訊
-    $('#TabPanel1bt_search').click(function () {
-
+    $("#TabPanel1select_type,#TabPanel1meal_type,#TabPanel1select_days").on("change", function () {
         var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_search?activity_name=" + $('#TabPanel1select_type').find(":selected").val() + "&meal_type=" + $('#TabPanel1meal_type').find(":selected").val() + "&activity_days=" + $('#TabPanel1select_days').find(":selected").val();
         if ($('#from').val().length > 0) {
             api_url += "&activity_start=" + $('#from').val();
@@ -102,46 +101,8 @@ $(document).ready(function () {
                 $('#gv_search_view').remove();
             }
         })
-        //if ($('#TabPanel1select_days').find(":selected").val() != "default") {
-        //    var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byday/" + $('#TabPanel1select_days').find(":selected").val();
-        //    var myAPI = api_url;
-        //    $.getJSON(myAPI, {
-        //        format: "json"
-        //    }).done(function (data) {
-        //        if (data.length > 0) {
-        //            var mydata = data;
-        //            var table = $.makeSearchTable(mydata);
-        //            table.appendTo("#search_div");
-        //        };
-        //    });
-        //} else if ($('#TabPanel1select_type').find(":selected").val() != "default") {
-        //    var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_byname/" + $('#TabPanel1select_type').find(":selected").text();
-        //    var myAPI = api_url;
-        //    $.getJSON(myAPI, {
-        //        format: "json"
-        //    }).done(function (data) {
-        //        if (data.length > 0) {
-        //            var mydata = data;
-        //            var table = $.makeSearchTable(mydata);
-        //            table.appendTo("#search_div");
-        //        };
-        //    });
-        //} else if ($('#TabPanel1meal_type').find(":selected").val() != "default") {
-        //    var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_bymealtype/" + $('#TabPanel1meal_type').find(":selected").text();
-        //    var myAPI = api_url;
-        //    $.getJSON(myAPI, {
-        //        format: "json"
-        //    }).done(function (data) {
-        //        if (data.length > 0) {
-        //            var mydata = data;
-        //            var table = $.makeSearchTable(mydata);
-        //            table.appendTo("#search_div");
-        //        };
-        //    });
-        //} else {
-        //    $('#gv_search_view').remove();
-        //}
-    })
+    });
+
 
     //生成活動菜單 表格
     $.makeSearchTable = function (mydata) {
@@ -350,15 +311,255 @@ $(document).ready(function () {
         console.log(check_array);
     })
 
+    //查看按鈕 判斷勾選數量 引導至第二頁查看
     $('#TabPanel1bt_view').click(function () {
         if (check_array.length>0) {
             document.cookie = "check_array=" + check_array.join(",");
+            let correct_array = [];
+            $('#gv_search_view tbody tr td').each(function () {
+                $(this).each(function () {
+                    if ($(this).text().length > 0) {
+                        correct_array.push($(this).text());
+                    }
+                })
+            })
+            infor_list = [];
+            for (var i = 0; i < correct_array.length / 6; i++) {
+                if (check_array.indexOf(i) !=-1) {
+                    infor_list.push(correct_array.slice((6 * i) + 0, (6 * i) + 6).join(","));
+                }
+            }
+            console.log(infor_list.join(";"));
+            document.cookie = "check_infor=" + infor_list.join("、");
+            //第二頁
             $('#search-tab').removeClass('active');
             $('#second-tab').addClass('active');
             $('#search').removeClass('active');
             $('#second').addClass('active');
+            if (getCookie("check_infor") != null) {
+                var mydata = getCookie("check_infor");
+                var table = $.makeDetailTable(mydata);
+                table.appendTo("detail_div");
+                //把cookie 丟掉
+                document.cookie = 'check_infor=; Max-Age=0; path=/; domain=' + location.hostname;
+            }
         }
     })
+
+    //勾選資訊呈現
+    $.makeDetailTable = function (mydata) {
+        console.log(mydata);
+        $('#detail_table').remove();
+        var temp_array = mydata.split('、');
+
+        let temp_html = `<table id="detail_table" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">班會日期</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">菜單主題</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">餐別</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主食</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＿濕）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＿乾）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＋纖維質）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（時蔬＋菇等＿2種以上食材）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（葉菜類以外的蔬菜,如瓜類、茄子）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（翠綠葉菜）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（根莖類）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">鹹湯</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">甜湯</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">水果</th>
+                                </tr>
+                            </tbody>
+                        </table>`;
+        $('#detail_div').append(temp_html);
+        let temp_tablerow = '';
+
+        //打勾 確認框
+
+        for (var i = 0; i < temp_array.length; i++) {
+            temp_tablerow += '<th scope="col"><input type="checkbox" name="cb_col" class="cb_col" /></th>';
+        }
+        $('#detail_table thead tr').append(temp_tablerow);
+
+        //班會日期
+        temp_tablerow = '';
+        for (var i = 0; i < temp_array.length; i++) {
+            temp_tablerow += '<th scope="col"><span class="label label-default" name="date">' + temp_array[i].split(',')[3] + '</span></th>';
+        }
+        $('#detail_table tbody tr:nth-child(1)').append(temp_tablerow);
+
+        //菜單主題
+        temp_tablerow = '';
+        for (var i = 0; i < temp_array.length; i++) {
+            temp_tablerow += '<th scope="col"><span class="label label-default" name="name">' + temp_array[i].split(',')[0] + '</span></th>';
+        }
+        $('#detail_table tbody tr:nth-child(2)').append(temp_tablerow);
+
+        //餐別
+        temp_tablerow = '';
+        for (var i = 0; i < temp_array.length; i++) {
+            temp_tablerow += '<th scope="col"><span class="label label-default" name="meal_type">' + temp_array[i].split(',')[1] + '</span></th>';
+        }
+        $('#detail_table tbody tr:nth-child(3)').append(temp_tablerow);
+
+        //
+        for (var ii = 0; ii < temp_array.length;ii++) {
+            var api_url = "http://10.10.3.75:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3];
+            var myAPI = api_url;
+            $.getJSON(myAPI, {
+                format: "json"
+            }).done(function (data) {
+                if (data.length > 0) {
+                    //主食
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "00") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(4)').append(temp_tablerow);
+                    //主菜（蛋白質＿濕）
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food_wet">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "01") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(5)').append(temp_tablerow);
+                    //主菜（蛋白質＿乾）
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food_dry">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "02") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(6)').append(temp_tablerow);
+                    //主菜（蛋白質＋纖維質）
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food_fiber">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "03") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(7)').append(temp_tablerow);
+                    //副菜（時蔬＋菇等＿2種以上食材）
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_mushroom">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "04") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(8)').append(temp_tablerow);
+                    //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_melon">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "05") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(9)').append(temp_tablerow);
+                    //副菜（翠綠葉菜）
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_vegetables">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "06") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(10)').append(temp_tablerow);
+                    //副菜（根莖類）
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_roots">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "07") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(11)').append(temp_tablerow);
+                    //鹹湯
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="salty_soup">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "08") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(12)').append(temp_tablerow);
+                    //甜湯
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="sweet_soup">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "09") {
+                            temp_list.push(data[i].dishes_name)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(13)').append(temp_tablerow);
+                }
+            })
+        }
+        
+        return ($('#detail_table'));
+
+
+    }
 });
 
 //使動態元件 日期生效 並且指定格式 yyyy/MM/dd
@@ -415,8 +616,239 @@ $(document).one('dblclick', $('#gv_search_view tbody tr'), function () {
                 $('#second-tab').addClass('active');
                 $('#search').removeClass('active');
                 $('#second').addClass('active');
+                if (getCookie("dblclickrow")!=null) {
+                    var mydata = getCookie("dblclickrow");
+                    var table = $.makeDetailTable(mydata);
+                    table.appendTo("detail_div");
+                    //把cookie 丟掉
+                    document.cookie = 'dblclickrow=; Max-Age=0; path=/; domain=' + location.hostname;
+                }
             }
         }
     })
 
+    $.makeDetailTable = function (mydata) {
+        $('#detail_table').remove();
+        var temp_array = mydata.split('、');
+        let temp_html = `<table id="detail_table" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">班會日期</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">菜單主題</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">餐別</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主食</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＿濕）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＿乾）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">主菜（蛋白質＋纖維質）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（時蔬＋菇等＿2種以上食材）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（葉菜類以外的蔬菜,如瓜類、茄子）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（翠綠葉菜）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">副菜（根莖類）</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">鹹湯</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">甜湯</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">水果</th>
+                                </tr>
+                            </tbody>
+                        </table>`;
+        $('#detail_div').append(temp_html);
+        let temp_tablerow = '';
+
+        //打勾 確認框
+        for (var i = 0; i < temp_array.length;i++) {
+            temp_tablerow += '<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"></th>';
+        }
+        $('#detail_table thead tr').append(temp_tablerow);
+
+        //班會日期
+        temp_tablerow = '';
+        for (var i = 0; i < temp_array.length; i++) {
+            temp_tablerow += '<th scope="col"><span class="label label-default" name="date">' + temp_array[i].split(',')[3] +'</span></th>';
+        }
+        $('#detail_table tbody tr:nth-child(1)').append(temp_tablerow);
+
+        //菜單主題
+        temp_tablerow = '';
+        for (var i = 0; i < temp_array.length; i++) {
+            temp_tablerow += '<th scope="col"><span class="label label-default" name="name">' + temp_array[i].split(',')[0] + '</span></th>';
+        }
+        $('#detail_table tbody tr:nth-child(2)').append(temp_tablerow);
+
+        //餐別
+        temp_tablerow = '';
+        for (var i = 0; i < temp_array.length; i++) {
+            temp_tablerow += '<th scope="col"><span class="label label-default" name="meal_type">' + temp_array[i].split(',')[1] + '</span></th>';
+        }
+        $('#detail_table tbody tr:nth-child(3)').append(temp_tablerow);
+
+        var api_url = "http://10.10.3.75:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[0].split(',')[0] + "&meal_type=" + temp_array[0].split(',')[1] + "&activity_date=" + temp_array[0].split(',')[3];
+        var myAPI = api_url;
+        $.getJSON(myAPI, {
+            format: "json"
+        }).done(function (data) {
+            if (data.length > 0) {
+                //主食
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "00") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(4)').append(temp_tablerow);
+                //主菜（蛋白質＿濕）
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food_wet">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "01") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(5)').append(temp_tablerow);
+                //主菜（蛋白質＿乾）
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food_dry">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "02") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(6)').append(temp_tablerow);
+                //主菜（蛋白質＋纖維質）
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="staple_food_fiber">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "03") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(7)').append(temp_tablerow);
+                //副菜（時蔬＋菇等＿2種以上食材）
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_mushroom">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "04") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(8)').append(temp_tablerow);
+                //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_melon">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "05") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(9)').append(temp_tablerow);
+                //副菜（翠綠葉菜）
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_vegetables">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "06") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(10)').append(temp_tablerow);
+                //副菜（根莖類）
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="Non_staple_food_roots">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "07") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(11)').append(temp_tablerow);
+                //鹹湯
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="salty_soup">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "08") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(12)').append(temp_tablerow);
+                //甜湯
+                temp_tablerow = '<th scope="col"><span class="label label-default" name="sweet_soup">';
+                temp_list = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].dishes_type == "09") {
+                        temp_list.push(data[i].dishes_name)
+                    }
+                }
+                temp_tablerow += temp_list.join("<br/>");
+                temp_tablerow += '</span></th>';
+                $('#detail_table tbody tr:nth-child(13)').append(temp_tablerow);
+            } 
+        })
+        return ($('#detail_table'));
+
+
+    }
+
 })
+
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+};
