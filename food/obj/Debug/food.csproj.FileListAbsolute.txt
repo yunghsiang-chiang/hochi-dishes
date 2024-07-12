@@ -69,3 +69,4 @@ C:\Users\egrou\source\repos\food\food\bin\Magick.NET-Q16-AnyCPU.dll
 C:\Users\egrou\source\repos\food\food\bin\Magick.NET.Core.dll
 C:\Users\egrou\source\repos\food\food\bin\Magick.NET-Q16-AnyCPU.xml
 C:\Users\egrou\source\repos\food\food\bin\Magick.NET.Core.xml
+C:\Users\egrou\source\repos\food\food\bin\System.Web.Cors.dll

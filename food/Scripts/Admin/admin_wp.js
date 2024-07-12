@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //塞資訊至網頁中
-    let api_url = "http://10.10.3.75:8082/api/dishes/get_seasoning";
+    let api_url = "http://192.168.11.51:8082/api/dishes/get_seasoning";
     var myAPI = api_url;
     $.getJSON(myAPI, {
         format: "json"
@@ -21,7 +21,7 @@
             //}
         });
 
-    api_url = "http://10.10.3.75:8082/api/dishes/get_cooking_method";
+    api_url = "http://192.168.11.51:8082/api/dishes/get_cooking_method";
     myAPI = api_url;
     $.getJSON(myAPI, { format: "json" })
         .done(function (data) {

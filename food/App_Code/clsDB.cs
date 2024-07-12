@@ -165,7 +165,7 @@ namespace food.App_Code
         public DataTable MySQL_Select(string SQLCommand)
         {
             DataTable table = new DataTable();
-            String cs = "server=10.10.3.75;UId=root; Pwd =hochi_Taoyuan;database=purchase_sale_storeroom;maximumpoolsize=150";
+            String cs = "server=192.168.11.51;UId=hochi_root; Pwd =hochi_Taoyuan;database=food;maximumpoolsize=150";
             MySqlConnection conn = new MySqlConnection(cs);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = new MySqlCommand(SQLCommand, conn);
@@ -183,7 +183,7 @@ namespace food.App_Code
         public string MySQL_Command(string SQLCommand)
         {
             string strReturn = "finish";
-            String cs = "server=10.10.3.75;UId=root; Pwd =hochi_Taoyuan;database=purchase_sale_storeroom;maximumpoolsize=150";
+            String cs = "server=192.168.11.51;UId=hochi_root; Pwd =hochi_Taoyuan;database=food;maximumpoolsize=150";
             MySqlConnection conn = new MySqlConnection(cs);
             try
             {

@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $('#MainContent_gv_view tbody tr td').click(function () {
         if ($(this).text().includes('範例')) {
-            location.replace("http://10.10.3.75:8080/New_dishes?dishes_name=" + $(this).text())
+            location.replace("http://192.168.11.51:8080/New_dishes?dishes_name=" + $(this).text())
         }
     });
 
@@ -25,7 +25,7 @@
     //查詢菜色 by 菜色名稱
     $("#dishes_name_text").change(function () {
         if ($('#dishes_material_text').val().trim().length > 0) {
-            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_wordsAndMaterial/" + $("#dishes_name_text").val() + "/" + $('#dishes_material_text').val();
+            var api_url = "http://192.168.11.51:8082/api/dishes/search_dishes_by_wordsAndMaterial/" + $("#dishes_name_text").val() + "/" + $('#dishes_material_text').val();
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -38,7 +38,7 @@
                 };
             });
         } else {
-            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_words/" + $("#dishes_name_text").val();
+            var api_url = "http://192.168.11.51:8082/api/dishes/search_dishes_by_words/" + $("#dishes_name_text").val();
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -57,7 +57,7 @@
     //查詢菜色 by 材料名稱
     $("#dishes_material_text").change(function () {
         if ($('#dishes_name_text').val().trim().length > 0) {
-            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_wordsAndMaterial/" + $("#dishes_name_text").val() + "/" + $('#dishes_material_text').val();
+            var api_url = "http://192.168.11.51:8082/api/dishes/search_dishes_by_wordsAndMaterial/" + $("#dishes_name_text").val() + "/" + $('#dishes_material_text').val();
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -69,7 +69,7 @@
                 };
             });
         } else {
-            var api_url = "http://10.10.3.75:8082/api/dishes/search_dishes_by_material/" + $("#dishes_material_text").val();
+            var api_url = "http://192.168.11.51:8082/api/dishes/search_dishes_by_material/" + $("#dishes_material_text").val();
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -88,7 +88,7 @@
 $(document).on('click', $('#gv_view'), function () {
     $('#gv_view tbody tr td').click(function () {
         if ($(this).text().includes('範例')) {
-            location.replace("http://10.10.3.75:8080/New_dishes?dishes_name=" + $(this).text())
+            location.replace("http://192.168.11.51:8080/New_dishes?dishes_name=" + $(this).text())
         }
     });
 })

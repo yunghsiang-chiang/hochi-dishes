@@ -4,7 +4,7 @@
     //get 食材cookie
     if (getCookie("food_nutrition") == "") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://10.10.3.75:8082/api/dishes/get_food_nutrition";
+        let api_url = "http://192.168.11.51:8082/api/dishes/get_food_nutrition";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -25,7 +25,7 @@
     //get 調味cookie
     if (getCookie("seasoning") == "") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://10.10.3.75:8082/api/dishes/get_seasoning";
+        let api_url = "http://192.168.11.51:8082/api/dishes/get_seasoning";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -46,7 +46,7 @@
     //get 單位cookie
     if (getCookie("ingredients_unit") == "") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://10.10.3.75:8082/api/dishes/get_ingredients_unit";
+        let api_url = "http://192.168.11.51:8082/api/dishes/get_ingredients_unit";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -67,7 +67,7 @@
     //get 水果cookie
     if (getCookie("fruits") == "") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://10.10.3.75:8082/api/dishes/get_fruits";
+        let api_url = "http://192.168.11.51:8082/api/dishes/get_fruits";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -87,7 +87,7 @@
 
     if (getCookie("get_dishes_type")=="") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_type";
+        let api_url = "http://192.168.11.51:8082/api/dishes/get_dishes_type";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -106,7 +106,7 @@
 
     if (getCookie("get_dishes_type_name")=="") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://10.10.3.75:8082/api/dishes/get_dishes_type_name";
+        let api_url = "http://192.168.11.51:8082/api/dishes/get_dishes_type_name";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"

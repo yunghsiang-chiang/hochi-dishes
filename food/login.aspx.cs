@@ -26,7 +26,7 @@ namespace food
                 else
                 {
                     //不可以登入管理者
-                    Response.Redirect("http://10.10.3.75:8080/");
+                    Response.Redirect("http://192.168.11.51:8080/");
                 }
 
                 //如果已經登入過，再次進入=登出
@@ -38,7 +38,7 @@ namespace food
                     //套轉回原本網址
                     if (String.IsNullOrEmpty(Request.QueryString["beforeUrls"]))
                     {
-                        Response.Redirect("http://10.10.3.75:8080/");
+                        Response.Redirect("http://192.168.11.51:8080/");
                     }
                     else
                     {
@@ -78,7 +78,7 @@ namespace food
                 //套轉回原本網址
                 if (String.IsNullOrEmpty(Request.QueryString["beforeUrls"]))
                 {
-                    Response.Redirect("http://10.10.3.75:8080/");
+                    Response.Redirect("http://192.168.11.51:8080/");
                 }
                 else
                 {
