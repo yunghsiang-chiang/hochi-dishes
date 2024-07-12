@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\food\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\rootpage\\menu_management.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\rootpage\\menu_management.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\menu_management.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\menu_management.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\rootpage\\menu_management.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\rootpage\\menu_management.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -38,20 +38,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Menu_management.js",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\Menu_management.js",
               "RelativeDocumentMoniker": "food\\Scripts\\RootPage\\Menu_management.js",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\Menu_management.js",
               "RelativeToolTip": "food\\Scripts\\RootPage\\Menu_management.js",
-              "ViewState": "AQIAABACAAAAAAAAAAAmwC8CAAAAAAAA",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAAAGAAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-07-05T07:39:55.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Menu_management.aspx",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Menu_management.aspx",
               "RelativeDocumentMoniker": "food\\Menu_management.aspx",

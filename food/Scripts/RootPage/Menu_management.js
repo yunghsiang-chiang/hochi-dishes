@@ -81,7 +81,7 @@ $(document).ready(function () {
     });
 
     //查詢活動菜單資訊
-    $("#TabPanel1select_type,#TabPanel1meal_type,#TabPanel1select_days").on("change", function () {
+    $("#TabPanel1select_type,#TabPanel1meal_type,#TabPanel1select_days,#from,#to").on("change", function () {
         var api_url = "http://10.10.3.75:8082/api/dishes/get_h_activity_records_search?activity_name=" + $('#TabPanel1select_type').find(":selected").val() + "&meal_type=" + $('#TabPanel1meal_type').find(":selected").val() + "&activity_days=" + $('#TabPanel1select_days').find(":selected").val();
         if ($('#from').val().length > 0) {
             api_url += "&activity_start=" + $('#from').val();
