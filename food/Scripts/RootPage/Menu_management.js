@@ -338,17 +338,17 @@ $(document).ready(function () {
             $('#second').addClass('active');
             if (getCookie("check_infor") != null) {
                 var mydata = getCookie("check_infor");
-                var table = $.makeDetailTable(mydata);
+                var table = $.makeDetailTables(mydata);
                 table.appendTo("detail_div");
-                //把cookie 丟掉
-                document.cookie = 'check_infor=; Max-Age=0; path=/; domain=' + location.hostname;
+                ////把cookie 丟掉
+                //document.cookie = 'check_infor=; Max-Age=0; path=/; domain=' + location.hostname;
             }
         }
     })
 
     //勾選資訊呈現
-    $.makeDetailTable = function (mydata) {
-        console.log(mydata);
+    $.makeDetailTables = function (mydata) {
+        console.log('makeDetailTables:'+mydata);
         $('#detail_table').remove();
         var temp_array = mydata.split('、');
 
@@ -437,6 +437,7 @@ $(document).ready(function () {
         //
         for (var ii = 0; ii < temp_array.length;ii++) {
             var api_url = "http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3];
+            console.log("http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3]);
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
