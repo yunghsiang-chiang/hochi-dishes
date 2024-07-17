@@ -38,7 +38,7 @@
                             <button type="button" id="TabPanel1bt_view" name="TabPanel1bt_view" class="btn btn-success btn-lg">查看</button>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" id="TabPanel1bt_copy" name="TabPanel1bt_copy" class="btn btn-secondary btn-lg">複製</button>
+                            <button type="button" id="TabPanel1bt_copy" name="TabPanel1bt_copy" class="btn btn-success btn-lg">複製</button>
                         </div>
                         <%--<div class="col-sm-1">
                             <button type="button" id="TabPanel1bt_search" name="TabPanel1bt_search" class="btn btn-success btn-lg">搜尋</button>
