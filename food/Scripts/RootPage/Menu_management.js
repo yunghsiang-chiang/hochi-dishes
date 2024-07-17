@@ -598,7 +598,6 @@ $(document).ready(function () {
 
     //勾選資訊呈現
     $.copyDetailTables = function (mydata) {
-        //console.log('makeDetailTables:' + mydata);
         $('#detail_table').remove();
         var temp_array = mydata.split('、');
 
@@ -928,7 +927,7 @@ $(document).ready(function () {
 });
 
 //使動態元件 日期生效 並且指定格式 yyyy/MM/dd
-$(document).on('click', $('.datepicker'), function () {
+$(document).unbind('click').bind('click', $('.datepicker'), function () {
     $('.datepicker').datepicker({
         defaultDate: "+1w",
         changeMonth: true,
@@ -957,6 +956,12 @@ $(document).on('change', $('input[name="date"]'), function () {
             $(this).css("background-color", "SpringGreen");
         }
     })
+    $('.datepicker').datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        dateFormat: "yy/mm/dd"
+    });
 })
 
 //取得TabPanel1 table Double click 資訊 已知BUG th也會列入雙擊事件
@@ -1202,11 +1207,12 @@ $(document).one('dblclick', $('#gv_search_view tbody tr'), function () {
 })
 
 
-
-//動態生成元件 input type="date" 使其正常運行
-$(document).unbind('click').bind('click', $('.datepicker'), function () {
-    $('.datepicker').datepicker();
+$(document).unbind('click').bind('click', $('button[name="add_select"]'), function onClick() {
+    $('button[name="add_select"]').unbind('click').on('click',(function onClick() {
+        console.log('Button Clicked!');
+    }))
 })
+
 
 //取得cookie值
 function getCookie(cname) {
