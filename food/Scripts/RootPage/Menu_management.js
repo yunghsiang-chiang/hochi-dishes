@@ -977,33 +977,32 @@ $(document).ready(function () {
                 }
                 var arrayindex = 0;
                 //菜單主題
-                $('#activity_infor .form-control[name="name"]').each(function () {
-                    console.log($(this).val());
-                    fill_db[arrayindex][0] = $(this).val();
+                $('#create_menu_table tbody tr:nth-child(1) td .form-control').each(function () {
+                    fill_db[arrayindex][0] = $('#activity_infor .form-control[name="name"]').val();
                     arrayindex += 1;
                 })
                 //活動時間
-                console.log($('#from_').val() + '~' + $('#to_').val());
                 let date1 = new Date($('#from_').val());
                 let date2 = new Date($('#to_').val());
                 let Difference_In_Time = date2.getTime() - date1.getTime();
                 let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-
                 //班會日期
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(1) td .form-control').each(function () {
-                    console.log($(this).val());
                     fill_db[arrayindex][1] = $(this).val();
                     arrayindex += 1;
                 })
                 //餐別 & 活動天數 & 活動期間
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(2) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     fill_db[arrayindex][2] = $(this).find(":selected").text();
                     fill_db[arrayindex][3] = Difference_In_Days;
+                    fill_db[arrayindex][4] = $('#from_').val() + '~' + $('#to_').val();
+                    fill_db[arrayindex][5] = new Array();//一維陣列
                     arrayindex += 1;
                 })
+
+                
                 //主食
                 var fill_array = new Array();//一維陣列
                 for (var i = 0; i < $('#create_menu_table tbody tr:nth-child(1) td').length;i++) {
@@ -1011,102 +1010,136 @@ $(document).ready(function () {
                 }
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(3) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     fill_array[arrayindex][0] = $(this).find(":selected").val();
+                    if ($(this).find(":selected").text() != '') {
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
+                    }
                     arrayindex += 1;
                 })
                 //主菜（蛋白質＿濕）
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(4) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() !='') {
                         fill_array[arrayindex][1] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //主菜（蛋白質＿乾）
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(5) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][2] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //主菜（蛋白質＋纖維質）
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(6) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][3] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //副菜（時蔬＋菇等＿2種以上食材）
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(7) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][4] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(8) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][5] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //副菜（翠綠葉菜）
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(9) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][6] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //副菜（根莖類）
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(10) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][7] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //鹹湯
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(11) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][8] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //甜湯
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(12) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][9] = $(this).find(":selected").val();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
                 //水果
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(13) td .form-control').each(function () {
-                    console.log($(this).find(":selected").text());
                     if ($(this).find(":selected").text() != '') {
                         fill_array[arrayindex][10] = $(this).find(":selected").text();
+                        fill_db[arrayindex][5].push($(this).find(":selected").val());
                     }
                     arrayindex += 1;
                 })
 
-                console.log(fill_array);
+                console.log(fill_db);
+
+                at_start = getCookie("person");
+                if (at_start != "") {
+                    arrayindex = 0;
+                    $('#create_menu_table tbody tr:nth-child(1) td .form-control').each(function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://192.168.11.51:8082/api/dishes/appendActivity_records",
+                            data: JSON.stringify({
+                                "activity_name": fill_db[arrayindex][0],
+                                "activity_date": fill_db[arrayindex][1],
+                                "meal_type": fill_db[arrayindex][2],
+                                "activity_days": fill_db[arrayindex][3],
+                                "during_the_activity": fill_db[arrayindex][4],
+                                "lm_user": at_start.split(';')[0].split('&')[1].split('=')[1],
+                                "dishes_id_str": fill_db[arrayindex][5].join(',')
+                            }),
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            success: function (data) {
+                                alert('上傳成功!');
+                            },
+                            error: function (data) {
+                                console.log(data);
+                            }
+                        });
+
+                        arrayindex += 1;
+                    })
+                }
             }
         }
     })
