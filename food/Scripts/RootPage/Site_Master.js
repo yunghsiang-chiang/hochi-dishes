@@ -117,7 +117,7 @@
                     if (i != 0) {
                         unit += ',';
                     }
-                    unit += data[i].dishes_name + '＊' + data[i].dishes_type;
+                    unit += data[i].dishes_name + '＊' + data[i].dishes_type + '＊' + data[i].dishes_id;
                 }
                 document.cookie = "get_dishes_type_name=" + unit;
             });

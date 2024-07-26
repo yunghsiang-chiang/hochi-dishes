@@ -103,7 +103,7 @@
                     <p>4. 欄“製表人”or“開單人”，非“製表人”or“開單人”沒有權限修改（編輯）菜單，但可以查看。</p>
                     <p>5. 班會日期過了不能夠直接修改菜單，但可以有一個“申請變更”的功能，申請後由管理員審核是否同意變更</p>
                     <p><del>6. 主頁面的“新增”代表新增一個全新的菜單，全部都從下拉選項重新選擇；</del></p>
-                    
+
                 </div>
                 <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
                     <div class="row">
@@ -238,7 +238,7 @@
     <button type="button" id="TabPanel4bt_search" name="TabPanel4bt_search" class="btn btn-secondary btn-lg">查看</button>
 </div>--%>
                         <div class="col-sm-1">
-                            <button type="button" id="TabPanel4bt_save" name="TabPanel4bt_save" class="btn btn-secondary btn-lg">儲存</button>
+                            <button type="button" id="TabPanel4bt_save" name="TabPanel4bt_save" class="btn btn-success btn-lg">儲存</button>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel4bt_exit" name="TabPanel4bt_exit" class="btn btn-secondary btn-lg">離開</button>
@@ -248,6 +248,20 @@
                         </div>
                     </div>
                     <hr />
+                    <div id="activity_infor">
+                        菜單主題:<input type="text" name="name" class="form-control" style="background-color: Pink" /><br />
+                        班會期間:<div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-from_">From</span>
+                            </div>
+                            <input type="text" id="from_" name="from" class="form-control" aria-label="Calendar From" aria-describedby="inputGroup-from" />
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inoutGroup-to_">To</span>
+                            </div>
+                            <input type="text" id="to_" name="to" class="form-control" aria-label="Calendar To" aria-describedby="inoutGroup-to" />
+                        </div>
+
+                    </div>
                     <table id="create_menu_table" class="table">
                         <thead>
                             <tr>
@@ -257,9 +271,6 @@
                         <tbody>
                             <tr>
                                 <th scope="row">班會日期</th>
-                            </tr>
-                            <tr>
-                                <th scope="row">菜單主題</th>
                             </tr>
                             <tr>
                                 <th scope="row">餐別</th>
