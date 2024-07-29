@@ -7,11 +7,8 @@
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\rootpage\\menu_management.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\rootpage\\site_master.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\rootpage\\site_master.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\scripts\\rootpage\\new_dishes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\rootpage\\new_dishes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,33 +18,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "dishesController.cs",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
-              "RelativeDocumentMoniker": "..\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
-              "RelativeToolTip": "..\\hochi_food\\hochi_food\\Controllers\\dishesController.cs",
-              "ViewState": "AQIAAD8BAAAAAAAAAAAAAFABAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T07:41:39.086Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Site_Master.js",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\Site_Master.js",
-              "RelativeDocumentMoniker": "food\\Scripts\\RootPage\\Site_Master.js",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\Site_Master.js",
-              "RelativeToolTip": "food\\Scripts\\RootPage\\Site_Master.js",
-              "ViewState": "AQIAAI8AAAAAAAAAAAAAwKQAAABwAAAA",
+              "Title": "New_dishes.js",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\New_dishes.js",
+              "RelativeDocumentMoniker": "food\\Scripts\\RootPage\\New_dishes.js",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\New_dishes.js",
+              "RelativeToolTip": "food\\Scripts\\RootPage\\New_dishes.js",
+              "ViewState": "AQIAAAIBAAAAAAAAAAA8wCgBAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-26T07:25:09.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T08:12:10.163Z"
             },
             {
               "$type": "Document",
@@ -57,7 +40,7 @@
               "RelativeDocumentMoniker": "food\\Scripts\\RootPage\\Menu_management.js",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\Menu_management.js",
               "RelativeToolTip": "food\\Scripts\\RootPage\\Menu_management.js",
-              "ViewState": "AQIAAE4EAAAAAAAAAADwv2sEAAA2AAAA",
+              "ViewState": "AQIAAK0DAAAAAAAAAAAcwN0DAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-07-26T07:23:00.877Z",
               "EditorCaption": ""

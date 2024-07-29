@@ -986,6 +986,8 @@ $(document).ready(function () {
                 let date2 = new Date($('#to_').val());
                 let Difference_In_Time = date2.getTime() - date1.getTime();
                 let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+                //天數需要加上起始日
+                Difference_In_Days += 1;
                 //班會日期
                 arrayindex = 0;
                 $('#create_menu_table tbody tr:nth-child(1) td .form-control').each(function () {
@@ -1107,7 +1109,7 @@ $(document).ready(function () {
                     arrayindex += 1;
                 })
 
-                console.log(fill_db);
+                //console.log(fill_db);
 
                 at_start = getCookie("person");
                 if (at_start != "") {
@@ -1118,7 +1120,7 @@ $(document).ready(function () {
                             url: "http://192.168.11.51:8082/api/dishes/appendActivity_records",
                             data: JSON.stringify({
                                 "activity_name": fill_db[arrayindex][0],
-                                "activity_date": fill_db[arrayindex][1],
+                                "activity_date": fill_db[arrayindex][1].replace('/','-').replace('/', '-'),
                                 "meal_type": fill_db[arrayindex][2],
                                 "activity_days": fill_db[arrayindex][3],
                                 "during_the_activity": fill_db[arrayindex][4],
