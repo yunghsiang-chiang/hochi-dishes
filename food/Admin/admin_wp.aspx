@@ -86,93 +86,6 @@
                                         <div class="accordion-body">
                                             <table class="table table-striped" id="method-table-container">
                                             </table>
-                                            <%--                                            
-                                            <div class="container" id="cooking-method-container">
-                                            </div>--%>
-                                            <%--<div class="cooking-method">
-                                                <h2>三杯</h2>
-                                                <p>三杯是一種經典的台灣料理，使用三種主要調料：米酒、醬油和麻油，通常用於雞肉或海鮮。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>川燙</h2>
-                                                <p>川燙是指將食材短時間放入沸水中煮熟，然後立即取出，以保留食材的鮮嫩口感。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>豆鼓</h2>
-                                                <p>豆鼓是使用發酵過的黑豆，加入醬油等調料烹調，常用於魚類或肉類料理中。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>咖哩</h2>
-                                                <p>咖哩是一種使用多種香料混合而成的醬料，用於燉煮各種肉類和蔬菜，風味濃郁。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>油炸</h2>
-                                                <p>油炸是將食材浸入高溫油中，快速煮熟並形成金黃色酥脆外皮的烹飪方式。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>紅燒</h2>
-                                                <p>紅燒是指使用醬油、糖、料酒等調料，長時間燉煮，使食材入味且呈現紅色。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>乾煎</h2>
-                                                <p>乾煎是指在少量油或無油的情況下，將食材在鍋中煎至金黃酥脆。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>乾煸</h2>
-                                                <p>乾煸是將食材先煸炒去水分，再加入調料進行烹調，使食材更具嚼勁。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>涼拌</h2>
-                                                <p>涼拌是將煮熟或生的食材，加入調料拌勻，通常作為涼菜或開胃菜。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>清炒</h2>
-                                                <p>清炒是使用少量油快速翻炒食材，保留食材的鮮嫩和營養。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>清蒸</h2>
-                                                <p>清蒸是將食材放在蒸籠中蒸熟，保持食材原汁原味，適合海鮮和嫩蔬菜。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>焗烤</h2>
-                                                <p>焗烤是將食材加上奶酪或醬料，放入烤箱中烤至金黃色。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>麻辣</h2>
-                                                <p>麻辣是結合花椒的麻和辣椒的辣，用於火鍋或各種燒烤。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>酸辣</h2>
-                                                <p>酸辣是使用醋和辣椒調味，常見於湯品和涼拌菜。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>熱炒</h2>
-                                                <p>熱炒是指使用大火快速翻炒食材，保持食材的鮮嫩和風味。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>燉滷</h2>
-                                                <p>燉滷是將食材放入醬汁中，長時間慢火燉煮，使味道滲透到食材中。</p>
-                                            </div>
-
-                                            <div class="cooking-method">
-                                                <h2>糖醋</h2>
-                                                <p>糖醋是使用糖和醋調製的醬汁，酸甜開胃，常用於魚類和肉類料理。</p>
-                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -199,16 +112,47 @@
             <ajaxToolkit:TabPanel ID="TabPanel2" runat="server">
                 <HeaderTemplate>食材管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2>
-                        <string>食材筆數1千多、91個營養欄位 全部顯示沒有必要也沒有意義</string></h2>
+                    <h2><string>食材筆數1千多、91個營養欄位 全部顯示沒有必要也沒有意義</string></h2>
+                    <div class="container">
+                        <div class="row">
+                            <div class="container condition_filter">
+                                <select class="form-select" id="food_nutrition_category">
+
+                                </select>
+                            </div>
+                            <div class="container food_nutirtion">
+                                <table class="table table-bordered" id="food_nutirtion_dt">
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <p>預計設計 "可選擇" 即將顯示欄位</p>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanel3" runat="server">
                 <HeaderTemplate>菜色管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2>
-                        <string>主廚於前台可以新增 菜色，但後台 服務體能修改與停止菜色</string></h2>
+                    <h2><string>主廚於前台可以新增 菜色，但後台 服務體能修改與停止菜色</string></h2>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <select class="form-select" id="dishes_name"></select>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col">菜單名稱</div>
+                                    <div class="col">菜品類型</div>
+                                    <div class="col">烹飪方式</div>
+                                </div>
+                                <p>食材名稱-數量-單位</p>
+                                <p>烹飪步驟，步驟之間使用:區隔</p>
+                                <p>烹飪時間 單位:分鐘</p>
+                                <p>調味品</p>
+                                <p>菜品照片Urls</p>
+                            </div>
+                        </div>
+                    </div>
                     <p>搜尋功能 與前台相同，但後台管理不考慮手機介面體驗</p>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
