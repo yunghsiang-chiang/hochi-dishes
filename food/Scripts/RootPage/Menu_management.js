@@ -1448,7 +1448,11 @@ $(document).unbind('change').bind('change', $('.cb_col'), function () {
         if ($(this).prop("checked")) {
             checkbox_checked_array.push(checkbox_index);
         } else {
-            checkbox_checked_array.
+            var index = checkbox_checked_array.indexOf(checkbox_index);
+            if (index != -1) {
+                checkbox_checked_array.splice(index,1);
+            }
+            
         }
         checkbox_index += 1;
     })
