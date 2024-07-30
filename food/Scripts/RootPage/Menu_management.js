@@ -147,6 +147,13 @@ $(document).ready(function () {
 
     //新增 按鈕 從cookie取值並且產生對應元件
     $('#TabPanel4bt_new').click(function () {
+
+        //提醒登入才能儲存
+        at_start = getCookie("person");
+        if (at_start == "") {
+            alert('沒有登入也就不能儲存，請登入再使用新增功能');
+        };
+
         //打勾 確認框
         $('#create_menu_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"/></th>');
         //班會日期
@@ -1120,7 +1127,7 @@ $(document).ready(function () {
                             url: "http://192.168.11.51:8082/api/dishes/appendActivity_records",
                             data: JSON.stringify({
                                 "activity_name": fill_db[arrayindex][0],
-                                "activity_date": fill_db[arrayindex][1].replace('/','-').replace('/', '-'),
+                                "activity_date": fill_db[arrayindex][1].replace('/', '-').replace('/', '-'),
                                 "meal_type": fill_db[arrayindex][2],
                                 "activity_days": fill_db[arrayindex][3],
                                 "during_the_activity": fill_db[arrayindex][4],
@@ -1141,6 +1148,8 @@ $(document).ready(function () {
 
                         arrayindex += 1;
                     })
+                } else {
+                    alert('沒有登入無法使用儲存功能!');
                 }
             }
         }
@@ -1427,6 +1436,23 @@ $(document).one('dblclick', $('#gv_search_view tbody tr'), function () {
     }
 
 })
+
+//菜單管理2 checkbox勾選事件
+$(document).unbind('change').bind('change', $('.cb_col'), function () {
+    //勾選 array
+    var checkbox_checked_array = [];
+    //勾選 index
+    var checkbox_index = 0;
+    $('.cb_col').each(function () {
+        
+        if ($(this).prop("checked")) {
+            checkbox_checked_array.push(checkbox_index);
+        } else {
+            checkbox_checked_array.
+        }
+        checkbox_index += 1;
+    })
+} )
 
 $(document).unbind('click').bind('click', $('button[name="add_select"]'), function onClick() {
     $('button[name="add_select"]').unbind('click').on('click', (function onClick() {
