@@ -157,13 +157,14 @@ function islogin() {
         if (at_start.length<=0) {
             document.getElementById("menu_infor").innerHTML = "菜單系統";
             document.getElementById("login_inout").innerHTML = "管理登入";
-
+            $('.collapse ul li:nth-child(4)').hide();
             
         } else {
             //person_id=1206307&person_name=江永祥&person_area=桃園&person_subinv=F13
             console.log(at_start);
             document.getElementById("menu_infor").innerHTML = at_start.split(';')[0].split('&')[1].split('=')[1] + " 登入中";
             document.getElementById("login_inout").innerHTML = "管理登出";
+            $('.collapse ul li:nth-child(4)').show();
         }
     }
 }

@@ -5,55 +5,25 @@
     <title></title>
     <script src="Scripts/jquery-3.7.0.js"></script>
     <script src="Scripts/bootstrap.js"></script>
-</head>  
+</head>
 <body>
-    <div class="file-upload-container">
-        <!--實際選擇檔案的 Input Element-->
-        <input type="file" id="importFile">
-    </div>
-    
-    <!--實際顯示的按鈕-->
-    <!--<button id="importButton" class="btn btn-success float-right">上傳檔案</button>-->
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
 
-    <script>
-        //按鈕點擊時，觸發input click事件
-        $("#importBtn").click(function () {
-            $('#importFile').trigger('click');
-        });
-        //選取檔案完畢後的動作
-        $('#importFile').change(function () {
-            let formData = new FormData();
-            formData.append('import_file', this.files[0]);
-            $.ajax({
-                url: "http://10.10.3.75:8081/api/FileUpload/UploadFiles",
-                method: 'POST',
-                processData: false,
-                contentType: false,
-                data: formData,
-            })
-                .done(function (data, textStatus, jqXHR) {
-                    if (data.status !== 'success') {
-                        alert('上傳成功!');
-                        var str = "";
-                        for (var i = 0; i < data.length; i++) {
-                            str += "<img src=http://10.10.3.75:8081" + data[i] + "  class=\"img-thumbnail img-fluid\" >"
-                        }
+                </div>
+                <div class="col-lg-8">
+                    <div class="material_id_names">
+                        食材名稱-數量-單位
 
-                        $(".file-upload-container").append(str);
-                        console.log("success");
-                    }
-                    console.log("enter down status");
-                    /*dataGrid.refresh(true);*/
-                })
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.log("status:" + textStatus + " err:" + errorThrown);
-                    alert("匯入失敗");
-                })
-                .always(function () {
-                    //在done與fail之後執行
-                    console.log("always");
-                });
-        });
-    </script>
+                        <textarea id="textarea_temp" rows="5" cols="100">測試預設文字乘載多少長度/寬度，測試會重複幾個字:乘載多少長度/寬度乘載多少長度/寬度乘載多少長度/寬度乘載多少長度/寬度乘載多少長度/寬度</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
 </body>
 </html>

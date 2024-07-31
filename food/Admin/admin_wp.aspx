@@ -112,17 +112,16 @@
             <ajaxToolkit:TabPanel ID="TabPanel2" runat="server">
                 <HeaderTemplate>食材管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>食材筆數1千多、91個營養欄位 全部顯示沒有必要也沒有意義</string></h2>
+                    <h2>
+                        <string>食材筆數1千多、91個營養欄位 全部顯示沒有必要也沒有意義</string></h2>
                     <div class="container">
                         <div class="row">
                             <div class="container condition_filter">
                                 <select class="form-select" id="food_nutrition_category">
-
                                 </select>
                             </div>
                             <div class="container food_nutirtion">
                                 <table class="table table-bordered" id="food_nutirtion_dt">
-
                                 </table>
                             </div>
                         </div>
@@ -133,23 +132,38 @@
             <ajaxToolkit:TabPanel ID="TabPanel3" runat="server">
                 <HeaderTemplate>菜色管理</HeaderTemplate>
                 <ContentTemplate>
-                    <h2><string>主廚於前台可以新增 菜色，但後台 服務體能修改與停止菜色</string></h2>
+                    <h2>
+                        <string>主廚於前台可以新增 菜色，但後台 服務體能修改與停止菜色</string></h2>
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-4">
                                 <select class="form-select" id="dishes_name"></select>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-lg-8">
                                 <div class="row">
-                                    <div class="col">菜單名稱</div>
-                                    <div class="col">菜品類型</div>
-                                    <div class="col">烹飪方式</div>
+                                    <div class="col dishes_name">菜單名稱</div>
                                 </div>
-                                <p>食材名稱-數量-單位</p>
-                                <p>烹飪步驟，步驟之間使用:區隔</p>
-                                <p>烹飪時間 單位:分鐘</p>
-                                <p>調味品</p>
-                                <p>菜品照片Urls</p>
+                                <div class="row">
+                                    <div class="col dishes_type">菜品類型</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col cooking_method">烹飪方式</div>
+                                </div>
+                                <div class="row">
+                                    <div class="material_id_names">食材名稱-數量-單位</div>
+                                </div>
+                                <div class="row">
+                                    <div class="cooking_step">烹飪步驟，步驟之間使用:區隔</div>
+                                </div>
+                                <div class="row">
+                                    <div class="cooking_time">烹飪時間 單位:分鐘</div>
+                                </div>
+                                <div class="row">
+                                    <div class="seasoning">調味品</div>
+                                </div>
+                                <div class="row">
+                                    <div class="dishes_image">菜品照片Urls</div>
+                                </div>
                             </div>
                         </div>
                     </div>
