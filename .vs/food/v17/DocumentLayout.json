@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\food\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\admin\\admin_wp.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\admin\\admin_wp.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\scripts\\rootpage\\new_dishes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\rootpage\\new_dishes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\admin\\admin_wp.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\admin\\admin_wp.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,6 +23,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "admin_wp.js",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\Admin\\admin_wp.js",
+              "RelativeDocumentMoniker": "food\\Scripts\\Admin\\admin_wp.js",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\Admin\\admin_wp.js",
+              "RelativeToolTip": "food\\Scripts\\Admin\\admin_wp.js",
+              "ViewState": "AQIAAAgAAAAAAAAAAADwvxMAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-08-02T08:14:42.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "admin_wp.aspx",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Admin\\admin_wp.aspx",
               "RelativeDocumentMoniker": "food\\Admin\\admin_wp.aspx",
@@ -34,32 +43,8 @@
               "RelativeToolTip": "food\\Admin\\admin_wp.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-07-31T09:17:12.18Z",
+              "WhenOpened": "2024-08-02T08:09:20.616Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "New_dishes.js",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\New_dishes.js",
-              "RelativeDocumentMoniker": "food\\Scripts\\RootPage\\New_dishes.js",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\RootPage\\New_dishes.js",
-              "RelativeToolTip": "food\\Scripts\\RootPage\\New_dishes.js",
-              "ViewState": "AQIAAHQAAAAAAAAAAAAQwHwAAADRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-31T08:19:12.908Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "admin_wp.js",
-              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\Admin\\admin_wp.js",
-              "RelativeDocumentMoniker": "food\\Scripts\\Admin\\admin_wp.js",
-              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\Admin\\admin_wp.js",
-              "RelativeToolTip": "food\\Scripts\\Admin\\admin_wp.js",
-              "ViewState": "AQIAADwAAAAAAAAAAAAYwFwAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-31T04:23:33.173Z"
             }
           ]
         }

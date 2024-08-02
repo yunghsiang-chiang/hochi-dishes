@@ -41,38 +41,8 @@
                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             <h2>食材單位介紹</h2>
-
-                                            <h3>重量單位</h3>
-                                            <ul>
-                                                <li>克（g）：例如，100克麵粉、50克糖。 </li>
-                                                <li>公斤（kg）：例如，1公斤馬鈴薯、0.5公斤雞胸肉。 </li>
-                                                <li>盎司（oz）：例如，4盎司牛排、2盎司巧克力。 </li>
-                                                <li>斤（tkg）：例如，1台斤油麵。1 台斤 = 600 公克（g）、1 台斤 = 0.6 公斤（kg）</li>
-                                            </ul>
-
-                                            <h3>容量單位</h3>
-                                            <ul>
-                                                <li>毫升（ml）：例如，250毫升牛奶、100毫升橄欖油。 </li>
-                                                <li>升（L）：例如，1公升果汁、5公升橄欖油。 </li>
-                                            </ul>
-
-                                            <h3>數量單位</h3>
-                                            <ul>
-                                                <li>個（個）：例如，3個蘋果、6個雞蛋。 </li>
-                                                <li>片（slice）：例如，2片麵包、4片火腿。 </li>
-                                                <li>塊（piece）：例如，1塊巧克力、4塊餅乾。 </li>
-                                            </ul>
-
-                                            <h3>容器單位</h3>
-                                            <ul>
-                                                <li>杯（cup）：例如，1杯麵粉、半杯牛奶。 </li>
-                                                <li>茶匙（tsp）和湯匙（tbsp）：例如，1茶匙鹽、2湯匙橄欖油。 </li>
-                                            </ul>
-
-                                            <h3>面積單位</h3>
-                                            <ul>
-                                                <li>平方公尺（m²）：例如，1平方公尺披薩餅皮。 </li>
-                                            </ul>
+                                            <table class="table table-striped" id="ingredients_unit_table">
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -99,8 +69,6 @@
                                         <div class="accordion-body">
                                             <table class="table table-striped" id="seasoning_table">
                                             </table>
-                                            <%--                           <div class="container" id="seasoning_container">
-                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +121,7 @@
                                     <div class="material_id_names">食材名稱-數量-單位</div>
                                 </div>
                                 <div class="row">
-                                    <div class="cooking_step">烹飪步驟，步驟之間使用:區隔</div>
+                                    <div class="cooking_step">烹飪步驟，步驟之間使用;區隔</div>
                                 </div>
                                 <div class="row">
                                     <div class="cooking_time">烹飪時間 單位:分鐘</div>
@@ -214,7 +182,7 @@
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanel8" runat="server">
-                <HeaderTemplate><a href="http://10.10.3.75:8080">回前台</a></HeaderTemplate>
+                <HeaderTemplate><a href="http://192.168.11.51:8080">回前台</a></HeaderTemplate>
                 <ContentTemplate></ContentTemplate>
             </ajaxToolkit:TabPanel>
         </ajaxToolkit:TabContainer>

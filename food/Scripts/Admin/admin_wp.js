@@ -15,6 +15,7 @@
             $('#seasoning_table').append(table_infor);
         });
 
+    //烹飪方式
     api_url = "http://192.168.11.51:8082/api/dishes/get_cooking_method";
     myAPI = api_url;
     $.getJSON(myAPI, { format: "json" })
@@ -38,6 +39,20 @@
             }
             $('#food_nutrition_category').append(option_infor);
         })
+
+    //食材單位表 
+    api_url = "http://192.168.11.51:8082/api/dishes/get_ingredients_unit";
+    myAPI = api_url;
+    $.getJSON(myAPI, { format: "json" })
+        .done(function (data) {
+            let table_infor = '<thead><tr><th scope="col"></th><th scope="col">單位中文稱呼</th><th scope="col">單位英文稱呼</th><th scope="col">單位類型</th><th scope="col">單位說明</th></tr></thead><tbody>';
+            for (var i = 0; i < data.length; i++) {
+                table_infor += '<tr><th scope="row">' + (i + 1) + '</th><td>' + data[i].unit_chinese + '</td><td>' + data[i].unit_english + '</td><td>' + data[i].unit_type + '</td><td>' + data[i].unit_description + '</td></tr>';
+            }
+            table_infor += '</tbody>';
+            $('#ingredients_unit_table').append(table_infor);
+        })
+
 
     //下拉選單變化 觸發 顯示食材
     $('#food_nutrition_category').on('change', function () {
@@ -93,8 +108,8 @@
                     $('.material_id_names').append('<textarea class="form-control" id = "material_id_names" rows="3" cols="500" >' + data.material_id_names +'</textarea >');
                     $('.cooking_step').append('<textarea class="form-control" id = "cooking_step" rows="5" cols="100" >' + data.cooking_step +'</textarea >');
                     $('.cooking_time').append('<div class="input-group"><input type="text" value="' + data.cooking_time + '" name="cooking_time" class="form-control"/></div>');
-                    $('.seasoning').append('<textarea class="form-control" id = "seasoning" cols="100" >' + data.seasoning +'</textarea >');
-                    $('.dishes_image').append('<div class="input-group"><input type="text" value="' + data.dishes_image + '" name="dishes_image" class="form-control"/></div>');
+                    $('.seasoning').append('<textarea class="form-control" id = "seasoning" rows="2" cols="100" >' + data.seasoning +'</textarea >');
+                    $('.dishes_image').append('<textarea class="form-control" id = "dishes_image" rows="2" cols="100" >' + data.dishes_image +'</textarea >');
                 } else {
                     console.log('data.length == 0');
                 }

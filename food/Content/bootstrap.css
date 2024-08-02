@@ -501,9 +501,9 @@ button:not(:disabled),
   border-style: none;
 }
 
-textarea {
+/*textarea {
   resize: vertical;
-}
+}*/
 
 fieldset {
   min-width: 0;
