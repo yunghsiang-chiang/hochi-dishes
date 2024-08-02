@@ -7,11 +7,11 @@
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\admin\\admin_wp.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\admin\\admin_wp.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\rootpage\\new_dishes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\scripts\\rootpage\\new_dishes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\rootpage\\new_dishes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
@@ -47,8 +47,7 @@
               "RelativeToolTip": "food\\Scripts\\RootPage\\New_dishes.js",
               "ViewState": "AQIAAHQAAAAAAAAAAAAQwHwAAADRAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-31T08:19:12.908Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-31T08:19:12.908Z"
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "food\\Scripts\\Admin\\admin_wp.js",
               "ViewState": "AQIAADwAAAAAAAAAAAAYwFwAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-31T04:23:33.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-31T04:23:33.173Z"
             }
           ]
         }
