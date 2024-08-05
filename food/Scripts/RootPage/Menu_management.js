@@ -942,37 +942,7 @@ $(document).ready(function () {
         return ($('#detail_table'));
     }
 
-    //設定下拉選單數值
-    function settingSelectOptions(tempvalue, dishes_name) {
-        //追加動態下拉選單
-        var get_dishes_type_name = getCookie("get_dishes_type_name"); //取得cookie數值
-        var get_dishes_type_name_array_temp = get_dishes_type_name.split(','); //切割
-        var get_dishes_type_name_array = [];
-        for (let i = 0; i < get_dishes_type_name_array_temp.length; i++) {
-            var get_type = get_dishes_type_name_array_temp[i].split('＊')[1]; //將cookie get_dishes_type_name 的數值 get_type 切割出來
-            if (get_type == tempvalue) {
-                get_dishes_type_name_array.push(get_dishes_type_name_array_temp[i].split('＊')[0]);
-            }
-        }
-        let dishes_type_select = '<select class="form-control">'; //下拉選單數值填寫
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            if (i == 0) {
-                if (get_dishes_type_name_array.indexOf(dishes_name) == -1) {
-                    dishes_type_select += '<option value="" selected></option>'; //若菜色不在清單內，則預設選項 "空白"
-                } else {
-                    dishes_type_select += '<option value=""></option>';
-                }
-            }
-            if (get_dishes_type_name_array[i] == dishes_name) {
-                dishes_type_select += '<option value="' + get_dishes_type_name_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>'; //下拉選單若為歷史菜色則 預設選擇
-            } else {
-                dishes_type_select += '<option value="' + get_dishes_type_name_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
-            }
-        }
-        dishes_type_select += '</select>';
-
-        return dishes_type_select;
-    }
+    
 
     //儲存 按鈕     
     $('#TabPanel4bt_save').click(function () {
@@ -1458,9 +1428,11 @@ $(document).unbind('change').bind('change', $('.cb_col'), function () {
     })
 } )
 
+//點擊 + 增加下拉選單
 $(document).unbind('click').bind('click', $('button[name="add_select"]'), function onClick() {
     $('button[name="add_select"]').unbind('click').on('click', (function onClick() {
-        console.log('Button Clicked!');
+        var temp = settingSelectOptions($(this).val(), "");
+        $(this).closest("th").append(temp);
     }))
 })
 
@@ -1489,4 +1461,36 @@ function getCookie(cname) {
         }
     }
     return "";
+};
+
+//設定下拉選單數值
+function settingSelectOptions(tempvalue, dishes_name) {
+    //追加動態下拉選單
+    var get_dishes_type_name = getCookie("get_dishes_type_name"); //取得cookie數值
+    var get_dishes_type_name_array_temp = get_dishes_type_name.split(','); //切割
+    var get_dishes_type_name_array = [];
+    for (let i = 0; i < get_dishes_type_name_array_temp.length; i++) {
+        var get_type = get_dishes_type_name_array_temp[i].split('＊')[1]; //將cookie get_dishes_type_name 的數值 get_type 切割出來
+        if (get_type == tempvalue) {
+            get_dishes_type_name_array.push(get_dishes_type_name_array_temp[i].split('＊')[0]);
+        }
+    }
+    let dishes_type_select = '<select class="form-control">'; //下拉選單數值填寫
+    for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+        if (i == 0) {
+            if (get_dishes_type_name_array.indexOf(dishes_name) == -1) {
+                dishes_type_select += '<option value="" selected></option>'; //若菜色不在清單內，則預設選項 "空白"
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+        }
+        if (get_dishes_type_name_array[i] == dishes_name) {
+            dishes_type_select += '<option value="' + get_dishes_type_name_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>'; //下拉選單若為歷史菜色則 預設選擇
+        } else {
+            dishes_type_select += '<option value="' + get_dishes_type_name_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        }
+    }
+    dishes_type_select += '</select>';
+
+    return dishes_type_select;
 };

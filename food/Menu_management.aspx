@@ -200,12 +200,12 @@
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_new" name="TabPanel3bt_new" class="btn btn-secondary btn-lg">新增</button>
                         </div>
-                        <div class="col-sm-1">
+                        <%--<div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_copy" name="TabPnael3bt_copy" class="btn btn-secondary btn-lg">複製</button>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_search" name="TabPanel3bt_search" class="btn btn-secondary btn-lg">查看</button>
-                        </div>
+                        </div>--%>
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_save" name="TabPanel3bt_save" class="btn btn-secondary btn-lg">儲存</button>
                         </div>
@@ -219,7 +219,7 @@
                     <hr />
                     <img src="images/菜單管理3.png" alt="菜單管理3" class="img-thumbnail img-fluid" />
                     <p>1. 此部分出現的資訊，同“菜單管理框2”中，勾選欲複製的菜單，並點選“複製”後出現的下個畫面。</p>
-                    <p>2. 這邊的複製/查看無功能</p>
+                    <p><del>2. 這邊的複製/查看無功能</del></p>
                     <hr />
                     <p>1.複製先前的菜單至新表格後，每道菜皆可以修改，依“下拉選單”裡的選項挑選。</p>
                     <p>2. 如果想要出的菜色沒有出現在下拉選單，需要至“菜色管理”建立。</p>
