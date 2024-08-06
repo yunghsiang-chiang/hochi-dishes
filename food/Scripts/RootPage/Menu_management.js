@@ -18,12 +18,14 @@ $(document).ready(function () {
                 }
             });
     })();
+
     //餐別 資訊至網頁中
     var meal_type = ['早餐', '午餐', '晚餐'];
     $('#TabPanel1meal_type').append('<option value="default">不選擇</option>');
     for (let i = 0; i < meal_type.length; i++) {
         $('#TabPanel1meal_type').append('<option value="' + meal_type[i] + '">' + meal_type[i] + '</option>');
     }
+
     //班會天數 資訊至Select
     var selectValues = {
         "1": "1天",
@@ -35,6 +37,7 @@ $(document).ready(function () {
     };
     var $mySelect = $('#TabPanel1select_days');
     $('#TabPanel1select_days').append('<option value="default">不選擇</option>');
+    //班會天數 資訊至Select
     $(function () {
         $.each(selectValues, function (key, value) {
             var $option = $("<option/>", {
@@ -43,7 +46,11 @@ $(document).ready(function () {
             });
             $mySelect.append($option);
         });
+        //載入一次 新增格式
+        tabpanel4bt_new();
     });
+
+    // CSS屬性
     $(function () {
 
         var dateFormat = "yy/mm/dd",
@@ -152,8 +159,13 @@ $(document).ready(function () {
         at_start = getCookie("person");
         if (at_start == "") {
             alert('沒有登入也就不能儲存，請登入再使用新增功能');
+        } else {
+            tabpanel4bt_new();
         };
+    });
 
+    //新增分頁 新增動作
+    function tabpanel4bt_new() {
         //打勾 確認框
         $('#create_menu_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"/></th>');
         //班會日期
@@ -339,7 +351,7 @@ $(document).ready(function () {
         }
         fruits_select += '</select>';
         $('#create_menu_table tbody tr:nth-child(13)').append('<td>' + fruits_select + '</td>');
-    });
+    }
 
     let check_array = [];
     //用於判斷打勾項目,提供查看 按鈕使用
