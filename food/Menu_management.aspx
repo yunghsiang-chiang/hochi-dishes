@@ -114,7 +114,7 @@
                             <button type="button" id="TabPanel2bt_copy" name="TabPanel2bt_copy" class="btn btn-secondary btn-lg">複製</button>
                         </div>
                         <div class="col-sm-1">
-                            <button type="button" id="TabPanel2bt_search" name="TabPanel2bt_edit" class="btn btn-secondary btn-lg">編輯</button>
+                            <button type="button" id="TabPanel2bt_edit" name="TabPanel2bt_edit" class="btn btn-secondary btn-lg">編輯</button>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel2bt_save" name="TabPanel2bt_save" class="btn btn-secondary btn-lg">儲存</button>
