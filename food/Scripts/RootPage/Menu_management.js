@@ -435,22 +435,51 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish">';
-        if ($('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ')').text() == '') {
-            dishes_type_select += '<option value="" selected></option>';
-        } else {
-            dishes_type_select += '<option value=""></option>';
-        }
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ')').text()) {
-                dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
-            } else {
-                dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+
             }
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+            $('#detail_table tbody tr:nth-child(4)').append(dishes_type_select);
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish">';
+            if ($('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(4)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(4)').append('<td>' + dishes_type_select + '</td>');
         //主菜（蛋白質＿濕）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -461,12 +490,52 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet"><option value="" selected></option>';
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+
+            }
+            $('#detail_table tbody tr:nth-child(5)').append(dishes_type_select);
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet">';
+            if ($('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(5)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(5)').append('<td>' + dishes_type_select + '</td>');
+
         //主菜（蛋白質＿乾）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -477,12 +546,52 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry"><option value="" selected></option>';
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+
+            }
+            $('#detail_table tbody tr:nth-child(6)').append(dishes_type_select);
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry">';
+            if ($('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(6)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(6)').append('<td>' + dishes_type_select + '</td>');
+
         //主菜（蛋白質＋纖維質）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -493,12 +602,52 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber"><option value="" selected></option>';
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+
+            }
+            $('#detail_table tbody tr:nth-child(7)').append(dishes_type_select);
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber">';
+            if ($('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(7)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(7)').append('<td>' + dishes_type_select + '</td>');
+
         //副菜（時蔬＋菇等＿2種以上食材）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -509,12 +658,52 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms"><option value="" selected></option>';
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+
+            }
+            $('#detail_table tbody tr:nth-child(8)').append(dishes_type_select);
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms">';
+            if ($('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(8)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(8)').append('<td>' + dishes_type_select + '</td>');
+
         //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -525,12 +714,52 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants"><option value="" selected></option>';
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+            }
+            $('#detail_table tbody tr:nth-child(9)').append(dishes_type_select);
+
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants">';
+            if ($('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(9)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(9)').append('<td>' + dishes_type_select + '</td>');
+
         //副菜（翠綠葉菜）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -541,12 +770,51 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens"><option value="" selected></option>';
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+            }
+            $('#detail_table tbody tr:nth-child(10)').append(dishes_type_select);
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens">';
+            if ($('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(10)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(10)').append('<td>' + dishes_type_select + '</td>');
+
         //副菜（根莖類）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -557,12 +825,50 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers"><option value="" selected></option>';
-        for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+        if ($('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
+            let dishes_array = $('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
+            console.log(dishes_array);
+            dishes_type_select = '';
+            for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
+                if (dishes_array_index == 0) {
+                    dishes_type_select += '<td>';
+                }
+                dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers">';
+                if (dishes_array[dishes_array_index] == '') {
+                    dishes_type_select += '<option value="" selected></option>';
+                } else {
+                    dishes_type_select += '<option value=""></option>';
+                }
+                for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                    if (get_dishes_type_name_array[i] == dishes_array[dishes_array_index]) {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                    } else {
+                        dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                    }
+                }
+                dishes_type_select += '</select>';
+                if (dishes_array_index == dishes_array.length - 1) {
+                    dishes_type_select += '</td>';
+                }
+            }
+            $('#detail_table tbody tr:nth-child(11)').append(dishes_type_select);
+        } else {
+            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers">';
+            if ($('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ')').text() == '') {
+                dishes_type_select += '<option value="" selected></option>';
+            } else {
+                dishes_type_select += '<option value=""></option>';
+            }
+            for (let i = 0; i < get_dishes_type_name_array.length; i++) {
+                if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ')').text()) {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+                } else {
+                    dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+                }
+            }
+            dishes_type_select += '</select>';
+            $('#detail_table tbody tr:nth-child(11)').append('<td>' + dishes_type_select + '</td>');
         }
-        dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(11)').append('<td>' + dishes_type_select + '</td>');
         //鹹湯
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -573,9 +879,18 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-salty-soup"><option value="" selected></option>';
+        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-salty-soup">';
+        if ($('#detail_table tbody tr:nth-child(12) th:nth-child(' + array_index + ')').text() == '') {
+            dishes_type_select += '<option value="" selected></option>';
+        } else {
+            dishes_type_select += '<option value=""></option>';
+        }
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+            if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(12) th:nth-child(' + array_index + ')').text()) {
+                dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+            } else {
+                dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+            }
         }
         dishes_type_select += '</select>';
         $('#detail_table tbody tr:nth-child(12)').append('<td>' + dishes_type_select + '</td>');
@@ -589,18 +904,36 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-sweet-soup"><option value="" selected></option>';
+        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-sweet-soup">';
+        if ($('#detail_table tbody tr:nth-child(13) th:nth-child(' + array_index + ')').text() == '') {
+            dishes_type_select += '<option value="" selected></option>';
+        } else {
+            dishes_type_select += '<option value=""></option>';
+        }
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
-            dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+            if (get_dishes_type_name_array[i] == $('#detail_table tbody tr:nth-child(13) th:nth-child(' + array_index + ')').text()) {
+                dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '" selected>' + get_dishes_type_name_array[i] + '</option>';
+            } else {
+                dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
+            }
         }
         dishes_type_select += '</select>';
         $('#detail_table tbody tr:nth-child(13)').append('<td>' + dishes_type_select + '</td>');
         //水果
         var get_fruits_name = getCookie("fruits");
         var get_fruits_name_temp = get_fruits_name.split(',');
-        var fruits_select = '<select class="form-control" aria-describedby="inputGroup-fruits"><option value="" selected></option>';
+        var fruits_select = '<select class="form-control" aria-describedby="inputGroup-fruits">';
+        if ($('#detail_table tbody tr:nth-child(14) th:nth-child(' + array_index + ')').text() == '') {
+            dishes_type_select += '<option value="" selected></option>';
+        } else {
+            dishes_type_select += '<option value=""></option>';
+        }
         for (let i = 0; i < get_fruits_name_temp.length; i++) {
-            fruits_select += '<option value="' + get_fruits_name_temp[i] + '">' + get_fruits_name_temp[i] + '</option>';
+            if (get_fruits_name_temp[i] == $('#detail_table tbody tr:nth-child(14) th:nth-child(' + array_index + ')').text()) {
+                fruits_select += '<option value="' + get_fruits_name_temp[i] + '" selected>' + get_fruits_name_temp[i] + '</option>';
+            } else {
+                fruits_select += '<option value="' + get_fruits_name_temp[i] + '">' + get_fruits_name_temp[i] + '</option>';
+            }
         }
         fruits_select += '</select>';
         $('#detail_table tbody tr:nth-child(14)').append('<td>' + fruits_select + '</td>');
