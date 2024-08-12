@@ -50,7 +50,6 @@
         <br />
         <br />
         <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">菜色搜尋</h1>
             <%--<div class="container row">
                 <div class="col">
                     <button type="button" ID="bt_newdishes_append" class="btn btn-secondary btn-lg">新增</button>
