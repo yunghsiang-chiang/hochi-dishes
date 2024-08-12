@@ -63,7 +63,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - 服務體 菜單系統</p>
+                <p>&copy; <%: DateTime.Now.Year %> - 服務體 大愛光餐</p>
             </footer>
         </div>
     </form>

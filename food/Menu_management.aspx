@@ -3,6 +3,12 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        .nav-tabs .nav-item .active {
+            background-color:gray;
+            color:white;
+        }
+    </style>
     <script src="Scripts/RootPage/Menu_management.js"></script>
     <main>
         <br />
