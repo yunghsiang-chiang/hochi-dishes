@@ -8,9 +8,6 @@
         <br />
         <br />
         <br />
-        <%--        <h2 id="title"><%: Title %>.</h2>--%>
-        <h2>建立/瀏覽菜色</h2>
-        <strong>菜色系統之食材需求量，應以「十人份」食材需求計算</strong>
         <section>
             <div class="row" id="control_items">
                 <div class="col">
