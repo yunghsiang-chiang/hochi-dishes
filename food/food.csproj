@@ -261,6 +261,7 @@
     <Content Include="Site.Master" />
     <Content Include="TEST.html" />
     <Content Include="TEST_usedMaster.aspx" />
+    <Content Include="vendor.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -364,6 +365,13 @@
     </Compile>
     <Compile Include="TEST_usedMaster.aspx.designer.cs">
       <DependentUpon>TEST_usedMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vendor.aspx.cs">
+      <DependentUpon>vendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vendor.aspx.designer.cs">
+      <DependentUpon>vendor.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
