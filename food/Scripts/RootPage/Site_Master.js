@@ -155,7 +155,7 @@ function islogin() {
         //console.log('有找到元件');
         at_start = getCookie("person");
         if (at_start.length<=0) {
-            document.getElementById("menu_infor").innerHTML = "菜單系統";
+            document.getElementById("menu_infor").innerHTML = "大愛光餐";
             document.getElementById("login_inout").innerHTML = "管理登入";
             $('.collapse ul li:nth-child(4)').hide();
             
