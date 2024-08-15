@@ -1,4 +1,13 @@
 ﻿$(document).ready(function () {
+    //以ul li包子選單 
+    $('.navbar-nav:nth-child(1)>.nav-item>a').click(function (event) {
+        $(this).toggleClass('active');
+        $(this).siblings('ul').slideToggle(1000);
+    });
+    $('.navbar-nav:nth-child(1)>.nav-item>ul>li>a').click(function (event) {
+        $('.navbar-nav:nth-child(1)>.nav-item>a').toggleClass('active');
+        $('.navbar-nav:nth-child(1)>.nav-item>a').siblings('ul').slideToggle(1000);
+    });
 
     //加速資料載入使用,若沒有cookie則網頁載入時取得web api資料至cookie
     //get 食材cookie

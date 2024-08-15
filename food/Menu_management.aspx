@@ -201,17 +201,17 @@
                     <p><del>4. 複製功能：勾選預複製的菜單（可同時複製多個 ）--> 點選複製 --> 跳出資料框在畫面正中間供初步填寫</del></p>
                     <p><del>5.‘菜單管理框2'的“新增”代表該菜單組欄位末端，再新增另一欄位的菜單</del></p>
                 </div>
-                <div class="tab-pane" id="third" role="tabpanel" aria-labelledby="third-tab">
+                <%--<div class="tab-pane" id="third" role="tabpanel" aria-labelledby="third-tab">
                     <div class="row">
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_new" name="TabPanel3bt_new" class="btn btn-secondary btn-lg">新增</button>
                         </div>
-                        <%--<div class="col-sm-1">
+                        <div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_copy" name="TabPnael3bt_copy" class="btn btn-secondary btn-lg">複製</button>
                         </div>
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_search" name="TabPanel3bt_search" class="btn btn-secondary btn-lg">查看</button>
-                        </div>--%>
+                        </div>
                         <div class="col-sm-1">
                             <button type="button" id="TabPanel3bt_save" name="TabPanel3bt_save" class="btn btn-secondary btn-lg">儲存</button>
                         </div>
@@ -231,7 +231,7 @@
                     <p><del>2. 如果想要出的菜色沒有出現在下拉選單，需要至“菜色管理”建立。</del></p>
                     <p>3. 資料編輯到一半，皆可以儲存後再回來編輯</p>
                     <p>4.如何找到編輯到一半的資料繼續編輯？使用在菜單管理框1的搜尋功能</p>
-                </div>
+                </div>--%>
                 <div class="tab-pane" id="create" role="tabpanel" aria-labelledby="create-tab">
                     <div class="row">
                         <div class="col-sm-1">
