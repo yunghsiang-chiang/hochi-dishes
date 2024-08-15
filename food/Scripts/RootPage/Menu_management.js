@@ -242,7 +242,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="00">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="00">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
@@ -258,7 +258,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="01">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="01">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
@@ -274,7 +274,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="02">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="02">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
@@ -290,7 +290,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="03">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="03">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
@@ -306,7 +306,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="04">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="04">➖</button><select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
@@ -322,7 +322,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="05">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="05">➖</button><select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
@@ -338,7 +338,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="06">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="06">➖</button><select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
@@ -354,7 +354,7 @@ $(document).ready(function () {
                 get_dishes_type_id_array.push(get_dishes_type_name_array_temp[i].split('＊')[2]);
             }
         }
-        dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers"><option value="" selected></option>';
+        dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="07">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="07">➖</button><select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers"><option value="" selected></option>';
         for (let i = 0; i < get_dishes_type_name_array.length; i++) {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
