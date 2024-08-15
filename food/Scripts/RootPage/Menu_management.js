@@ -183,7 +183,7 @@ $(document).ready(function () {
             var checkbox_index = 0;
             $('.cb_col').each(function () {
 
-                if ($(this).prop("checked")) {
+                if ($(this).prop("checked") && $(this).val() !="Iscopyed") {
                     checkbox_checked_array.push(checkbox_index);
                 } else {
                     var index = checkbox_checked_array.indexOf(checkbox_index);
@@ -219,9 +219,9 @@ $(document).ready(function () {
         //打勾 確認框
         $('#detail_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"/></th>');
         //班會日期
-        $('#detail_table tbody tr:nth-child(1)').append('<td><input type="text" name="date" class="form-control datepicker" style="background-color:Pink" /></td>');
+        $('#detail_table tbody tr:nth-child(1)').append('<th scope="col"><input type="text" name="date" class="form-control datepicker" style="background-color:Pink" /></th>');
         //菜單主題
-        $('#detail_table tbody tr:nth-child(2)').append('<td><input type="text" name="name" class="form-control" style="background-color:Pink" /></td>');
+        $('#detail_table tbody tr:nth-child(2)').append('<th scope="col"><input type="text" name="name" class="form-control" style="background-color:Pink" /></th>');
         //餐別
         var dishes_type_array = ['早餐', '午餐', '晚餐'];
         var dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-dishes_type">';
@@ -229,7 +229,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + dishes_type_array[i] + '">' + dishes_type_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(3)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(3)').append('<th scope="col">' + dishes_type_select + '</th>');
         //主食
         var get_dishes_type_name = getCookie("get_dishes_type_name");
         var get_dishes_type_name_array_temp = get_dishes_type_name.split(',');
@@ -247,7 +247,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(4)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(4)').append('<th scope="col">' + dishes_type_select + '</th>');
         //主菜（蛋白質＿濕）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -263,7 +263,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(5)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(5)').append('<th scope="col">' + dishes_type_select + '</th>');
         //主菜（蛋白質＿乾）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -279,7 +279,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(6)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(6)').append('<th scope="col">' + dishes_type_select + '</th>');
         //主菜（蛋白質＋纖維質）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -295,7 +295,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(7)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(7)').append('<th scope="col">' + dishes_type_select + '</th>');
         //副菜（時蔬＋菇等＿2種以上食材）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -311,7 +311,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(8)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(8)').append('<th scope="col">' + dishes_type_select + '</th>');
         //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -327,7 +327,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(9)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(9)').append('<th scope="col">' + dishes_type_select + '</th>');
         //副菜（翠綠葉菜）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -343,7 +343,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(10)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(10)').append('<th scope="col">' + dishes_type_select + '</th>');
         //副菜（根莖類）
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -359,7 +359,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(11)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(11)').append('<th scope="col">' + dishes_type_select + '</th>');
         //鹹湯
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -375,7 +375,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(12)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(12)').append('<th scope="col">' + dishes_type_select + '</th>');
         //甜湯
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -391,7 +391,7 @@ $(document).ready(function () {
             dishes_type_select += '<option value="' + get_dishes_type_id_array[i] + '">' + get_dishes_type_name_array[i] + '</option>';
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(13)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(13)').append('<th scope="col">' + dishes_type_select + '</th>');
         //水果
         var get_fruits_name = getCookie("fruits");
         var get_fruits_name_temp = get_fruits_name.split(',');
@@ -400,16 +400,18 @@ $(document).ready(function () {
             fruits_select += '<option value="' + get_fruits_name_temp[i] + '">' + get_fruits_name_temp[i] + '</option>';
         }
         fruits_select += '</select>';
-        $('#detail_table tbody tr:nth-child(14)').append('<td>' + fruits_select + '</td>');
+        $('#detail_table tbody tr:nth-child(14)').append('<th scope="col">' + fruits_select + '</th>');
     }
     //管理2 複製動作
+    // 2024/8/15 追加新增/刪除 按鈕
     function tabPanel2bt_copy(array_index) {
         //打勾 確認框
-        $('#detail_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"/></th>');
+        //2024/8/15 追加設定，如果選項是"被複製"出來的，不能再被複製，checkbox直接給值做差異化
+        $('#detail_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col" value="Iscopyed"/></th>');
         //班會日期
-        $('#detail_table tbody tr:nth-child(1)').append('<td><input type="text" name="date" class="form-control datepicker" style="background-color:Pink" /></td>');
+        $('#detail_table tbody tr:nth-child(1)').append('<th scope="col"><input type="text" name="date" class="form-control datepicker" style="background-color:Pink" /></th>');
         //菜單主題
-        $('#detail_table tbody tr:nth-child(2)').append('<td><input type="text" name="name" class="form-control" style="background-color:Pink" /></td>');
+        $('#detail_table tbody tr:nth-child(2)').append('<th scope="col"><input type="text" name="name" class="form-control" style="background-color:Pink" /></th>');
         //餐別
         var dishes_type_array = ['早餐', '午餐', '晚餐'];
         var dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-dishes_type">';
@@ -422,7 +424,7 @@ $(document).ready(function () {
 
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(3)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(3)').append('<th scope="col">' + dishes_type_select + '</th>');
         //主食
         var get_dishes_type_name = getCookie("get_dishes_type_name");
         var get_dishes_type_name_array_temp = get_dishes_type_name.split(',');
@@ -438,10 +440,10 @@ $(document).ready(function () {
         if ($('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
             console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="00">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="00">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -458,13 +460,13 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
 
             }
             $('#detail_table tbody tr:nth-child(4)').append(dishes_type_select);
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="00">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="00">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish">';
             if ($('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -478,7 +480,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(4)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(4)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
         //主菜（蛋白質＿濕）
         get_dishes_type_name_array = [];
@@ -492,11 +494,10 @@ $(document).ready(function () {
         }
         if ($('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
-            console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="01">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="01">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -513,13 +514,13 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
 
             }
             $('#detail_table tbody tr:nth-child(5)').append(dishes_type_select);
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="01">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="01">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿wet">';
             if ($('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -533,7 +534,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(5)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(5)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
 
         //主菜（蛋白質＿乾）
@@ -548,11 +549,10 @@ $(document).ready(function () {
         }
         if ($('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
-            console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="02">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="02">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -569,13 +569,13 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
 
             }
             $('#detail_table tbody tr:nth-child(6)').append(dishes_type_select);
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="02">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="02">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish-protein＿dry">';
             if ($('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -589,7 +589,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(6)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(6)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
 
         //主菜（蛋白質＋纖維質）
@@ -604,11 +604,10 @@ $(document).ready(function () {
         }
         if ($('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
-            console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="03">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="03">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -625,13 +624,13 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
 
             }
             $('#detail_table tbody tr:nth-child(7)').append(dishes_type_select);
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="03">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="03">➖</button><select class="form-control" aria-describedby="inputGroup-Main-dish-protein-fiber">';
             if ($('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -645,7 +644,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(7)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(7)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
 
         //副菜（時蔬＋菇等＿2種以上食材）
@@ -660,11 +659,10 @@ $(document).ready(function () {
         }
         if ($('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
-            console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="04">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="04">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -681,13 +679,13 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
 
             }
             $('#detail_table tbody tr:nth-child(8)').append(dishes_type_select);
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="04">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="04">➖</button><select class="form-control" aria-describedby="inputGroup-Side dishes-seasonal-vegetables-mushrooms">';
             if ($('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -701,7 +699,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(8)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(8)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
 
         //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
@@ -716,11 +714,10 @@ $(document).ready(function () {
         }
         if ($('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
-            console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="05">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="05">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -737,13 +734,13 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
             }
             $('#detail_table tbody tr:nth-child(9)').append(dishes_type_select);
 
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="05">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="05">➖</button><select class="form-control" aria-describedby="inputGroup-Side-dishes-vegetables-other-than-leafy-vegetables-such-as-melons-and-eggplants">';
             if ($('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -757,7 +754,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(9)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(9)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
 
         //副菜（翠綠葉菜）
@@ -772,11 +769,10 @@ $(document).ready(function () {
         }
         if ($('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
-            console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="06">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="06">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -793,12 +789,12 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
             }
             $('#detail_table tbody tr:nth-child(10)').append(dishes_type_select);
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="06">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="06">➖</button><select class="form-control" aria-describedby="inputGroup-Side-dishes-leafy-greens">';
             if ($('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -812,7 +808,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(10)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(10)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
 
         //副菜（根莖類）
@@ -827,11 +823,10 @@ $(document).ready(function () {
         }
         if ($('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ') span').html().includes('<br>')) {
             let dishes_array = $('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ') span').html().replace("<br>", ",").split(',');
-            console.log(dishes_array);
-            dishes_type_select = '';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="07">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="07">➖</button>';
             for (var dishes_array_index = 0; dishes_array_index < dishes_array.length; dishes_array_index++) {
                 if (dishes_array_index == 0) {
-                    dishes_type_select += '<td>';
+                    dishes_type_select += '<th scope="col">';
                 }
                 dishes_type_select += '<select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers">';
                 if (dishes_array[dishes_array_index] == '') {
@@ -848,12 +843,12 @@ $(document).ready(function () {
                 }
                 dishes_type_select += '</select>';
                 if (dishes_array_index == dishes_array.length - 1) {
-                    dishes_type_select += '</td>';
+                    dishes_type_select += '</th>';
                 }
             }
             $('#detail_table tbody tr:nth-child(11)').append(dishes_type_select);
         } else {
-            dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers">';
+            dishes_type_select = '<button type="button" class="btn btn-success dishes" name="add_select" value="07">➕</button><button type="button" class="btn btn-danger dishes" name="minus_select" vlaue="07">➖</button><select class="form-control" aria-describedby="inputGroup-Side-dishes-roots-and-tubers">';
             if ($('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ')').text() == '') {
                 dishes_type_select += '<option value="" selected></option>';
             } else {
@@ -867,7 +862,7 @@ $(document).ready(function () {
                 }
             }
             dishes_type_select += '</select>';
-            $('#detail_table tbody tr:nth-child(11)').append('<td>' + dishes_type_select + '</td>');
+            $('#detail_table tbody tr:nth-child(11)').append('<th scope="col">' + dishes_type_select + '</th>');
         }
         //鹹湯
         get_dishes_type_name_array = [];
@@ -893,7 +888,7 @@ $(document).ready(function () {
             }
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(12)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(12)').append('<th scope="col">' + dishes_type_select + '</th>');
         //甜湯
         get_dishes_type_name_array = [];
         get_dishes_type_id_array = [];
@@ -918,15 +913,15 @@ $(document).ready(function () {
             }
         }
         dishes_type_select += '</select>';
-        $('#detail_table tbody tr:nth-child(13)').append('<td>' + dishes_type_select + '</td>');
+        $('#detail_table tbody tr:nth-child(13)').append('<th scope="col">' + dishes_type_select + '</th>');
         //水果
         var get_fruits_name = getCookie("fruits");
         var get_fruits_name_temp = get_fruits_name.split(',');
         var fruits_select = '<select class="form-control" aria-describedby="inputGroup-fruits">';
         if ($('#detail_table tbody tr:nth-child(14) th:nth-child(' + array_index + ')').text() == '') {
-            dishes_type_select += '<option value="" selected></option>';
+            fruits_select += '<option value="" selected></option>';
         } else {
-            dishes_type_select += '<option value=""></option>';
+            fruits_select += '<option value=""></option>';
         }
         for (let i = 0; i < get_fruits_name_temp.length; i++) {
             if (get_fruits_name_temp[i] == $('#detail_table tbody tr:nth-child(14) th:nth-child(' + array_index + ')').text()) {
@@ -936,7 +931,7 @@ $(document).ready(function () {
             }
         }
         fruits_select += '</select>';
-        $('#detail_table tbody tr:nth-child(14)').append('<td>' + fruits_select + '</td>');
+        $('#detail_table tbody tr:nth-child(14)').append('<th scope="col">' + fruits_select + '</th>');
     }
 
     //新增分頁 新增動作
@@ -1273,7 +1268,7 @@ $(document).ready(function () {
         //
         for (var ii = 0; ii < temp_array.length; ii++) {
             var api_url = "http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3];
-            //console.log("http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3]);
+            console.log("http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3]);
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -1389,6 +1384,17 @@ $(document).ready(function () {
                     temp_tablerow += temp_list.join("<br/>");
                     temp_tablerow += '</span></th>';
                     $('#detail_table tbody tr:nth-child(13)').append(temp_tablerow);
+                    //水果
+                    temp_tablerow = '<th scope="col"><span class="label label-default" name="fruits">';
+                    temp_list = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].dishes_type == "fruits") {
+                            temp_list.push(data[i].dishes_id)
+                        }
+                    }
+                    temp_tablerow += temp_list.join("<br/>");
+                    temp_tablerow += '</span></th>';
+                    $('#detail_table tbody tr:nth-child(14)').append(temp_tablerow);
                 }
             })
         }
@@ -1542,7 +1548,7 @@ $(document).ready(function () {
                 if (data.length > 0) {
 
                     //主食
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="00" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="00" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="00">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "00") { // 00在資料庫=主食
@@ -1561,7 +1567,7 @@ $(document).ready(function () {
                     $('#detail_table tbody tr:nth-child(4)').append(temp_tablerow);
 
                     //主菜（蛋白質＿濕）
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="01" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="01" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="01">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "01") { // 01在資料庫=主菜（蛋白質＿濕）
@@ -1579,7 +1585,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(5)').append(temp_tablerow);
                     //主菜（蛋白質＿乾）
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="02" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="02" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="02">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "02") { // 02在資料庫=主菜（蛋白質＿乾）
@@ -1597,7 +1603,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(6)').append(temp_tablerow);
                     //主菜（蛋白質＋纖維質）
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="03" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="03" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="03">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "03") { // 03在資料庫=主菜（蛋白質＋纖維質）
@@ -1615,7 +1621,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(7)').append(temp_tablerow);
                     //副菜（時蔬＋菇等＿2種以上食材）
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="04" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="04" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="04">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "04") { // 04在資料庫=副菜（時蔬＋菇等＿2種以上食材）
@@ -1633,7 +1639,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(8)').append(temp_tablerow);
                     //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="05" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="05" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="05">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "05") { // 05在資料庫=副菜（葉菜類以外的蔬菜,如瓜類、茄子）
@@ -1651,7 +1657,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(9)').append(temp_tablerow);
                     //副菜（翠綠葉菜）
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="06" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="06" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="06">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "06") { // 06在資料庫=副菜（翠綠葉菜）
@@ -1669,7 +1675,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(10)').append(temp_tablerow);
                     //副菜（根莖類）
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="07" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="07" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="07">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "07") { // 07在資料庫=副菜（根莖類）
@@ -1687,7 +1693,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(11)').append(temp_tablerow);
                     //鹹湯
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="08" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="08" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="08">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "08") { // 08在資料庫=鹹湯
@@ -1705,7 +1711,7 @@ $(document).ready(function () {
                     temp_tablerow += '</th>';
                     $('#detail_table tbody tr:nth-child(12)').append(temp_tablerow);
                     //甜湯
-                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-light" name="add_select" value="09" >➕</button>';
+                    temp_tablerow = '<th scope="col"><button type="button" class="btn btn-success" name="add_select" value="09" >➕</button><button type="button" class="btn btn-danger" name="minus_select" vlaue="09">➖</button>';
                     temp_list = []; //用來承接多個數值
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].dishes_type == "09") { // 09在資料庫=甜湯
@@ -2236,18 +2242,21 @@ $(document).unbind('click').bind('click', $('button[name="add_select"]'), functi
     $('button[name="add_select"]').unbind('click').on('click', (function onClick() {
         var temp = settingSelectOptions($(this).val(), "");
         $(this).closest("th").append(temp);
-    }))
+    }));
+    //點擊 - 減少下拉選單(至少一個，所以剩下一個就不會繼續減少)
+    $('button[name="minus_select"]').unbind('click').on('click', (function onClick() {
+        console.log('minus_select');
+        //尋找地位下的最靠近的 th
+        var closeitem = $(this).closest("th");
+        var closeitemarray = closeitem.find("select");
+        console.log(closeitemarray.length);
+        if (closeitemarray.length > 1) {
+            closeitem.find("select:last").remove();
+        }
+    }));
+
 })
 
-//$(document).unbind('click').bind('click', $('button[name="TabPanel4bt_save"]'), function onClick() {
-//    $('button[name="TabPanel4bt_save"]').unbind('click').on('click', (function onClick() {
-//        if ($('#create_menu_table tbody tr:nth-child(1) td').length > 0) {
-//            $('#create_menu_table tbody tr:nth-child(2) td .form-control').each(function () {
-//                console.log($(this).val());
-//            })
-//        }
-//    }))
-//})
 
 //取得cookie值
 function getCookie(cname) {
