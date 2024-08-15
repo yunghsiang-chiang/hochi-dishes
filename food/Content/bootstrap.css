@@ -207,11 +207,12 @@ body {
 }
 
 hr {
-  margin: 1rem 0;
-  color: inherit;
-  border: 0;
-  border-top: var(--bs-border-width) solid;
-  opacity: 0.25;
+  border-style: none;
+    border-color: inherit;
+    border-width: 0;
+    color: inherit;
+    opacity: 0.25;
+    height: 2px;
 }
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {

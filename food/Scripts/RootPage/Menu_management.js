@@ -174,7 +174,7 @@ $(document).ready(function () {
         };
     });
 
-    //
+    //菜單管理 複製按鈕功能
     $('#TabPanel2bt_copy').click(function () {
         if ($('#TabPanel2bt_copy').hasClass('btn-success')) {
             //勾選 array
@@ -196,13 +196,45 @@ $(document).ready(function () {
             })
             //如果勾選有值 loop方式追加檔案
             if (checkbox_checked_array.length > 0) {
-                console.log(checkbox_checked_array);
                 for (var array_index = 0; array_index < checkbox_checked_array.length; array_index++) {
                     tabPanel2bt_copy((checkbox_checked_array[array_index] + 2).toString());
                 }
             }
         }
     })
+    //菜單管理 刪除按鈕功能
+    //動態元件可以刪除,從資料庫獲取資料不可直接刪除
+    $('#TabPanel2bt_delete').click(function () {
+        if ($('#TabPanel2bt_delete').hasClass('btn btn-lg btn-success')) {
+            //勾選 array
+            var checkbox_checked_array = [];
+            //勾選 index
+            var checkbox_index = 0;
+            $('.cb_col').each(function () {
+
+                if ($(this).prop("checked") && $(this).val() == "Iscopyed") {
+                    checkbox_checked_array.push(checkbox_index);
+                } else {
+                    var index = checkbox_checked_array.indexOf(checkbox_index);
+                    if (index != -1) {
+                        checkbox_checked_array.splice(index, 1);
+                    }
+
+                }
+                checkbox_index += 1;
+            })
+            //如果勾選有值 loop方式刪除檔案
+            //刪除請從 大 => 小 ，才不會有 Out of range 邏輯BUG
+            if (checkbox_checked_array.length > 0) {
+                for (var array_index = checkbox_checked_array.length - 1; array_index >= 0; array_index--) {
+                    tabPanel2bt_delete((checkbox_checked_array[array_index]+2).toString());
+                }
+            }
+        }
+    })
+
+
+    //菜單新增 新增按鈕功能
     $('#TabPanel4bt_new').click(function () {
 
         //提醒登入才能儲存
@@ -402,7 +434,7 @@ $(document).ready(function () {
         fruits_select += '</select>';
         $('#detail_table tbody tr:nth-child(14)').append('<th scope="col">' + fruits_select + '</th>');
     }
-    //管理2 複製動作
+    //菜單管理 複製動作
     // 2024/8/15 追加新增/刪除 按鈕
     function tabPanel2bt_copy(array_index) {
         //打勾 確認框
@@ -932,6 +964,41 @@ $(document).ready(function () {
         }
         fruits_select += '</select>';
         $('#detail_table tbody tr:nth-child(14)').append('<th scope="col">' + fruits_select + '</th>');
+    }
+
+    //菜單管理 刪除動作
+    function tabPanel2bt_delete(array_index) {
+        //打勾 確認框
+        //2024/8/15 追加設定，如果選項是"被複製"出來的，不能再被複製，checkbox直接給值做差異化
+        $('#detail_table thead tr th:nth-child(' + array_index + ')').children().remove();
+        //班會日期
+        $('#detail_table tbody tr:nth-child(1) th:nth-child(' + array_index + ')').children().remove();
+        //菜單主題
+        $('#detail_table tbody tr:nth-child(2) th:nth-child(' + array_index + ')').children().remove();
+        //餐別
+        $('#detail_table tbody tr:nth-child(3) th:nth-child(' + array_index + ')').children().remove();
+        //主食
+        $('#detail_table tbody tr:nth-child(4) th:nth-child(' + array_index + ')').children().remove();
+        //主菜（蛋白質＿濕）
+        $('#detail_table tbody tr:nth-child(5) th:nth-child(' + array_index + ')').children().remove();
+        //主菜（蛋白質＿乾）
+        $('#detail_table tbody tr:nth-child(6) th:nth-child(' + array_index + ')').children().remove();
+        //主菜（蛋白質＋纖維質）
+        $('#detail_table tbody tr:nth-child(7) th:nth-child(' + array_index + ')').children().remove();
+        //副菜（時蔬＋菇等＿2種以上食材）
+        $('#detail_table tbody tr:nth-child(8) th:nth-child(' + array_index + ')').children().remove();
+        //副菜（葉菜類以外的蔬菜,如瓜類、茄子）
+        $('#detail_table tbody tr:nth-child(9) th:nth-child(' + array_index + ')').children().remove();
+        //副菜（翠綠葉菜）
+        $('#detail_table tbody tr:nth-child(10) th:nth-child(' + array_index + ')').children().remove();
+        //副菜（根莖類）
+        $('#detail_table tbody tr:nth-child(11) th:nth-child(' + array_index + ')').children().remove();
+        //鹹湯
+        $('#detail_table tbody tr:nth-child(12) th:nth-child(' + array_index + ')').children().remove();
+        //甜湯
+        $('#detail_table tbody tr:nth-child(13) th:nth-child(' + array_index + ')').children().remove();
+        //水果
+        $('#detail_table tbody tr:nth-child(14) th:nth-child(' + array_index + ')').children().remove();
     }
 
     //新增分頁 新增動作
@@ -2227,11 +2294,15 @@ $(document).unbind('change').bind('change', $('.cb_col'), function () {
             $('#TabPanel2bt_edit').addClass("btn-success");
             $('#TabPanel2bt_copy').removeClass("btn-secondary");
             $('#TabPanel2bt_copy').addClass("btn-success");
+            $('#TabPanel2bt_delete').removeClass("btn-secondary");
+            $('#TabPanel2bt_delete').addClass("btn-success");
         } else {
             $('#TabPanel2bt_edit').removeClass("btn-success");
             $('#TabPanel2bt_edit').addClass("btn-secondary");
             $('#TabPanel2bt_copy').removeClass("btn-success");
             $('#TabPanel2bt_copy').addClass("btn-secondary");
+            $('#TabPanel2bt_delete').removeClass("btn-success");
+            $('#TabPanel2bt_delete').addClass("btn-secondary");
         }
     };
 

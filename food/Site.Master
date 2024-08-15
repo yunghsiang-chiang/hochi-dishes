@@ -52,7 +52,7 @@
                         <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/">菜色搜尋</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/瀏覽菜色</a></li>--%>
                         <li class="nav-item">
-                            <a class="active">菜色管理</a>
+                            <a class="active" style="color:gray;">菜色管理</a>
                             <ul style="display: none;">
                                 <li class="nav-item"><a class="nav-link" runat="server" href="~/">菜色搜尋</a></li>
                                 <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/瀏覽菜色</a></li>
