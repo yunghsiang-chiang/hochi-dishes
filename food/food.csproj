@@ -237,6 +237,7 @@
     <Content Include="Scripts\RootPage\Menu_management.js" />
     <Content Include="Scripts\RootPage\New_dishes.js" />
     <Content Include="Scripts\RootPage\Site_Master.js" />
+    <Content Include="Scripts\RootPage\vendor.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />

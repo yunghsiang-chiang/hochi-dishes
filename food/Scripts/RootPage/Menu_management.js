@@ -106,7 +106,6 @@ $(document).ready(function () {
                     from.datepicker("option", "maxDate", getDate(this));
                 });
 
-
         function getDate(element) {
             var date;
             try {
@@ -202,8 +201,39 @@ $(document).ready(function () {
             }
         }
     })
-    //菜單管理 刪除按鈕功能
-    //動態元件可以刪除,從資料庫獲取資料不可直接刪除
+
+    $('TabPanel2bt_edit').click(function () {
+        if ($('TabPanel2bt_edit').hasClass('btn-success')) {
+            //勾選 array
+            var checkbox_checked_array = [];
+            //勾選 index
+            var checkbox_index = 0;
+            $('.cb_col').each(function () {
+
+                if ($(this).prop("checked") && $(this).val() != "Iscopyed") {
+                    checkbox_checked_array.push(checkbox_index);
+                } else if ($(this).prop("checked") && $(this).val() == "Iscopyed") {
+                    alert('非歷史資料不會進行編輯功能!');
+                }
+                else {
+                    var index = checkbox_checked_array.indexOf(checkbox_index);
+                    if (index != -1) {
+                        checkbox_checked_array.splice(index, 1);
+                    }
+
+                }
+                checkbox_index += 1;
+            })
+            //如果勾選有值 loop方式追加檔案
+            if (checkbox_checked_array.length > 0) {
+                for (var array_index = 0; array_index < checkbox_checked_array.length; array_index++) {
+                    tabPanel2bt_copy((checkbox_checked_array[array_index] + 2).toString());
+                }
+            }
+        }
+    })
+
+    //菜單管理 刪除按鈕功能 動態元件可以刪除,從資料庫獲取資料不可直接刪除
     $('#TabPanel2bt_delete').click(function () {
         if ($('#TabPanel2bt_delete').hasClass('btn btn-lg btn-success')) {
             //勾選 array
@@ -249,11 +279,11 @@ $(document).ready(function () {
     //管理2 新增動作
     function tabPanel2bt_new() {
         //打勾 確認框
-        $('#detail_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"/></th>');
+        $('#detail_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col" value="Iscopyed"/></th>');
         //班會日期
-        $('#detail_table tbody tr:nth-child(1)').append('<th scope="col"><input type="text" name="date" class="form-control datepicker" style="background-color:Pink" /></th>');
+        $('#detail_table tbody tr:nth-child(1)').append('<th scope="col"><input type="text" name="date" class="form-control datepicker"/></th>');
         //菜單主題
-        $('#detail_table tbody tr:nth-child(2)').append('<th scope="col"><input type="text" name="name" class="form-control" style="background-color:Pink" /></th>');
+        $('#detail_table tbody tr:nth-child(2)').append('<th scope="col"><input type="text" name="name" class="form-control"/></th>');
         //餐別
         var dishes_type_array = ['早餐', '午餐', '晚餐'];
         var dishes_type_select = '<select class="form-control" aria-describedby="inputGroup-dishes_type">';
@@ -434,11 +464,9 @@ $(document).ready(function () {
         fruits_select += '</select>';
         $('#detail_table tbody tr:nth-child(14)').append('<th scope="col">' + fruits_select + '</th>');
     }
-    //菜單管理 複製動作
-    // 2024/8/15 追加新增/刪除 按鈕
+    //菜單管理 複製動作 2024/8/15 追加新增/刪除 按鈕
     function tabPanel2bt_copy(array_index) {
-        //打勾 確認框
-        //2024/8/15 追加設定，如果選項是"被複製"出來的，不能再被複製，checkbox直接給值做差異化
+        //打勾 確認框 2024/8/15 追加設定，如果選項是"被複製"出來的，不能再被複製，checkbox直接給值做差異化
         $('#detail_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col" value="Iscopyed"/></th>');
         //班會日期
         $('#detail_table tbody tr:nth-child(1)').append('<th scope="col"><input type="text" name="date" class="form-control datepicker" style="background-color:Pink" /></th>');
@@ -965,6 +993,10 @@ $(document).ready(function () {
         fruits_select += '</select>';
         $('#detail_table tbody tr:nth-child(14)').append('<th scope="col">' + fruits_select + '</th>');
     }
+    //菜單管理 編輯功能 2024/8/19 
+    function tabPanel2bt_edit(array_index) {
+        //取值並使可編輯狀態 get value > remove > add
+    }
 
     //菜單管理 刪除動作
     function tabPanel2bt_delete(array_index) {
@@ -1006,7 +1038,7 @@ $(document).ready(function () {
         //打勾 確認框
         $('#create_menu_table thead tr').append('<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"/></th>');
         //班會日期
-        $('#create_menu_table tbody tr:nth-child(1)').append('<td><input type="text" name="date" class="form-control datepicker" style="background-color:Pink" /></td>');
+        $('#create_menu_table tbody tr:nth-child(1)').append('<td><input type="text" name="date" class="form-control datepicker"/></td>');
         ////菜單主題
         //$('#create_menu_table tbody tr:nth-child(2)').append('<td><input type="text" name="name" class="form-control" style="background-color:Pink" /></td>');
         //餐別
@@ -1567,7 +1599,7 @@ $(document).ready(function () {
 
         //打勾 確認框
         for (var i = 0; i < temp_array.length; i++) {
-            temp_tablerow += '<th scope="col"><input type="checkbox" name="cb_col" class="cb_col" /></th>';
+            temp_tablerow += '<th scope="col"><input type="checkbox" name="cb_col" class="cb_col"  value="Iscopyed" /></th>';
         }
         $('#detail_table thead tr').append(temp_tablerow);
 
@@ -1987,43 +2019,36 @@ $(document).ready(function () {
 
 });
 
-//使動態元件 日期生效 並且指定格式 yyyy/MM/dd
-$(document).unbind('click').bind('click', $('.datepicker'), function () {
-    $('.datepicker').datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 1,
-        dateFormat: "yy/mm/dd"
-    });
-})
-
 //使菜單主題 內容目視管理 空白:粉色 有值:春綠
-$(document).on('change', $('input[name="name"]'), function () {
-    $('input[name="name"]').each(function (data) {
-        if ($(this).val().length == 0) {
-            $(this).css("background-color", "Pink");
-        } else {
-            $(this).css("background-color", "SpringGreen");
-        }
-    })
-})
+//$(document).on('change', $('input[name="name"]'), function () {
+//    $('input[name="name"]').each(function (data) {
+//        if ($(this).val().length == 0) {
+//            $(this).css("background-color", "Pink");
+//        } else {
+//            $(this).css("background-color", "SpringGreen");
+//        }
+//    })
+//})
 
 //使班會日期 內容目視管理 空白:粉色 有值:春綠
-$(document).on('change', $('input[name="date"]'), function () {
-    $('input[name="date"]').each(function (data) {
-        if ($(this).val().length == 0) {
-            $(this).css("background-color", "Pink");
-        } else {
-            $(this).css("background-color", "SpringGreen");
-        }
-    })
-    $('.datepicker').datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 1,
-        dateFormat: "yy/mm/dd"
-    });
-})
+//$(document).on('click', $('.form-control datepicker'), function () {
+//    console.log('document click event');
+
+//    $('input[name="date"]').each(function (data) {
+//        if ($(this).val().length == 0) {
+//            $(this).css("background-color", "Pink");
+//        } else {
+//            $(this).css("background-color", "SpringGreen");
+//        }
+//    });
+    
+//    $('.datepicker').datepicker({
+//        defaultDate: "+1w",
+//        changeMonth: true,
+//        numberOfMonths: 1,
+//        dateFormat: "yy/mm/dd"
+//    });
+//})
 
 //取得TabPanel1 table Double click 資訊 已知BUG th也會列入雙擊事件
 $(document).one('dblclick', $('#gv_search_view tbody tr'), function () {
@@ -2325,7 +2350,21 @@ $(document).unbind('click').bind('click', $('button[name="add_select"]'), functi
             closeitem.find("select:last").remove();
         }
     }));
-
+    //使動態元件 日期生效 並且指定格式 yyyy/MM/dd
+    $('.datepicker').datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        dateFormat: "yy/mm/dd"
+    });
+    //使動態元件 日期顏色CSS
+    $('.datepicker').each(function (data) {
+        if ($(this).val().length == 0) {
+            $(this).css("background-color", "Pink");
+        } else {
+            $(this).css("background-color", "SpringGreen");
+        }
+    });
 })
 
 
