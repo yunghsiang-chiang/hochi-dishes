@@ -83,7 +83,7 @@ $(document).unbind('change').bind('change', $('.cb_col'), function () {
 
                 // 使用 reduce 方法來處理資料
                 var result = final_array.reduce((acc, item) => {
-                    // 創建唯一的 key，以便根據 name 和 age 進行分組
+                    // 創建唯一的 key，以便根據 material 和 unit 進行分組
                     var key = item.material + '-' + item.unit;
 
                     // 如果這個 key 不存在於 accumulator 中，就初始化它
@@ -109,7 +109,7 @@ $(document).unbind('change').bind('change', $('.cb_col'), function () {
                 //顯示數據，此處還沒有合併數據加總
                 var htmlcontent = '<table class="table table-striped" name="materialdt"><thead><tr><th scope="col">#</th><th scope="col">食材</th><th scope="col">數量</th><th scope="col">單位</th></tr></thead><tbody>';
                 for (var dataindex = 0; dataindex < groupedData.length; dataindex++) {
-                    htmlcontent += '<tr><th scope="row">' + (dataindex + 1).toString() + '</th><td>' + final_array[dataindex].material + '</td><td>' + final_array[dataindex].qty + '</td><td>' + final_array[dataindex].unit + '</td></tr>';
+                    htmlcontent += '<tr><th scope="row">' + (dataindex + 1).toString() + '</th><td>' + groupedData[dataindex].material + '</td><td>' + groupedData[dataindex].qty + '</td><td>' + groupedData[dataindex].unit + '</td></tr>';
                 }
                 htmlcontent += '</tbody></table>';
                 $('.container[name="sum_up_material_quantities"]').children().remove();
