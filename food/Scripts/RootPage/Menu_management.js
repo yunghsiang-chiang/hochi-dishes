@@ -152,7 +152,7 @@ $(document).ready(function () {
         $(tblHeader).appendTo(table);
         $.each(mydata, function (index, item) {
             var TableRow = '<tr class="GvGrid">';
-            TableRow += '<td><input type="checkbox" name="search_cb" class="search_cb"/></td><td>' + item.activity_name + '</td>' + '<td>' + item.meal_type + '</td>' + '<td>' + item.activity_days + '</td>' + '<td>' + item.activity_date.replace("T00:00:00", "") + '</td>' + "<td>" + item.during_the_activity + '</td>' + '<td>' + item.lm_user + '</td>';
+            TableRow += '<td><input type="checkbox" name="search_cb" class="search_cb"/></td><td>' + item.activity_name + '</td>' + '<td>' + item.meal_type + '</td>' + '<td>' + item.activity_days + '</td>' + '<td>' + item.activity_date.replace("T00:00:00", "") + '</td>' + "<td>" + item.during_the_activity.replace('~','~<br/>') + '</td>' + '<td>' + item.lm_user + '</td>';
             TableRow += "</tr>";
             $(table).append(TableRow);
         });

@@ -37,22 +37,22 @@
                         <%--                            <div class="col-sm-1">
                            <button type="button" id="TabPanel1bt_new" name="TabPanel1bt_new" class="btn btn-secondary btn-lg">新增</button>
                        </div>--%>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel1bt_edit" name="TabPanel1bt_edit" class="btn btn-secondary btn-lg">編輯</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel1bt_view" name="TabPanel1bt_view" class="btn btn-success btn-lg">查看</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel1bt_copy" name="TabPanel1bt_copy" class="btn btn-success btn-lg">複製</button>
                         </div>
                         <%--<div class="col-sm-1">
                             <button type="button" id="TabPanel1bt_search" name="TabPanel1bt_search" class="btn btn-success btn-lg">搜尋</button>
                         </div>--%>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel1bt_exit" name="TabPanel1bt_exit" class="btn btn-secondary btn-lg">離開</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel1bt_delete" name="TabPanel1bt_delete" class="btn btn-secondary btn-lg">刪除</button>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <div id="search_div">
                     </div>
                     <%--<img src="images/菜單管理1.png" alt="菜單管理1" class="img-thumbnail img-fluid" />--%>
-                    <p><del>1. 菜單主題（下拉選項：幸福印記盛典、老人家紀念會、年菜、一天班會、兩天班會、三天班會...七天班會）</del></p>
+                    <%--<p><del>1. 菜單主題（下拉選項：幸福印記盛典、老人家紀念會、年菜、一天班會、兩天班會、三天班會...七天班會）</del></p>
                     <p><del>2. 餐別（下拉選項：早餐、午餐、晚餐、下午茶、早午餐）</del></p>
                     <p><del>3. 期間不等於班會期間，可任意選擇兩日期內的資料，此舉是為了縮小搜尋的範圍，不至於跑出來太多資料</del></p>
                     <hr />
@@ -108,30 +108,30 @@
                     <p><del>可勾選多個頁面上菜單，並點選複製<b>進入菜單管理框2</del></b></p>
                     <p>4. 欄“製表人”or“開單人”，非“製表人”or“開單人”沒有權限修改（編輯）菜單，但可以查看。</p>
                     <p>5. 班會日期過了不能夠直接修改菜單，但可以有一個“申請變更”的功能，申請後由管理員審核是否同意變更</p>
-                    <p><del>6. 主頁面的“新增”代表新增一個全新的菜單，全部都從下拉選項重新選擇；</del></p>
+                    <p><del>6. 主頁面的“新增”代表新增一個全新的菜單，全部都從下拉選項重新選擇；</del></p>--%>
 
                 </div>
                 <div class="tab-pane" id="second" role="tabpanel" aria-labelledby="second-tab">
                     <div class="row">
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel2bt_new" name="TabPanel2bt_new" class="btn btn-secondary btn-lg">新增</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel2bt_copy" name="TabPanel2bt_copy" class="btn btn-secondary btn-lg">複製</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel2bt_edit" name="TabPanel2bt_edit" class="btn btn-secondary btn-lg">編輯</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel2bt_save" name="TabPanel2bt_save" class="btn btn-secondary btn-lg">儲存</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel2bt_exit" name="TabPanel2bt_exit" class="btn btn-secondary btn-lg">離開</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel2bt_delete" name="TabPanel2bt_delete" class="btn btn-secondary btn-lg">刪除</button>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col">
                             <button type="button" id="TabPanel2bt_change" name="TabPanel2bt_change" class="btn btn-secondary btn-lg">變更申請</button>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                     </div>
 
                     <%--<img src="images/菜單管理2.png" alt="菜單管理2" class="img-thumbnail img-fluid" />--%>
-                    <p>1. 黃標為 過往菜單標示為主菜，但依據設定不符合者，需討論：</p>
+                    <%--<p>1. 黃標為 過往菜單標示為主菜，但依據設定不符合者，需討論：</p>
                     <p>'(1) 主菜是否應設置“全穀根莖類”類別</p>
                     <p>'(2)若否，過往菜單設定“全穀根莖類”為主菜者，如何呈現？</p>
                     <p>2. 橘標為 副菜分類類別重複出現者，需討論，是否允許此種狀況出現？</p>
@@ -199,7 +199,7 @@
                     <p>'(2)若否，建立菜單時，需設定“不可重複選順序類別”，另需討論針對過往菜單入系統時，該如何呈現？</p>
                     <p>3. 點選任一食譜名可以進入該食譜查看同‘菜色管理框’的下表</p>
                     <p><del>4. 複製功能：勾選預複製的菜單（可同時複製多個 ）--> 點選複製 --> 跳出資料框在畫面正中間供初步填寫</del></p>
-                    <p><del>5.‘菜單管理框2'的“新增”代表該菜單組欄位末端，再新增另一欄位的菜單</del></p>
+                    <p><del>5.‘菜單管理框2'的“新增”代表該菜單組欄位末端，再新增另一欄位的菜單</del></p>--%>
                 </div>
                 <%--<div class="tab-pane" id="third" role="tabpanel" aria-labelledby="third-tab">
                     <div class="row">
@@ -234,7 +234,7 @@
                 </div>--%>
                 <div class="tab-pane" id="create" role="tabpanel" aria-labelledby="create-tab">
                     <div class="row">
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel4bt_new" name="TabPanel4bt_new" class="btn btn-success btn-lg">新增</button>
                         </div>
                         <%--<div class="col-sm-1">
@@ -243,13 +243,13 @@
 <div class="col-sm-1">
     <button type="button" id="TabPanel4bt_search" name="TabPanel4bt_search" class="btn btn-secondary btn-lg">查看</button>
 </div>--%>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel4bt_save" name="TabPanel4bt_save" class="btn btn-success btn-lg">儲存</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel4bt_exit" name="TabPanel4bt_exit" class="btn btn-secondary btn-lg">離開</button>
                         </div>
-                        <div class="col-sm-1">
+                        <div class="col">
                             <button type="button" id="TabPanel4bt_delete" name="TabPanel4bt_delete" class="btn btn-secondary btn-lg">刪除</button>
                         </div>
                     </div>

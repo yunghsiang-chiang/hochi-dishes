@@ -15,7 +15,7 @@ function get_purchase() {
             var mydata = data;
             var htmlcontent = '<table class="table table-striped" name="purchasedt"><thead><tr><th scope="col">#</th><th scope="col">活動名稱</th><th scope="col">活動日期</th><th scope="col">餐別</th><th scope="col">活動區間</th><th scope="col">菜色清單</th></tr></thead><tbody>';
             for (var dataindex = 0; dataindex < data.length; dataindex++) {
-                htmlcontent += '<tr><th scope="row"><div class="form-check"><input class="form-check-input cb_col" type="checkbox" value="' + (dataindex + 1).toString() + '" id="flexCheckIndeterminate"><label class="form-check-label" for="flexCheckIndeterminate">' + (dataindex + 1).toString() + '</label></div></th><td>' + data[dataindex].activity_name + '</td><td>' + data[dataindex].activity_date.replace('T00:00:00', '') + '</td><td>' + data[dataindex].meal_type + '</td><td>' + data[dataindex].during_the_activity + '</td><td>' + data[dataindex].dishes_id_str + '</td></tr>';
+                htmlcontent += '<tr><th scope="row"><div class="form-check"><input class="form-check-input cb_col" type="checkbox" value="' + (dataindex + 1).toString() + '" id="flexCheckIndeterminate"><label class="form-check-label" for="flexCheckIndeterminate">' + (dataindex + 1).toString() + '</label></div></th><td>' + data[dataindex].activity_name + '</td><td>' + data[dataindex].activity_date.replace('T00:00:00', '') + '</td><td>' + data[dataindex].meal_type + '</td><td>' + data[dataindex].during_the_activity.replace('~', '~<br/>') + '</td><td>' + data[dataindex].dishes_id_str + '</td></tr>';
             }
             htmlcontent += '</tbody></table>';
             $('.container[name="exist_waitforpurchase"]').append(htmlcontent);
