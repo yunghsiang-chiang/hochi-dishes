@@ -17,13 +17,17 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
     <script src="Scripts/jquery-3.7.0.js"></script>
     <script src="Scripts/RootPage/Site_Master.js"></script>
+    <style>
+        .MainContent {
+            margin-top: 200px; /* 避开浏览列的高度 */
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server" EnableCdn="true">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
@@ -49,10 +53,8 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/">菜色搜尋</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/瀏覽菜色</a></li>--%>
                         <li class="nav-item">
-                            <a class="active" style="color:gray;">菜色管理</a>
+                            <a class="active" style="color: gray;">菜色管理</a>
                             <ul style="display: none;">
                                 <li class="nav-item"><a class="nav-link" runat="server" href="~/">菜色搜尋</a></li>
                                 <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/瀏覽菜色</a></li>
@@ -66,7 +68,9 @@
                 </div>
             </div>
         </nav>
+
         <div class="container body-content">
+
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

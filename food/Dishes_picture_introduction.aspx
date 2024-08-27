@@ -1,20 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dishes_picture_introduction.aspx.cs" Inherits="food.Dishes_picture_introduction" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <br />
-    <br />
-    <br />
+    <script src="Scripts/RootPage/Dishes_picture_introduction.js"></script>
     <style>
         /* 對於整個頁面進行一些基礎的設置 */
         body {
-            margin: 0;
+            margin-top: 70px; /* 清除默认的边距 */
             padding: 0;
             display: flex;
             justify-content: center; /* 讓主容器居中 */
-            align-items: center; /* 垂直居中 */
-            height: 100vh; /* 讓 body 填滿整個視口高度 */
+            align-items:start; /* 垂直居中 */
+            height: auto; /* 讓 body 填滿整個視口高度 */
             background-color: #f0f0f0;
         }
+
         /* 父容器的樣式 */
         .parent-container {
             display: flex; /* 使用 Flexbox 來實現水平展示 */
@@ -45,6 +44,26 @@
             margin: 0 auto; /* 使圖片在子容器中水平居中 */
         }
 
+        /* 确保没有默认的列表样式 */
+        ul.list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 列表项基本样式 */
+        .list-item {
+            padding: 10px 20px;
+            border: 2px solid transparent; /* 初始外框透明 */
+            margin: 5px 0; /* 每项之间的间隔 */
+            transition: border-color 0.3s ease; /* 平滑过渡效果 */
+        }
+
+        /* 鼠标悬停时外框颜色变化 */
+        .list-item:hover {
+            border-color: #FFFFFF; /* 外框颜色变化（蓝色） */
+        }
+
         /* 響應式設計：在螢幕寬度小於 768px 時，取消水平並排展示 */
         @media (max-width: 768px) {
             .parent-container {
@@ -52,13 +71,11 @@
                 gap: 10px; /* 保持子容器之間的間距 */
             }
         }
-
     </style>
     <div class="parent-container" id="dishes_menu">
         <div class="child-container">
             <div class="widget-container widget-image">
                 <style>
-                    /*! elementor - v3.23.0 - 05-08-2024 */
                     .widget-image {
                         text-align: center
                     }
@@ -74,8 +91,20 @@
                 </style>
                 <img fetchpriority="high" decoding="async" src="http://10.10.3.75:8080/images/素食.jpg">
             </div>
+            <div class="widget-container"></div>
+            <div class="widget-container"></div>
+            <div class="widget-container"></div>
         </div>
-        <div class="child-container"></div>
-        <div class="child-container"></div>
+        <div class="child-container">
+            <div class="widget-container"></div>
+            <div class="widget-container"></div>
+            <div class="widget-container"></div>
+        </div>
+        <div class="child-container">
+            <div class="widget-container"></div>
+            <div class="widget-container"></div>
+            <div class="widget-container"></div>
+            <div class="widget-container"></div>
+        </div>
     </div>
 </asp:Content>
