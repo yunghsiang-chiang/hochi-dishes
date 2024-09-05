@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //塞資訊至網頁中
-    let api_url = "http://192.168.11.51:8082/api/dishes/get_seasoning";
+    let api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_seasoning";
     var myAPI = api_url;
     $.getJSON(myAPI, {
         format: "json"
@@ -16,7 +16,7 @@
         });
 
     //烹飪方式
-    api_url = "http://192.168.11.51:8082/api/dishes/get_cooking_method";
+    api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_cooking_method";
     myAPI = api_url;
     $.getJSON(myAPI, { format: "json" })
         .done(function (data) {
@@ -29,7 +29,7 @@
         })
 
     //食材分頁 食材類型 下拉選單
-    api_url = "http://192.168.11.51:8082/api/dishes/get_food_nutrition_category";
+    api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_food_nutrition_category";
     myAPI = api_url;
     $.getJSON(myAPI, { format: "json" })
         .done(function (data) {
@@ -41,7 +41,7 @@
         })
 
     //食材單位表 
-    api_url = "http://192.168.11.51:8082/api/dishes/get_ingredients_unit";
+    api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_ingredients_unit";
     myAPI = api_url;
     $.getJSON(myAPI, { format: "json" })
         .done(function (data) {
@@ -56,7 +56,7 @@
 
     //下拉選單變化 觸發 顯示食材
     $('#food_nutrition_category').on('change', function () {
-        api_url = "http://192.168.11.51:8082/api/dishes/get_food_nutrition_simple_field?food_classification=" + $('#food_nutrition_category option:selected').text();
+        api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_food_nutrition_simple_field?food_classification=" + $('#food_nutrition_category option:selected').text();
         myAPI = api_url;
         $.getJSON(myAPI, { format: "json" })
             .done(function (data) {
@@ -73,7 +73,7 @@
     })
 
     //下拉選單 菜色名稱
-    api_url = "http://192.168.11.51:8082/api/dishes/get_dishes_type_name";
+    api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_dishes_type_name";
     myAPI = api_url;
     $.getJSON(myAPI, { format: "json" })
         .done(function (data) {
@@ -86,7 +86,7 @@
 
     //下拉選單 觸發 顯示
     $('#dishes_name').on('change', function () {
-        api_url = "http://192.168.11.51:8082/api/dishes/get_dishes_by_name/" + $('#dishes_name option:selected').text();
+        api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_dishes_by_name/" + $('#dishes_name option:selected').text();
         console.log(api_url);
         myAPI = api_url;
         $.getJSON(myAPI, { format: "json" })

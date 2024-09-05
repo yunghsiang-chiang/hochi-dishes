@@ -1,7 +1,7 @@
 ﻿//注意! javascript放在最上面，下方的元件還沒有產生,所以互動都放在ready function 才不用擔心創立順序
 $(document).ready(function () {
     //菜單主題 資訊至網頁中
-    let api_url = "http://192.168.11.51:8082/api/dishes/get_activity_name";
+    let api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_activity_name";
     //console.log(api_url);
     (function () {
         var myAPI = api_url;
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
     //查詢活動菜單資訊
     $("#TabPanel1select_type,#TabPanel1meal_type,#TabPanel1select_days,#from,#to").on("change", function () {
-        var api_url = "http://192.168.11.51:8082/api/dishes/get_h_activity_records_search?activity_name=" + $('#TabPanel1select_type').find(":selected").val() + "&meal_type=" + $('#TabPanel1meal_type').find(":selected").val() + "&activity_days=" + $('#TabPanel1select_days').find(":selected").val();
+        var api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_h_activity_records_search?activity_name=" + $('#TabPanel1select_type').find(":selected").val() + "&meal_type=" + $('#TabPanel1meal_type').find(":selected").val() + "&activity_days=" + $('#TabPanel1select_days').find(":selected").val();
         if ($('#from').val().length > 0) {
             api_url += "&activity_start=" + $('#from').val();
         }
@@ -1366,8 +1366,8 @@ $(document).ready(function () {
 
         //
         for (var ii = 0; ii < temp_array.length; ii++) {
-            var api_url = "http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3];
-            console.log("http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3]);
+            var api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3];
+            console.log("http://internal.hochi.org.tw:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3]);
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -1639,7 +1639,7 @@ $(document).ready(function () {
 
         //
         for (var ii = 0; ii < temp_array.length; ii++) {
-            var api_url = "http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3];
+            var api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[ii].split(',')[0] + "&meal_type=" + temp_array[ii].split(',')[1] + "&activity_date=" + temp_array[ii].split(',')[3];
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -1986,7 +1986,7 @@ $(document).ready(function () {
                     $('#create_menu_table tbody tr:nth-child(1) td .form-control').each(function () {
                         $.ajax({
                             type: "POST",
-                            url: "http://192.168.11.51:8082/api/dishes/appendActivity_records",
+                            url: "http://internal.hochi.org.tw:8082/api/dishes/appendActivity_records",
                             data: JSON.stringify({
                                 "activity_name": fill_db[arrayindex][0],
                                 "activity_date": fill_db[arrayindex][1].replace('/', '-').replace('/', '-'),
@@ -2167,7 +2167,7 @@ $(document).one('dblclick', $('#gv_search_view tbody tr'), function () {
         }
         $('#detail_table tbody tr:nth-child(3)').append(temp_tablerow);
 
-        var api_url = "http://192.168.11.51:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[0].split(',')[0] + "&meal_type=" + temp_array[0].split(',')[1] + "&activity_date=" + temp_array[0].split(',')[3];
+        var api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_activity_dishes?activity_name=" + temp_array[0].split(',')[0] + "&meal_type=" + temp_array[0].split(',')[1] + "&activity_date=" + temp_array[0].split(',')[3];
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"

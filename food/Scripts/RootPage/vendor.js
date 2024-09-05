@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 //取得API 活動日期晚於今日 清單
 function get_purchase() {
-    var api_url = "http://192.168.11.51:8082/api/dishes/get_purchase";
+    var api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_purchase";
     var myAPI = api_url;
     $.getJSON(myAPI, {
         format: "json"
@@ -59,7 +59,7 @@ $(document).unbind('change').bind('change', $('.cb_col'), function () {
             }
         }
         var material_id_names_string = Array.from(tempset).join("%2C"); //取得 API 關鍵 material_id_names_string 數據
-        var api_url = "http://192.168.11.51:8082/api/dishes/get_material_id_names?material_id_names_string=" + material_id_names_string;
+        var api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_material_id_names?material_id_names_string=" + material_id_names_string;
         var myAPI = api_url;
         var final_array = [];
         $.getJSON(myAPI, {

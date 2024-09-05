@@ -6,7 +6,7 @@
     //get 食材cookie
     if (getCookie("food_nutrition") == "") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://192.168.11.51:8082/api/dishes/get_food_nutrition";
+        let api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_food_nutrition";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -33,7 +33,7 @@
     //get 調味cookie
     if (getCookie("seasoning") == "") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://192.168.11.51:8082/api/dishes/get_seasoning";
+        let api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_seasoning";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -59,7 +59,7 @@
     //get 單位cookie
     if (getCookie("ingredients_unit") == "") {
         //將單位資訊取得 並丟到cookie裡
-        let api_url = "http://192.168.11.51:8082/api/dishes/get_ingredients_unit";
+        let api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_ingredients_unit";
         var myAPI = api_url;
         $.getJSON(myAPI, {
             format: "json"
@@ -108,11 +108,9 @@
         $('input[id*="btn_material"]').removeClass("btn btn-success btn-sm");
         $('input[id*="btn_material"]').addClass("btn btn-secondary btn-sm");
         //塞資訊至網頁中
-        let api_url = "http://192.168.11.51:8082/api/dishes/get_dishes_by_name/" + urlParams["dishes_name"];
+        let api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_dishes_by_name/" + urlParams["dishes_name"];
         //console.log(api_url);
         (function () {
-            //var myAPI = "http://192.168.11.51:8082/api/dishes";
-            //var api_url = "http://192.168.11.51:8082/api/dishes/get_dishes_by_name/" + $(this).text();
             var myAPI = api_url;
             $.getJSON(myAPI, {
                 format: "json"
@@ -225,7 +223,7 @@
 
 
         //取得流水號
-        let api_url = "http://192.168.11.51:8082/api/dishes/get_dishes_id_like/" + $('#MainContent_ddl_newdishes_type option:selected').val() + $('#MainContent_ddl_cooking_method option:selected').val();
+        let api_url = "http://internal.hochi.org.tw:8082/api/dishes/get_dishes_id_like/" + $('#MainContent_ddl_newdishes_type option:selected').val() + $('#MainContent_ddl_cooking_method option:selected').val();
         console.log(api_url);
         (function () {
             var myAPI = api_url;
@@ -238,7 +236,7 @@
                     console.log(dishes_id);
                     $.ajax({
                         type: "POST",
-                        url: "http://192.168.11.51:8082/api/dishes/appendNewdishes",
+                        url: "http://internal.hochi.org.tw:8082/api/dishes/appendNewdishes",
                         data: JSON.stringify({
                             "dishes_id": dishes_id,
                             "dishes_name": dishes_name,
@@ -271,7 +269,7 @@
                         console.log(dishes_id);
                         $.ajax({
                             type: "POST",
-                            url: "http://192.168.11.51:8082/api/dishes/appendNewdishes",
+                            url: "http://internal.hochi.org.tw:8082/api/dishes/appendNewdishes",
                             data: JSON.stringify({
                                 "dishes_id": dishes_id,
                                 "dishes_name": dishes_name,
@@ -386,7 +384,7 @@
         let formData = new FormData();
         formData.append('import_file', this.files[0]);
         $.ajax({
-            url: "http://192.168.11.51:8081/api/FileUpload/UploadFiles",
+            url: "http://internal.hochi.org.tw:8081/api/FileUpload/UploadFiles",
             method: 'POST',
             processData: false,
             contentType: false,
@@ -397,9 +395,9 @@
                     alert('圖片上傳成功!');
                     console.log(data.length);
                     for (var i = 0; i < data.length; i++) {
-                        console.log("http://192.168.11.51:8081" + data[i]);
-                        $("#MainContent_blah").attr("src", "http://192.168.11.51:8081" + data[i]);
-                        document.cookie = "dishes_image=http://192.168.11.51:8081" + data[i];
+                        console.log("http://internal.hochi.org.tw:8081" + data[i]);
+                        $("#MainContent_blah").attr("src", "http://internal.hochi.org.tw:8081" + data[i]);
+                        document.cookie = "dishes_image=http://internal.hochi.org.tw:8081" + data[i];
                     }
                     console.log("file upload success");
                 }
