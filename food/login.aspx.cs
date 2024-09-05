@@ -17,17 +17,17 @@ namespace food
 
             if (!IsPostBack)
             {
-                //連接慈場IP才能拜訪登入頁面
-                string ip_address = clsDB.GetIPAddress();
-                if (ip_address.StartsWith("10.10.3") || ip_address.StartsWith("10.10.1"))
-                {
-                    //可以登入
-                }
-                else
-                {
-                    //不可以登入管理者
-                    Response.Redirect("http://internal.hochi.org.tw:8080/");
-                }
+                ////連接慈場IP才能拜訪登入頁面
+                //string ip_address = clsDB.GetIPAddress();
+                //if (ip_address.StartsWith("10.10.3") || ip_address.StartsWith("10.10.1"))
+                //{
+                //    //可以登入
+                //}
+                //else
+                //{
+                //    //不可以登入管理者
+                //    Response.Redirect("http://internal.hochi.org.tw:8080/");
+                //}
 
                 //如果已經登入過，再次進入=登出
                 HttpCookie reqCookies = Request.Cookies["person"];
