@@ -17,10 +17,8 @@
                     <button type="button" id="bt_newdishes_print" class="btn btn-secondary btn-lg">列印</button>
                 </div>
                 <div class="col">
-                    <%--<button type="button" id="bt_newdishes_delete" class="btn btn-secondary btn-lg">刪除</button>--%>
                 </div>
                 <div class="col">
-                    <%--<button type="button" id="bt_newdishes_leave" class="btn btn-secondary btn-lg">離開</button>--%>
                 </div>
             </div>
             <hr />
@@ -91,7 +89,6 @@
                             <span class="input-group-text" id="basic-addon1">六、介紹/叮嚀</span>
                         </div>
                         <textarea class="form-control" id="dishesCommentary" rows="5" cols="50"></textarea>
-                        <%--<input type="text" id="dishesCommentary" class="form-control" placeholder="介紹/叮嚀" aria-label="dishesCommentary" aria-describedby="basic-addon1">--%>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">

@@ -2019,36 +2019,6 @@ $(document).ready(function () {
 
 });
 
-//使菜單主題 內容目視管理 空白:粉色 有值:春綠
-//$(document).on('change', $('input[name="name"]'), function () {
-//    $('input[name="name"]').each(function (data) {
-//        if ($(this).val().length == 0) {
-//            $(this).css("background-color", "Pink");
-//        } else {
-//            $(this).css("background-color", "SpringGreen");
-//        }
-//    })
-//})
-
-//使班會日期 內容目視管理 空白:粉色 有值:春綠
-//$(document).on('click', $('.form-control datepicker'), function () {
-//    console.log('document click event');
-
-//    $('input[name="date"]').each(function (data) {
-//        if ($(this).val().length == 0) {
-//            $(this).css("background-color", "Pink");
-//        } else {
-//            $(this).css("background-color", "SpringGreen");
-//        }
-//    });
-    
-//    $('.datepicker').datepicker({
-//        defaultDate: "+1w",
-//        changeMonth: true,
-//        numberOfMonths: 1,
-//        dateFormat: "yy/mm/dd"
-//    });
-//})
 
 //取得TabPanel1 table Double click 資訊 已知BUG th也會列入雙擊事件
 $(document).one('dblclick', $('#gv_search_view tbody tr'), function () {
