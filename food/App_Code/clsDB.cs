@@ -176,6 +176,52 @@ namespace food.App_Code
             return table;
         }
         /// <summary>
+        /// MySQL "Select" with parameters
+        /// </summary>
+        /// <param name="SQLCommand">SQL 查詢字串</param>
+        /// <param name="parameters">MySqlParameter 參數陣列</param>
+        /// <returns>查詢結果 DataTable</returns>
+        public DataTable MySQL_Select(string SQLCommand, MySqlParameter[] parameters)
+        {
+            DataTable table = new DataTable();
+
+            // 連接字串
+            String cs = "server=internal.hochi.org.tw;UId=hochi_root;Pwd=hochi_Taoyuan;database=food;maximumpoolsize=150";
+            using (MySqlConnection conn = new MySqlConnection(cs))
+            {
+                try
+                {
+                    conn.Open();  // 打開資料庫連接
+                    using (MySqlCommand cmd = new MySqlCommand(SQLCommand, conn))
+                    {
+                        // 如果有參數，將參數添加到命令中
+                        if (parameters != null)
+                        {
+                            cmd.Parameters.AddRange(parameters);
+                        }
+
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        da.SelectCommand.CommandTimeout = 0;  // 設置無限的命令超時
+                        da.Fill(table);  // 執行查詢並填充結果至 DataTable
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // 錯誤處理
+                    Console.WriteLine("MySQL_Select 發生錯誤：" + ex.Message);
+                }
+                finally
+                {
+                    // 關閉連接並處置
+                    conn.Close();
+                    conn.Dispose();
+                }
+            }
+
+            return table;  // 返回查詢結果
+        }
+
+        /// <summary>
         /// Mysql "Update/Insert/Delect"
         /// </summary>
         /// <param name="SQLCommand">sql command</param>
