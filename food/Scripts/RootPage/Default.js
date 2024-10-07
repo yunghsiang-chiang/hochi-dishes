@@ -36,36 +36,49 @@
         }
     }
 
-    // 根據菜色名稱來查詢菜色
-    $("#dishes_name_text").change(async function () {
+    // 查詢菜色或材料後更新表格
+    async function searchDishes() {
+        // 將 select id 為 MainContent_ddl_newdishes_type 、MainContent_ddl_cooking_method 的選項移動至 "請選擇"
+        $("#MainContent_ddl_newdishes_type").val('--');
+        $("#MainContent_ddl_cooking_method").val('--');
+
         const dishesName = $("#dishes_name_text").val().trim(); // 獲取菜色名稱
         const materialText = $('#dishes_material_text').val().trim(); // 獲取材料名稱
-        let api_url;
 
-        // 根據是否有材料名稱決定 API URL
-        if (materialText.length > 0) {
-            api_url = `http://internal.hochi.org.tw:8082/api/dishes/search_dishes_by_wordsAndMaterial/${dishesName}/${materialText}`;
-        } else {
-            api_url = `http://internal.hochi.org.tw:8082/api/dishes/search_dishes_by_words/${dishesName}`;
+        // 清空不相干的輸入框
+        if (dishesName.length > 0) {
+            $("#dishes_material_text").text(''); // 清空材料名稱輸入框
+        } else if (materialText.length > 0) {
+            $("#dishes_name_text").text(''); // 清空菜色名稱輸入框
         }
 
-        await fetchDishes(api_url); // 調用 API 並更新表格
+        // 只有當菜色名稱或材料名稱有值時才調用 API
+        if (dishesName.length > 0 || materialText.length > 0) {
+            let api_url;
+            if (dishesName.length > 0 && materialText.length > 0) {
+                // 同時有菜色名稱與材料名稱時
+                api_url = `http://internal.hochi.org.tw:8082/api/dishes/search_dishes_by_wordsAndMaterial/${dishesName}/${materialText}`;
+            } else if (dishesName.length > 0) {
+                // 只有菜色名稱時
+                api_url = `http://internal.hochi.org.tw:8082/api/dishes/search_dishes_by_words/${dishesName}`;
+            } else {
+                // 只有材料名稱時
+                api_url = `http://internal.hochi.org.tw:8082/api/dishes/search_dishes_by_material/${materialText}`;
+            }
+
+            // 調用 API 並更新表格
+            await fetchDishes(api_url);
+        }
+    }
+
+    // 監聽菜色名稱變更
+    $("#dishes_name_text").change(function () {
+        searchDishes();
     });
 
-    // 根據材料名稱來查詢菜色
-    $("#dishes_material_text").change(async function () {
-        const dishesName = $("#dishes_name_text").val().trim(); // 獲取菜色名稱
-        const materialText = $('#dishes_material_text').val().trim(); // 獲取材料名稱
-        let api_url;
-
-        // 根據是否有菜色名稱決定 API URL
-        if (dishesName.length > 0) {
-            api_url = `http://internal.hochi.org.tw:8082/api/dishes/search_dishes_by_wordsAndMaterial/${dishesName}/${materialText}`;
-        } else {
-            api_url = `http://internal.hochi.org.tw:8082/api/dishes/search_dishes_by_material/${materialText}`;
-        }
-
-        await fetchDishes(api_url); // 調用 API 並更新表格
+    // 監聽材料名稱變更
+    $("#dishes_material_text").change(function () {
+        searchDishes();
     });
 
     // 動態綁定表格中的點擊事件，跳轉到指定菜色頁面
