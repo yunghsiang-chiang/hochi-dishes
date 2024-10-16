@@ -247,6 +247,7 @@
     <Content Include="images\紅燒.webp" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\FoodAdmin\category.js" />
+    <Content Include="Scripts\FoodAdmin\chef.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />

@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="Category Management" Language="C#" MasterPageFile="~/wpadmin.Master" AutoEventWireup="true" CodeBehind="category.aspx.cs" Inherits="food.FoodAdmin.category" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../Scripts/FoodAdmin/category.js"></script>
@@ -14,6 +13,10 @@
             <label for="description">Description:</label>
             <textarea id="description" class="form-control"></textarea>
         </div>
+        <div class="form-group">
+            <label for="icon">Icon URL:</label>
+            <input type="text" id="icon" class="form-control" placeholder="Enter the URL of the icon image" />
+        </div>
         <input type="hidden" id="categoryId" value="" />
         <button id="submitCategory" class="btn btn-primary">Submit</button>
 
@@ -26,6 +29,7 @@
                     <th>ID</th>
                     <th>Category Name</th>
                     <th>Description</th>
+                    <th>Icon</th>
                     <th>Action</th>
                 </tr>
             </thead>

@@ -9,10 +9,12 @@
         var categoryId = $('#categoryId').val();
         var categoryName = $('#categoryName').val();
         var description = $('#description').val();
+        var icon = $('#icon').val();
 
         const categoryData = {
             category_name: categoryName,
-            description: description
+            description: description,
+            icon: icon
         };
 
         // 如果 categoryId 有值，表示是更新操作
@@ -28,14 +30,11 @@
             data: JSON.stringify(categoryData),
             success: function (response) {
                 alert('Category saved successfully!');
-                // 如果是更新操作，直接更新表格中的对应行
                 if (categoryId) {
                     updateCategoryRow(response);
                 } else {
-                    // 如果是新增操作，直接添加新行到表格中
                     addCategoryRow(response);
                 }
-                // 清除表单并重新加载分类列表
                 resetForm();
             },
             error: function (xhr, status, error) {
@@ -82,23 +81,22 @@
     // 更新表格中某个分类的行
     function updateCategoryRow(category) {
         const row = generateCategoryRow(category);
-        // 查找并替换现有行
         $('#categoryTable tbody').find(`tr[data-id='${category.category_id}']`).replaceWith(row);
         bindEditButtons();
     }
 
-    // 生成分類的表格行 HTML
+    // 生成分类的表格行 HTML，包含 Icon 图片
     function generateCategoryRow(category) {
         return `<tr data-id="${category.category_id}">
                 <td>${category.category_id}</td>
                 <td>${category.category_name}</td>
                 <td>${category.description || ''}</td>
+                <td>${category.icon ? `<img src="${category.icon}" alt="${category.category_name}" style="width: 50px; height: 50px;">` : 'No icon'}</td>
                 <td>
-                    <button type="button" class="btn btn-secondary edit" data-id="${category.category_id}" data-name="${category.category_name}" data-description="${category.description}">Edit</button>
+                    <button type="button" class="btn btn-secondary edit" data-id="${category.category_id}" data-name="${category.category_name}" data-description="${category.description}" data-icon="${category.icon}">Edit</button>
                 </td>
             </tr>`;
     }
-
 
     // 绑定编辑按钮的事件
     function bindEditButtons() {
@@ -106,9 +104,11 @@
             var categoryId = $(this).data('id');
             var categoryName = $(this).data('name');
             var description = $(this).data('description');
+            var icon = $(this).data('icon');
             $('#categoryId').val(categoryId);
             $('#categoryName').val(categoryName);
             $('#description').val(description);
+            $('#icon').val(icon);
         });
     }
 
@@ -117,5 +117,6 @@
         $('#categoryId').val('');
         $('#categoryName').val('');
         $('#description').val('');
+        $('#icon').val('');
     }
 });
