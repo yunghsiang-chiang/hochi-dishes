@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="wpadmin.master.cs" Inherits="food.wpadmin" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Food Admin Dashboard</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/FoodAdmin/dashboard.aspx">Food Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/FoodAdmin/main_ingredient.aspx">Main Ingredient Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/FoodAdmin/category.aspx">Category Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/FoodAdmin/chef.aspx">Chef Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/FoodAdmin/recipe.aspx">Recipe Management</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="container mt-4">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+
+</body>
+</html>

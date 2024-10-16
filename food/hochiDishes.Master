@@ -1,0 +1,66 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="hochiDishes.master.cs" Inherits="food.hochiDishes" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    
+    <!-- 引用 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- 引用 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-MDaxQZZz4mZyAyFpBWA1Zc/lrp0bsjtZX1FqAEN1n1JQoHX8Z5lhL2bHUBVrn0z" crossorigin="anonymous">
+
+    <!-- 引用 Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxJAFaL8J/FEb0zGR7VCwhNwTx6wwiY1wYtxKSLb3sDbDzF5H" crossorigin="anonymous"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <!-- Bootstrap 導覽列 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">食譜平台</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="切換導航">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="Home.aspx">首頁</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="Recipes.aspx" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        食譜
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Recipes.aspx">查看食譜</a>
+                        <a class="dropdown-item" href="AddRecipe.aspx">新增食譜</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="EventMeal.aspx" id="eventMealDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        活動餐
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="eventMealDropdown">
+                        <a class="dropdown-item" href="PinEventMeal.aspx">釘選活動餐</a>
+                        <a class="dropdown-item" href="ViewEventMealHistory.aspx">查看過往活動餐紀錄</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Contact.aspx">聯絡我們</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <form id="form1" runat="server">
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
