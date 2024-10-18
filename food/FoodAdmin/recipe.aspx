@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Recipe Management" Language="C#" MasterPageFile="~/wpadmin.Master" AutoEventWireup="true" CodeBehind="recipe.aspx.cs" Inherits="food.FoodAdmin.recipe" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../Scripts/FoodAdmin/recipe.js"></script>
 </asp:Content>
@@ -26,8 +27,42 @@
             <select id="chef" class="form-control"></select>
         </div>
         <input type="hidden" id="recipeId" value="" />
-        <button id="submitRecipe" class="btn btn-primary">Save Recipe</button>
-        <button id="deleteRecipe" class="btn btn-danger">Delete Recipe</button>
+
+        <hr />
+
+        <h3>Ingredients</h3>
+        <table class="table table-bordered" id="ingredientsTable">
+            <thead>
+                <tr>
+                    <th>Ingredient Name</th>
+                    <th>Amount</th>
+                    <th>Unit</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ingredients will be dynamically populated -->
+            </tbody>
+        </table>
+        <button type="button" id="addIngredient" class="btn btn-success">Add Ingredient</button>
+
+        <hr />
+
+        <h3>Seasonings</h3>
+        <table class="table table-bordered" id="seasoningsTable">
+            <thead>
+                <tr>
+                    <th>Seasoning Name</th>
+                    <th>Amount</th>
+                    <th>Unit</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Seasonings will be dynamically populated -->
+            </tbody>
+        </table>
+        <button type="button" id="addSeasoning" class="btn btn-success">Add Seasoning</button>
 
         <hr />
 
@@ -49,6 +84,11 @@
 
         <hr />
 
+        <button id="submitRecipe" class="btn btn-primary">Save Recipe</button>
+        <button id="deleteRecipe" class="btn btn-danger">Delete Recipe</button>
+
+        <hr />
+
         <h3>Existing Recipes</h3>
         <table class="table table-bordered" id="recipeTable">
             <thead>
@@ -66,5 +106,11 @@
                 <!-- Rows will be dynamically populated -->
             </tbody>
         </table>
+        <!-- 分頁控制器 -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination" id="pagination">
+                <!-- Pagination buttons will be dynamically populated -->
+            </ul>
+        </nav>
     </div>
 </asp:Content>
