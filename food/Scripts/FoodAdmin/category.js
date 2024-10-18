@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    const apiUrl = 'http://internal.hochi.org.tw:8082/api/dishes/categories';
+    const apiUrl = 'http://internal.hochi.org.tw:8082/api/categories/categories';
 
     // 加载现有的分类
     loadCategories();

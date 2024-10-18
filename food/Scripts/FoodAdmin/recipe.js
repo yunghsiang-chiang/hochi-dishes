@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
     const apiUrl = 'http://internal.hochi.org.tw:8082/api/recipes'; // 修正后的食谱 API
-    const ingredientApiUrl = 'http://internal.hochi.org.tw:8082/api/main_ingredients'; // 修正后的主食材 API
-    const chefApiUrl = 'http://internal.hochi.org.tw:8082/api/chefs'; // 修正后的厨师 API
-    const categoryApiUrl = 'http://internal.hochi.org.tw:8082/api/categories'; // 修正后的分类 API
+    const ingredientApiUrl = 'http://internal.hochi.org.tw:8082/api/MainIngredients'; // 修正后的主食材 API
+    const chefApiUrl = 'http://internal.hochi.org.tw:8082/api/chefs/chefs'; // 修正后的厨师 API
+    const categoryApiUrl = 'http://internal.hochi.org.tw:8082/api/categories/categories'; // 修正后的分类 API
 
     loadRecipes();
     loadIngredients();

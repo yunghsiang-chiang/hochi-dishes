@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    const apiUrl = 'http://internal.hochi.org.tw:8082/api/dishes/chefs';
+    const apiUrl = 'http://internal.hochi.org.tw:8082/api/chefs/chefs';
 
     // 加载现有的厨师数据
     loadChefs();
