@@ -48,7 +48,8 @@
             url: apiUrl,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (chefs) {
+            success: function (response) {
+                var chefs = response.$values; // 从响应中提取厨师数组
                 renderChefs(chefs);
             },
             error: function (xhr, status, error) {

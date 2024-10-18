@@ -81,19 +81,20 @@
     // 渲染主食材列表
     function renderMainIngredients(mainIngredients) {
         var rows = '';
-        mainIngredients.forEach(function (mainIngredient) {
+        mainIngredients.$values.forEach(function (mainIngredient) { // 使用 $values 解包數據
             rows += `<tr data-id="${mainIngredient.main_ingredient_id}">
-                        <td>${mainIngredient.main_ingredient_id}</td>
-                        <td>${mainIngredient.main_ingredient_name}</td>
-                        <td>${mainIngredient.description || ''}</td>
-                        <td>${mainIngredient.category || ''}</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary edit" data-id="${mainIngredient.main_ingredient_id}">Edit</button>
-                        </td>
-                    </tr>`;
+                    <td>${mainIngredient.main_ingredient_id}</td>
+                    <td>${mainIngredient.main_ingredient_name}</td>
+                    <td>${mainIngredient.description || ''}</td>
+                    <td>${mainIngredient.category || ''}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary edit" data-id="${mainIngredient.main_ingredient_id}">Edit</button>
+                    </td>
+                </tr>`;
         });
         $('#mainIngredientTable tbody').html(rows);
 
+        // 綁定編輯按鈕的事件
         $('.edit').click(function () {
             var mainIngredientId = $(this).data('id');
             loadMainIngredientDetails(mainIngredientId);
@@ -105,11 +106,12 @@
         $.ajax({
             type: "GET",
             url: `${apiUrl}/${mainIngredientId}`,
-            success: function (mainIngredient) {
+            success: function (response) {
+                var mainIngredient = response;
                 $('#mainIngredientId').val(mainIngredient.main_ingredient_id);
                 $('#mainIngredientName').val(mainIngredient.main_ingredient_name);
-                $('#description').val(mainIngredient.description);
-                $('#category').val(mainIngredient.category);
+                $('#description').val(mainIngredient.description || '');
+                $('#category').val(mainIngredient.category || '');
             },
             error: function (xhr, status, error) {
                 alert('Failed to load main ingredient details: ' + xhr.responseText);

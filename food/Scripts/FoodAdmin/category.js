@@ -50,7 +50,8 @@
             url: apiUrl,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (categories) {
+            success: function (response) {
+                var categories = response.$values; // 解包 $values 数组
                 renderCategories(categories);
             },
             error: function (xhr, status, error) {
