@@ -10,6 +10,7 @@
     loadIngredients();
     loadChefs();
     loadCategories();
+
     // 保存食谱
     $('#submitRecipe').click(function () {
         var recipeData = gatherRecipeData();
@@ -53,6 +54,7 @@
             $(this).closest('tr').remove();
         });
     }
+
     // 收集步骤信息
     function gatherSteps() {
         const steps = [];
@@ -96,6 +98,7 @@
         return recipeData;
     }
 
+    // 删除食谱
     $('#deleteRecipe').click(function () {
         var recipeId = $('#recipeId').val();
         if (!recipeId) {
@@ -118,12 +121,14 @@
             });
         }
     });
+
     // 加载现有食谱的函数
     function loadRecipes() {
         $.ajax({
             type: "GET",
             url: apiUrl, // 修正后的获取食谱 API
-            success: function (recipes) {
+            success: function (response) {
+                var recipes = response.$values; // 从响应中提取食谱数组
                 renderRecipes(recipes);
             },
             error: function (xhr) {
@@ -132,20 +137,20 @@
         });
     }
 
+    // 渲染食谱表格
     function renderRecipes(recipes) {
         var rows = '';
         recipes.forEach(function (recipe) {
-            rows += `<tr data-id="${recipe.recipe_id}">
-                        <td>${recipe.recipe_id}</td>
-                        <td>${recipe.recipe_name}</td>
-                        <td>${recipe.description}</td>
-                        <td>${recipe.main_ingredient?.main_ingredient_name || 'N/A'}</td>
-                        <td>${recipe.category || 'N/A'}</td>
-                        <td>${recipe.chef?.name || 'N/A'}</td>
-                        <td>
-                            <button class="btn btn-secondary edit" data-id="${recipe.recipe_id}">Edit</button>
-                        </td>
-                    </tr>`;
+            rows += `<tr data-id="${recipe.recipeId}">
+                    <td>${recipe.recipeId}</td>
+                    <td>${recipe.recipeName}</td>
+                    <td>${recipe.category || 'N/A'}</td>
+                    <td>${recipe.mainIngredientName || 'N/A'}</td>
+                    <td>${recipe.chefName || 'N/A'}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary edit" data-id="${recipe.recipeId}">Edit</button>
+                    </td>
+                </tr>`;
         });
         $('#recipeTable tbody').html(rows);
 
@@ -155,48 +160,98 @@
         });
     }
 
+    // 处理返回的食谱详情和步骤信息
     function loadRecipeDetails(recipeId) {
         $.ajax({
             type: "GET",
-            url: `${apiUrl}/${recipeId}`, // 修正后的获取单个食谱 API
+            url: `${apiUrl}/${recipeId}`, // 获取单个食谱 API
             success: function (recipe) {
-                $('#recipeId').val(recipe.recipe_id);
-                $('#recipeName').val(recipe.recipe_name);
-                $('#recipeDescription').val(recipe.description);
-                $('#mainIngredient').val(recipe.main_ingredient_id);
+                // 填充 Recipe Management 表单
+                $('#recipeId').val(recipe.recipeId);
+                $('#recipeName').val(recipe.recipeName);
+                $('#recipeDescription').val(recipe.description || ''); // 确保描述字段可以为空
+
+                // 設置主食材下拉選單，根據 mainIngredientName 選中相應的選項
+                $('#mainIngredient option').each(function () {
+                    if ($(this).text() === recipe.mainIngredientName) {
+                        $(this).prop('selected', true);
+                    }
+                });
+
+                // 設置廚師下拉選單，根據 chefName 選中相應的選項
+                $('#chef option').each(function () {
+                    if ($(this).text() === recipe.chefName) {
+                        $(this).prop('selected', true);
+                    }
+                });
+
+                // 設置類別
                 $('#recipeCategory').val(recipe.category);
-                $('#chef').val(recipe.chef_id);
+
+                // 清空 Recipe Steps 表格
+                $('#recipeStepsTable tbody').html('');
+
+                // 加载步骤信息到表格
+                if (recipe.recipeSteps && recipe.recipeSteps.$values) {
+                    recipe.recipeSteps.$values.forEach(function (step) {
+                        addStepRow(step.stepNumber, step.description);
+                    });
+                }
             },
             error: function (xhr) {
                 alert('Failed to load recipe details: ' + xhr.responseText);
             }
         });
     }
+
+    // 修改后的 addStepRow 函数，允许传递步骤信息
+    function addStepRow(stepNumber = null, description = '') {
+        const newStepNumber = stepNumber || ($('#recipeStepsTable tbody tr').length + 1);
+        $('#recipeStepsTable tbody').append(`
+        <tr>
+            <td>${newStepNumber}</td>
+            <td><input type="text" class="form-control stepDescription" value="${description}" /></td>
+            <td><input type="file" class="form-control stepImage" /></td>
+            <td><button class="btn btn-danger removeStep">Remove</button></td>
+        </tr>
+    `);
+
+        $('.removeStep').off('click').on('click', function () {
+            $(this).closest('tr').remove();
+        });
+    }
+
     // 加载主食材的函数
     function loadIngredients() {
-        $.get(ingredientApiUrl, function (ingredients) { // 修正后的获取主食材 API
+        $.get(ingredientApiUrl, function (response) { // 获取主食材 API 数据
+            var ingredients = response.$values; // 解包 $values 数组
             ingredients.forEach(function (ingredient) {
                 $('#mainIngredient').append(`<option value="${ingredient.main_ingredient_id}">${ingredient.main_ingredient_name}</option>`);
             });
         });
     }
+
     // 加载厨师的函数
     function loadChefs() {
-        $.get(chefApiUrl, function (chefs) { // 修正后的获取厨师 API
+        $.get(chefApiUrl, function (response) { // 获取修正后的厨师 API 数据
+            var chefs = response.$values; // 提取厨师数组
             chefs.forEach(function (chef) {
                 $('#chef').append(`<option value="${chef.chef_id}">${chef.name}</option>`);
             });
         });
     }
+
     // 加载分类的函数
     function loadCategories() {
-        $.get(categoryApiUrl, function (categories) { // 修正后的获取分类 API
+        $.get(categoryApiUrl, function (response) { // 获取分类 API 数据
+            var categories = response.$values; // 解包 $values 数组
             categories.forEach(function (category) {
                 $('#recipeCategory').append(`<option value="${category.category_name}">${category.category_name}</option>`);
             });
         });
     }
 
+    // 重置表单
     function resetForm() {
         $('#recipeId').val('');
         $('#recipeName').val('');
