@@ -84,7 +84,7 @@
 
         <hr />
 
-        <button id="submitRecipe" class="btn btn-primary">Save Recipe</button>
+        <button type="button" id="submitRecipe" class="btn btn-primary">Save Recipe</button>
         <button id="deleteRecipe" class="btn btn-danger">Delete Recipe</button>
 
         <hr />
