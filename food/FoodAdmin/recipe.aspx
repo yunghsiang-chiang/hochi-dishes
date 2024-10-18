@@ -45,7 +45,7 @@
                 <!-- Recipe steps will be dynamically populated -->
             </tbody>
         </table>
-        <button id="addStep" class="btn btn-success">Add Step</button>
+        <button type="button" id="addStep" class="btn btn-success">Add Step</button>
 
         <hr />
 
