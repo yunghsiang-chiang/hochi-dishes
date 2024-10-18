@@ -26,8 +26,26 @@
             <select id="chef" class="form-control"></select>
         </div>
         <input type="hidden" id="recipeId" value="" />
-        <button id="submitRecipe" class="btn btn-primary">Submit</button>
-        <button id="deleteRecipe" class="btn btn-danger">Delete</button>
+        <button id="submitRecipe" class="btn btn-primary">Save Recipe</button>
+        <button id="deleteRecipe" class="btn btn-danger">Delete Recipe</button>
+
+        <hr />
+
+        <h3>Recipe Steps</h3>
+        <table class="table table-bordered" id="recipeStepsTable">
+            <thead>
+                <tr>
+                    <th>Step Number</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Recipe steps will be dynamically populated -->
+            </tbody>
+        </table>
+        <button id="addStep" class="btn btn-success">Add Step</button>
 
         <hr />
 
@@ -48,23 +66,5 @@
                 <!-- Rows will be dynamically populated -->
             </tbody>
         </table>
-    </div>
-
-    <div class="container mt-4">
-        <h3>Recipe Steps</h3>
-        <table class="table table-bordered" id="recipeStepsTable">
-            <thead>
-                <tr>
-                    <th>Step Number</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Recipe steps will be dynamically populated -->
-            </tbody>
-        </table>
-        <button id="addStep" class="btn btn-success">Add Step</button>
     </div>
 </asp:Content>

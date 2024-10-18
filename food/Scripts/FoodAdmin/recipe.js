@@ -3,35 +3,21 @@
     const ingredientApiUrl = 'http://internal.hochi.org.tw:8082/api/MainIngredients'; // 修正后的主食材 API
     const chefApiUrl = 'http://internal.hochi.org.tw:8082/api/chefs/chefs'; // 修正后的厨师 API
     const categoryApiUrl = 'http://internal.hochi.org.tw:8082/api/categories/categories'; // 修正后的分类 API
+    const stepApiUrl = 'http://internal.hochi.org.tw:8082/api/recipeSteps'; // 新增步骤的 API
 
+    // 加载所有食谱、厨师、食材等
     loadRecipes();
     loadIngredients();
     loadChefs();
     loadCategories();
-
+    // 保存食谱
     $('#submitRecipe').click(function () {
-        var recipeId = $('#recipeId').val();
-        var recipeName = $('#recipeName').val();
-        var recipeDescription = $('#recipeDescription').val();
-        var mainIngredientId = $('#mainIngredient').val();
-        var category = $('#recipeCategory').val();
-        var chefId = $('#chef').val();
-
-        const recipeData = {
-            recipe_name: recipeName,
-            description: recipeDescription,
-            main_ingredient_id: parseInt(mainIngredientId),
-            category: category,
-            chef_id: parseInt(chefId)
-        };
-
-        if (recipeId) {
-            recipeData.recipe_id = parseInt(recipeId);
-        }
+        var recipeData = gatherRecipeData();
+        if (!recipeData) return;
 
         $.ajax({
             type: "POST",
-            url: apiUrl, // 修正后的食谱 API
+            url: apiUrl,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(recipeData),
@@ -45,6 +31,70 @@
             }
         });
     });
+
+    // 添加步骤
+    $('#addStep').click(function () {
+        addStepRow();
+    });
+
+    // 添加步骤到表格
+    function addStepRow() {
+        const stepNumber = $('#recipeStepsTable tbody tr').length + 1;
+        $('#recipeStepsTable tbody').append(`
+            <tr>
+                <td>${stepNumber}</td>
+                <td><input type="text" class="form-control stepDescription" /></td>
+                <td><input type="file" class="form-control stepImage" /></td>
+                <td><button class="btn btn-danger removeStep">Remove</button></td>
+            </tr>
+        `);
+
+        $('.removeStep').off('click').on('click', function () {
+            $(this).closest('tr').remove();
+        });
+    }
+    // 收集步骤信息
+    function gatherSteps() {
+        const steps = [];
+        $('#recipeStepsTable tbody tr').each(function (index, row) {
+            const stepNumber = index + 1;
+            const description = $(row).find('.stepDescription').val();
+            const image = $(row).find('.stepImage').prop('files')[0]; // 假设使用上传图片
+
+            steps.push({ step_number: stepNumber, description: description, image_url: image });
+        });
+        return steps;
+    }
+
+    // 收集食谱信息
+    function gatherRecipeData() {
+        const recipeId = $('#recipeId').val();
+        const recipeName = $('#recipeName').val();
+        const recipeDescription = $('#recipeDescription').val();
+        const mainIngredientId = $('#mainIngredient').val();
+        const category = $('#recipeCategory').val();
+        const chefId = $('#chef').val();
+
+        if (!recipeName || !mainIngredientId || !category || !chefId) {
+            alert('Please fill all required fields');
+            return null;
+        }
+
+        const recipeData = {
+            recipe_name: recipeName,
+            description: recipeDescription,
+            main_ingredient_id: parseInt(mainIngredientId),
+            category: category,
+            chef_id: parseInt(chefId),
+            recipe_steps: gatherSteps() // 添加步骤
+        };
+
+        if (recipeId) {
+            recipeData.recipe_id = parseInt(recipeId);
+        }
+
+        return recipeData;
+    }
 
     $('#deleteRecipe').click(function () {
         var recipeId = $('#recipeId').val();
@@ -68,7 +118,7 @@
             });
         }
     });
-
+    // 加载现有食谱的函数
     function loadRecipes() {
         $.ajax({
             type: "GET",
@@ -122,7 +172,7 @@
             }
         });
     }
-
+    // 加载主食材的函数
     function loadIngredients() {
         $.get(ingredientApiUrl, function (ingredients) { // 修正后的获取主食材 API
             ingredients.forEach(function (ingredient) {
@@ -130,7 +180,7 @@
             });
         });
     }
-
+    // 加载厨师的函数
     function loadChefs() {
         $.get(chefApiUrl, function (chefs) { // 修正后的获取厨师 API
             chefs.forEach(function (chef) {
@@ -138,7 +188,7 @@
             });
         });
     }
-
+    // 加载分类的函数
     function loadCategories() {
         $.get(categoryApiUrl, function (categories) { // 修正后的获取分类 API
             categories.forEach(function (category) {
@@ -154,5 +204,6 @@
         $('#mainIngredient').val('');
         $('#recipeCategory').val('');
         $('#chef').val('');
+        $('#recipeStepsTable tbody').html('');
     }
 });

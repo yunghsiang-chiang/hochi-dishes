@@ -88,7 +88,7 @@
                         <td>${mainIngredient.description || ''}</td>
                         <td>${mainIngredient.category || ''}</td>
                         <td>
-                            <button class="btn btn-secondary edit" data-id="${mainIngredient.main_ingredient_id}">Edit</button>
+                            <button type="button" class="btn btn-secondary edit" data-id="${mainIngredient.main_ingredient_id}">Edit</button>
                         </td>
                     </tr>`;
         });
