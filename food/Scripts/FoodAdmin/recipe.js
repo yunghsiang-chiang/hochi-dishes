@@ -18,40 +18,26 @@
 
     // 保存食谱
     $('#submitRecipe').click(function () {
-
-        if ($('#ingredientsTable tbody tr').length === 0) {
-            alert('Please add at least one ingredient.');
-            return;
-        }
-        if ($('#seasoningsTable tbody tr').length === 0) {
-            alert('Please add at least one seasoning.');
-            return;
-        }
-        if ($('#recipeStepsTable tbody tr').length === 0) {
-            alert('Please add at least one recipe step.');
-            return;
-        }
-
+        // 收集並驗證數據
         var recipeData = gatherRecipeData();
         if (!recipeData) return;
 
-        console.log(recipeData);
-
-        //$.ajax({
-        //    type: "POST",
-        //    url: apiUrl,
-        //    contentType: "application/json",
-        //    dataType: "json",
-        //    data: JSON.stringify(recipeData),
-        //    success: function (response) {
-        //        alert('Recipe saved successfully!');
-        //        loadRecipes();
-        //        resetForm();
-        //    },
-        //    error: function (xhr) {
-        //        alert('Error: ' + xhr.responseText);
-        //    }
-        //});
+        // 發送數據到後端
+        $.ajax({
+            type: "POST",
+            url: apiUrl,
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(recipeData),
+            success: function (response) {
+                alert('Recipe saved successfully!');
+                loadRecipes();  // 重新加載食譜列表
+                resetForm();    // 重置表單
+            },
+            error: function (xhr) {
+                alert('Error: ' + xhr.responseText);
+            }
+        });
     });
 
     // 添加步骤
@@ -171,7 +157,7 @@
         return steps;
     }
 
-    // 收集食谱信息
+    // 收集食譜數據
     function gatherRecipeData() {
         const recipeId = $('#recipeId').val();
         const recipeName = $('#recipeName').val();
@@ -185,13 +171,22 @@
             return null;
         }
 
-        if (gatherIngredients().length === 0) {
+        const ingredients = gatherIngredients(recipeId);
+        const seasonings = gatherSeasonings(recipeId);
+        const steps = gatherSteps(recipeId);
+
+        if (ingredients.length === 0) {
             alert('Please add at least one ingredient.');
             return null;
         }
 
-        if (gatherSeasonings().length === 0) {
+        if (seasonings.length === 0) {
             alert('Please add at least one seasoning.');
+            return null;
+        }
+
+        if (steps.length === 0) {
+            alert('Please add at least one recipe step.');
             return null;
         }
 
@@ -202,9 +197,9 @@
             main_ingredient_id: parseInt(mainIngredientId),
             category: category,
             chef_id: parseInt(chefId),
-            recipe_steps: gatherSteps(recipeId),
-            ingredients: gatherIngredients(recipeId),
-            seasonings: gatherSeasonings(recipeId)
+            recipe_steps: steps,
+            ingredients: ingredients,
+            seasonings: seasonings
         };
         return recipeData;
     }
