@@ -21,23 +21,23 @@
         // 收集並驗證數據
         var recipeData = gatherRecipeData();
         if (!recipeData) return;
-
+        console.log(recipeData);
         // 發送數據到後端
-        $.ajax({
-            type: "POST",
-            url: apiUrl,
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify(recipeData),
-            success: function (response) {
-                alert('Recipe saved successfully!');
-                loadRecipes();  // 重新加載食譜列表
-                resetForm();    // 重置表單
-            },
-            error: function (xhr) {
-                alert('Error: ' + xhr.responseText);
-            }
-        });
+        //$.ajax({
+        //    type: "POST",
+        //    url: apiUrl,
+        //    contentType: "application/json",
+        //    dataType: "json",
+        //    data: JSON.stringify(recipeData),
+        //    success: function (response) {
+        //        alert('Recipe saved successfully!');
+        //        loadRecipes();  // 重新加載食譜列表
+        //        resetForm();    // 重置表單
+        //    },
+        //    error: function (xhr) {
+        //        alert('Error: ' + xhr.responseText);
+        //    }
+        //});
     });
 
     // 添加步骤
