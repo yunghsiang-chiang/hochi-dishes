@@ -245,6 +245,7 @@
     <Content Include="images\清蒸.webp" />
     <Content Include="images\焗烤.webp" />
     <Content Include="images\紅燒.webp" />
+    <Content Include="images\熱炒.webp" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\FoodAdmin\category.js" />
     <Content Include="Scripts\FoodAdmin\chef.js" />
