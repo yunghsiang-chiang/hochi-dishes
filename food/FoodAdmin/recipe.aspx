@@ -90,5 +90,51 @@
 
             <button type="button" class="btn btn-success" id="submitStepIngredientBtn">Save Steps, Ingredients, and Seasonings</button>
         </div>
+
+        <!-- 查詢食譜區 -->
+        <h4>Available Recipes</h4>
+        <table id="recipeListTable" class="table">
+            <thead>
+                <tr>
+                    <th>Recipe ID</th>
+                    <th>Recipe Name</th>
+                    <th>Category</th>
+                    <th>Chef</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- Recipe 詳細資訊模態視窗 -->
+        <div class="modal fade" id="recipeDetailModal" tabindex="-1" role="dialog" aria-labelledby="recipeDetailLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="recipeDetailLabel">Recipe Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 id="detailRecipeName"></h5>
+                        <p><strong>Category:</strong> <span id="detailCategory"></span></p>
+                        <p><strong>Chef:</strong> <span id="detailChef"></span></p>
+                        <p><strong>Description:</strong> <span id="detailDescription"></span></p>
+
+                        <h6>Steps</h6>
+                        <ul id="detailStepsList"></ul>
+
+                        <h6>Ingredients</h6>
+                        <ul id="detailIngredientsList"></ul>
+
+                        <h6>Seasonings</h6>
+                        <ul id="detailSeasoningsList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 </asp:Content>

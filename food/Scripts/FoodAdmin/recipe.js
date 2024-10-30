@@ -6,6 +6,11 @@
     const mainIngredientApiUrl = 'http://internal.hochi.org.tw:8082/api/MainIngredients'; // Main Ingredients API
     const chefApiUrl = 'http://internal.hochi.org.tw:8082/api/chefs/chefs'; // Chefs API
     const categoryApiUrl = 'http://internal.hochi.org.tw:8082/api/categories/categories'; // Categories API
+    const allRecipesApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/all'; // 取得所有食譜 API
+    const singleRecipeApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes'; // 單一食譜 API
+    const stepsApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/steps'; // 步驟 API
+    const ingredientsApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/ingredients'; // 食材 API
+    const seasoningsApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/seasonings'; // 調味料 API
 
     let currentRecipeId = null;
 
@@ -13,6 +18,8 @@
     loadMainIngredients();
     loadChefs();
     loadCategories();
+    // 初始載入所有食譜列表
+    loadAllRecipes();
 
     // 通过API加载主要食材
     function loadMainIngredients() {
@@ -250,6 +257,162 @@
 
         $('.removeSeasoning').off('click').on('click', function () {
             $(this).closest('tr').remove();
+        });
+    }
+
+    // 取得並顯示所有食譜
+    function loadAllRecipes() {
+        $.get(allRecipesApiUrl, function (response) {
+            const recipesList = response.$values;
+            $('#recipeListTable tbody').empty();
+
+            recipesList.forEach(function (recipe) {
+                $('#recipeListTable tbody').append(`
+                    <tr>
+                        <td>${recipe.recipe_id}</td>
+                        <td>${recipe.recipe_name}</td>
+                        <td>${recipe.category}</td>
+                        <td>${recipe.chef_id}</td>
+                        <td>
+                            <button class="btn btn-info viewRecipeBtn" data-id="${recipe.recipe_id}">View</button>
+                            <button class="btn btn-primary editRecipeBtn" data-id="${recipe.recipe_id}">Edit</button>
+                        </td>
+                    </tr>
+                `);
+            });
+
+            // 綁定 "View" 按鈕的點擊事件
+            $('.viewRecipeBtn').click(function () {
+                const recipeId = $(this).data('id');
+                loadRecipeDetails(recipeId);
+            });
+
+            // 綁定 "Edit" 按鈕的點擊事件
+            $('.editRecipeBtn').click(function () {
+                const recipeId = $(this).data('id');
+                editRecipe(recipeId);
+            });
+        });
+    }
+
+    // 查詢並顯示特定食譜詳細資訊
+    function loadRecipeDetails(recipeId) {
+        // 取得基本食譜資訊
+        $.get(`${singleRecipeApiUrl}/${recipeId}`, function (recipe) {
+            $('#detailRecipeName').text(recipe.recipe_name);
+            $('#detailCategory').text(recipe.category);
+            $('#detailChef').text(recipe.chef_id);
+            $('#detailDescription').text(recipe.description);
+        });
+
+        // 取得步驟資訊
+        $.get(`${stepsApiUrl}/${recipeId}`, function (response) {
+            const stepsList = response.$values;
+            $('#detailStepsList').empty();
+            stepsList.forEach(function (step) {
+                $('#detailStepsList').append(`<li>${step.step_number}. ${step.description}</li>`);
+            });
+        });
+
+        // 取得食材資訊
+        $.get(`${ingredientsApiUrl}/${recipeId}`, function (response) {
+            const ingredientsList = response.$values;
+            $('#detailIngredientsList').empty();
+            ingredientsList.forEach(function (ingredient) {
+                $('#detailIngredientsList').append(`<li>${ingredient.ingredient_name} - ${ingredient.amount} ${ingredient.unit}</li>`);
+            });
+        });
+
+        // 取得調味料資訊
+        $.get(`${seasoningsApiUrl}/${recipeId}`, function (response) {
+            const seasoningsList = response.$values;
+            $('#detailSeasoningsList').empty();
+            seasoningsList.forEach(function (seasoning) {
+                $('#detailSeasoningsList').append(`<li>${seasoning.seasoning_name} - ${seasoning.amount} ${seasoning.unit}</li>`);
+            });
+        });
+
+        // 顯示模態視窗
+        $('#recipeDetailModal').modal('show');
+    }
+
+    // 編輯食譜 - 回填 step1Section 與 step2Section
+    function editRecipe(recipeId) {
+        currentRecipeId = recipeId; // 設定當前編輯的食譜ID
+
+        // 取得基本食譜資訊並回填 step1Section
+        $.get(`${singleRecipeApiUrl}/${recipeId}`, function (recipe) {
+            $('#recipe_name').val(recipe.recipe_name);
+            $('#main_ingredient_id').val(recipe.main_ingredient_id);
+            $('#category').val(recipe.category);
+            $('#chef_id').val(recipe.chef_id);
+            $('#description').val(recipe.description);
+
+            // 顯示第二階段區域
+            $('#step2Section').show();
+        });
+
+        // 取得步驟資訊並回填至 step2Section 的步驟表格
+        $.get(`${stepsApiUrl}/${recipeId}`, function (response) {
+            const stepsList = response.$values;
+            $('#recipeStepsTable tbody').empty();
+            stepsList.forEach(function (step, index) {
+                $('#recipeStepsTable tbody').append(`
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td><input type="text" class="form-control stepDescription" value="${step.description}" /></td>
+                        <td><input type="file" class="form-control stepImage" /></td>
+                        <td><button class="btn btn-danger removeStep">Remove</button></td>
+                    </tr>
+                `);
+            });
+
+            // 綁定 "Remove" 按鈕的刪除功能
+            $('.removeStep').off('click').on('click', function () {
+                $(this).closest('tr').remove();
+            });
+        });
+
+        // 取得食材資訊並回填至 step2Section 的食材表格
+        $.get(`${ingredientsApiUrl}/${recipeId}`, function (response) {
+            const ingredientsList = response.$values;
+            $('#ingredientsTable tbody').empty();
+            ingredientsList.forEach(function (ingredient) {
+                $('#ingredientsTable tbody').append(`
+                    <tr>
+                        <td><input type="text" class="form-control ingredientName" value="${ingredient.ingredient_name}" /></td>
+                        <td><input type="text" class="form-control ingredientAmount" value="${ingredient.amount}" /></td>
+                        <td><input type="text" class="form-control ingredientUnit" value="${ingredient.unit}" /></td>
+                        <td><button class="btn btn-danger removeIngredient">Remove</button></td>
+                    </tr>
+                `);
+            });
+
+            // 綁定 "Remove" 按鈕的刪除功能
+            $('.removeIngredient').off('click').on('click', function () {
+                $(this).closest('tr').remove();
+            });
+        });
+
+        // 取得調味料資訊並回填至 step2Section 的調味料表格
+        $.get(`${seasoningsApiUrl}/${recipeId}`, function (response) {
+            const seasoningsList = response.$values;
+            $('#seasoningsTable tbody').empty();
+            seasoningsList.forEach(function (seasoning) {
+                $('#seasoningsTable tbody').append(`
+                    <tr>
+                        <td><input type="text" class="form-control seasoningName" value="${seasoning.seasoning_name}" /></td>
+                        <td><input type="text" class="form-control seasoningAmount" value="${seasoning.amount}" /></td>
+                        <td><input type="text" class="form-control seasoningUnit" value="${seasoning.unit}" /></td>
+                        <td><button class="btn btn-danger removeSeasoning">Remove</button></td>
+                    </tr>
+                `);
+            });
+
+            // 綁定 "Remove" 按鈕的刪除功能
+            $('.removeSeasoning').off('click').on('click', function () {
+                $(this).closest('tr').remove();
+            });
         });
     }
 });
