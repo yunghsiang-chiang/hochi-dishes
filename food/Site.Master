@@ -62,7 +62,7 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Menu_management">菜單管理</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/vendor">採購管理</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Admin/admin_wp">後台設定</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/FoodAdmin/dashboard">後台設定</a></li>
                         <li class="nav-item"><a id="login_inout" class="nav-link" runat="server" href="~/login">管理登入</a></li>
                     </ul>
                 </div>
