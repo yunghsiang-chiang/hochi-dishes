@@ -99,7 +99,7 @@
                 </table>
             </div>
             <button type="button" class="btn btn-secondary mt-2" id="addSeasoning">Add Seasoning</button>
-
+            <br />
             <button type="button" class="btn btn-success mt-4" id="submitStepIngredientBtn">Save Steps, Ingredients, and Seasonings</button>
         </div>
 

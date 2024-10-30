@@ -137,6 +137,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\RootPage\Default.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -476,6 +477,7 @@
     </Compile>
     <Compile Include="wpadmin.Master.cs">
       <DependentUpon>wpadmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="wpadmin.Master.designer.cs">
       <DependentUpon>wpadmin.Master</DependentUpon>
