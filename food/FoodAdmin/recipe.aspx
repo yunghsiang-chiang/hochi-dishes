@@ -135,7 +135,6 @@
                         <p><strong>Category:</strong> <span id="detailCategory"></span></p>
                         <p><strong>Chef:</strong> <span id="detailChef"></span></p>
                         <p><strong>Description:</strong> <span id="detailDescription"></span></p>
-
                         <h6>Steps</h6>
                         <ul id="detailStepsList"></ul>
 

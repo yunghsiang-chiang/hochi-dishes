@@ -13,6 +13,7 @@
     const seasoningsApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/seasonings'; // 調味料 API
 
     let currentRecipeId = null;
+    let chefMap = {}; // 用來儲存 chef_id 和 name 的對應關係
 
     // 加载所有下拉数据
     loadMainIngredients();
@@ -20,6 +21,8 @@
     loadCategories();
     // 初始載入所有食譜列表
     loadAllRecipes();
+    // 初始化載入所有廚師和食譜資料
+    loadChefs();
 
     // 通过API加载主要食材
     function loadMainIngredients() {
@@ -37,7 +40,9 @@
             var chefs = response.$values;
             chefs.forEach(function (chef) {
                 $('#chef_id').append(`<option value="${chef.chef_id}">${chef.name}</option>`);
+                chefMap[chef.chef_id] = chef.name;
             });
+            loadAllRecipes(); // 確保在 chefMap 加載後再載入食譜
         });
     }
 
@@ -267,12 +272,15 @@
             $('#recipeListTable tbody').empty();
 
             recipesList.forEach(function (recipe) {
+                // 使用 chef_id 對應 chefMap 中的 name 顯示主廚姓名
+                const chefName = chefMap[recipe.chef_id] || "Unknown";
+
                 $('#recipeListTable tbody').append(`
                     <tr>
                         <td>${recipe.recipe_id}</td>
                         <td>${recipe.recipe_name}</td>
                         <td>${recipe.category}</td>
-                        <td>${recipe.chef_id}</td>
+                        <td>${chefName}</td>
                         <td>
                             <button class="btn btn-info viewRecipeBtn" data-id="${recipe.recipe_id}">View</button>
                             <button class="btn btn-primary editRecipeBtn" data-id="${recipe.recipe_id}">Edit</button>
