@@ -249,6 +249,7 @@
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\FoodAdmin\category.js" />
     <Content Include="Scripts\FoodAdmin\chef.js" />
+    <Content Include="Scripts\FoodAdmin\dashboard.js" />
     <Content Include="Scripts\FoodAdmin\main_ingredient.js" />
     <Content Include="Scripts\FoodAdmin\recipe.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />

@@ -3,7 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\food\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\foodadmin\\recipe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\foodadmin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\foodadmin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\foodadmin\\dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\foodadmin\\dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\wpadmin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\wpadmin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\foodadmin\\recipe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\foodadmin\\recipe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
@@ -23,6 +35,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "dashboard.js",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\dashboard.js",
+              "RelativeDocumentMoniker": "food\\Scripts\\FoodAdmin\\dashboard.js",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\dashboard.js",
+              "RelativeToolTip": "food\\Scripts\\FoodAdmin\\dashboard.js",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA3wCIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-30T06:26:05.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dashboard.aspx",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\FoodAdmin\\dashboard.aspx",
+              "RelativeDocumentMoniker": "food\\FoodAdmin\\dashboard.aspx",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\FoodAdmin\\dashboard.aspx",
+              "RelativeToolTip": "food\\FoodAdmin\\dashboard.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-30T06:17:49.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "wpadmin.Master",
+              "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\wpadmin.Master",
+              "RelativeDocumentMoniker": "food\\wpadmin.Master",
+              "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\wpadmin.Master",
+              "RelativeToolTip": "food\\wpadmin.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-10-30T06:16:41.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "recipe.js",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\recipe.js",
               "RelativeDocumentMoniker": "food\\Scripts\\FoodAdmin\\recipe.js",
@@ -30,12 +81,11 @@
               "RelativeToolTip": "food\\Scripts\\FoodAdmin\\recipe.js",
               "ViewState": "AgIAACoBAAAAAAAAAADwv2EBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-10-18T07:58:00.752Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-18T07:58:00.752Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "recipe.aspx",
               "DocumentMoniker": "C:\\Users\\egrou\\source\\repos\\food\\food\\FoodAdmin\\recipe.aspx",
               "RelativeDocumentMoniker": "food\\FoodAdmin\\recipe.aspx",
@@ -43,8 +93,7 @@
               "RelativeToolTip": "food\\FoodAdmin\\recipe.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-10-24T06:51:12.054Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T06:51:12.054Z"
             }
           ]
         }
