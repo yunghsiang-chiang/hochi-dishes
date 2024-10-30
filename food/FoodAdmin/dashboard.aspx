@@ -4,6 +4,12 @@
     <script src="../Scripts/FoodAdmin/dashboard.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>食譜類別數量統計</h2>
-    <canvas id="recipeChart" width="400" height="200"></canvas>
+    <div class="container">
+        <h2 class="text-center mb-4">食譜類別數量統計</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <canvas id="recipeChart"></canvas>
+            </div>
+        </div>
+    </div>
 </asp:Content>
