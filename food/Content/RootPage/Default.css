@@ -1,2 +1,119 @@
-﻿body {
+﻿/* 點菜清單側欄設為固定位置 */
+.col-md-3 .mt-5 {
+    position: sticky;
+    top: 20px; /* 距離視窗頂部 20px */
+    max-height: 80vh; /* 設定最大高度，讓其不超出視窗 */
+    overflow-y: auto; /* 當內容超出時可以滾動 */
+}
+
+/* 優化分類標題的顏色 */
+.container h2 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 1em;
+}
+
+/* 卡片的樣式設計 */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 卡片標題區域顏色設定 */
+.card-header {
+    background-color: #007bff;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+    /* 針對不同分類的背景顏色 */
+    .card-header.bg-primary {
+        background-color: #007bff;
+    }
+
+    .card-header.bg-secondary {
+        background-color: #6c757d;
+    }
+
+    .card-header.bg-success {
+        background-color: #28a745;
+    }
+
+    .card-header.bg-danger {
+        background-color: #dc3545;
+    }
+
+    .card-header.bg-warning {
+        background-color: #ffc107;
+    }
+
+    .card-header.bg-info {
+        background-color: #17a2b8;
+    }
+
+    .card-header.bg-dark {
+        background-color: #343a40;
+    }
+
+    .card-header.bg-light {
+        background-color: #f8f9fa;
+        color: #343a40;
+    }
+
+/* 主食材項目的樣式設定 */
+.ingredient-item {
+    padding: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    /* 主食材項目懸停效果 */
+    .ingredient-item:hover {
+        background-color: #f8f9fa;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+/* 提示框的樣式 */
+.tooltip-inner {
+    background-color: #007bff;
+    color: white;
+    max-width: 200px;
+    text-align: left;
+    font-size: 0.9em;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* 提示框箭頭的顏色 */
+.tooltip.bs-tooltip-top .arrow::before {
+    border-top-color: #007bff;
+}
+
+.tooltip.bs-tooltip-bottom .arrow::before {
+    border-bottom-color: #007bff;
+}
+
+/* 列表樣式 */
+.list-group-item {
+    border: none;
+    padding: 8px 15px;
+    font-size: 1em;
+}
+
+/* 加強響應式效果 */
+@media (max-width: 768px) {
+    .card-header {
+        font-size: 1em;
+    }
+
+    .ingredient-item {
+        font-size: 0.9em;
+    }
 }

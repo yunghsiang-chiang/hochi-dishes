@@ -4,83 +4,61 @@
 
 <html lang="zh-Hant-TW">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - 服務體 大愛光餐</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title><%: Page.Title %> - 服務體 大愛光餐</title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
-    <script src="Scripts/jquery-3.7.0.js"></script>
-    <script src="Scripts/RootPage/Site_Master.js"></script>
-    <style>
-        .MainContent {
-            margin-top: 200px; /* 避开浏览列的高度 */
-            padding: 20px;
-        }
-    </style>
+   <!-- 引入 Bootstrap 5 和 jQuery -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css" />
+
+   <!-- jQuery -->
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+   <!-- Bootstrap 5 JS -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
+
 <body>
-    <form runat="server">
-        <asp:ScriptManager runat="server" EnableCdn="true">
-            <Scripts>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Path="~/Scripts/jquery-ui-1.13.2.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+   <form runat="server">
+       <asp:ScriptManager runat="server" EnableCdn="true">
+           <Scripts>
+               <asp:ScriptReference Name="MsAjaxBundle" />
+               <asp:ScriptReference Name="jquery" />
+               <asp:ScriptReference Path="~/Scripts/jquery-ui-1.13.2.js" />
+           </Scripts>
+       </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a id="menu_infor" class="navbar-brand" runat="server" href="~/Dishes_picture_introduction">大愛光餐</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="切換導覽" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="active" style="color: gray;">菜色管理</a>
-                            <ul style="display: none;">
-                                <li class="nav-item"><a class="nav-link" runat="server" href="~/">菜色搜尋</a></li>
-                                <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/瀏覽菜色</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Menu_management">菜單管理</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/vendor">採購管理</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/FoodAdmin/dashboard">後台設定</a></li>
-                        <li class="nav-item"><a id="login_inout" class="nav-link" runat="server" href="~/login">管理登入</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+       <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+           <div class="container">
+               <a id="menu_infor" class="navbar-brand" runat="server" href="~/Dishes_picture_introduction">大愛光餐</a>
+               <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                   aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                   <ul class="navbar-nav flex-grow-1">
+                       <li class="nav-item"><a class="nav-link" runat="server" href="~/">菜色搜尋</a></li>
+                       <li class="nav-item"><a class="nav-link" runat="server" href="~/New_dishes">新增/瀏覽菜色</a></li>
+                       <li class="nav-item"><a class="nav-link" runat="server" href="~/Menu_management">菜單管理</a></li>
+                       <li class="nav-item"><a class="nav-link" runat="server" href="~/vendor">採購管理</a></li>
+                       <li class="nav-item"><a class="nav-link" runat="server" href="~/FoodAdmin/dashboard">後台設定</a></li>
+                       <li class="nav-item"><a id="login_inout" class="nav-link" runat="server" href="~/login">管理登入</a></li>
+                   </ul>
+               </div>
+           </div>
+       </nav>
 
-        <div class="container body-content">
-
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - 服務體 大愛光餐</p>
-            </footer>
-        </div>
-    </form>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-    </asp:PlaceHolder>
+       <div class="container body-content">
+           <asp:ContentPlaceHolder ID="MainContent" runat="server">
+           </asp:ContentPlaceHolder>
+           <hr />
+           <footer>
+               <p>&copy; <%: DateTime.Now.Year %> - 服務體 大愛光餐</p>
+           </footer>
+       </div>
+   </form>
 </body>
 </html>
