@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(async function () {
     const recipesApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/all';
     const categoriesApiUrl = 'http://internal.hochi.org.tw:8082/api/Categories/categories';
     const recipeDetailApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes';
@@ -9,39 +9,45 @@
     let recipes = [];
     let orderList = []; // 儲存點菜清單
 
-    // 載入主要資料
-    loadMainIngredients();
-    loadCategories();
-    loadRecipes();
+    // 初始化並載入主要資料
+    await loadMainIngredients();
+    await loadCategories();
+    await loadRecipes();
+    displayMainIngredientsByCategory(); // 顯示主食材的分類
 
-    // 載入主食材資料
-    function loadMainIngredients() {
-        $.get(mainIngredientsApiUrl, function (response) {
+    // 使用 async/await 改寫載入資料的函數
+    async function loadMainIngredients() {
+        try {
+            const response = await $.get(mainIngredientsApiUrl);
             mainIngredients = response.$values;
-            displayMainIngredientsByCategory(); // 顯示主要食材的分類
-        });
+        } catch (error) {
+            console.error('Failed to load main ingredients:', error);
+        }
     }
 
-    // 載入分類資料的函數
-    function loadCategories() {
-        $.get(categoriesApiUrl, function (response) {
+    async function loadCategories() {
+        try {
+            const response = await $.get(categoriesApiUrl);
             categories = response.$values;
-        });
+        } catch (error) {
+            console.error('Failed to load categories:', error);
+        }
     }
 
-    // 載入食譜資料的函數
-    function loadRecipes() {
-        $.get(recipesApiUrl, function (response) {
+    async function loadRecipes() {
+        try {
+            const response = await $.get(recipesApiUrl);
             recipes = response.$values;
-            displayMainIngredientsByCategory(); // 顯示主食材清單
-        });
+        } catch (error) {
+            console.error('Failed to load recipes:', error);
+        }
     }
 
     // 根據分類顯示主食材清單
     function displayMainIngredientsByCategory() {
         const categorizedIngredients = {};
 
-        // 建立分類映射，根據每個 recipe 的描述進行分類
+        // 建立分類映射
         recipes.forEach(recipe => {
             const category = recipe.description; // 使用食譜的分類描述
             const ingredient = mainIngredients.find(i => i.main_ingredient_id === recipe.main_ingredient_id);
@@ -62,14 +68,14 @@
             if (section) {
                 categorizedIngredients[category].forEach(ingredient => {
                     section.append(`
-                    <div class="col-md-4">
-                        <div class="card mb-4 ingredient-item" data-id="${ingredient.main_ingredient_id}" data-category="${category}">
-                            <div class="card-header bg-primary text-white">
-                                <h5>${ingredient.main_ingredient_name}</h5>
+                        <div class="col-md-4">
+                            <div class="card mb-4 ingredient-item" data-id="${ingredient.main_ingredient_id}" data-category="${category}">
+                                <div class="card-header bg-primary text-white">
+                                    <h5>${ingredient.main_ingredient_name}</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `);
+                    `);
                 });
             }
         }
@@ -94,20 +100,19 @@
         // 顯示符合條件的食譜
         filteredRecipes.forEach(recipe => {
             $('#recipeListItems').append(`
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                ${recipe.recipe_name}
-                <div>
-                    <button type="button" class="btn btn-info btn-sm viewRecipeDetail" data-id="${recipe.recipe_id}">🗒️ View Details</button>
-                    <button type="button" class="btn btn-success btn-sm addToOrder" data-id="${recipe.recipe_id}" data-name="${recipe.recipe_name}" data-category="${recipe.description}">加入點菜</button>
-                </div>
-            </li>
-        `);
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${recipe.recipe_name}
+                    <div>
+                        <button type="button" class="btn btn-info btn-sm viewRecipeDetail" data-id="${recipe.recipe_id}">🗒️ View Details</button>
+                        <button type="button" class="btn btn-success btn-sm addToOrder" data-id="${recipe.recipe_id}" data-name="${recipe.recipe_name}" data-category="${recipe.description}">加入點菜</button>
+                    </div>
+                </li>
+            `);
         });
 
         const recipeListModal = new bootstrap.Modal(document.getElementById('recipeListModal'));
         recipeListModal.show();
     }
-
 
     // 取得分類區域的對應容器
     function getCategorySection(description) {
@@ -126,60 +131,59 @@
     }
 
     // 載入特定食譜詳細資訊的函數
-    function loadRecipeDetails(recipeId) {
-        $.get(`${recipeDetailApiUrl}/${recipeId}`, function (recipe) {
+    async function loadRecipeDetails(recipeId) {
+        try {
+            const recipe = await $.get(`${recipeDetailApiUrl}/${recipeId}`);
             $('#detailRecipeName').text(recipe.recipe_name);
             $('#detailCategory').text(recipe.category);
             $('#detailChef').text(recipe.chef_id);
             $('#detailDescription').text(recipe.description);
-        });
 
-        // 載入並顯示食譜的步驟
-        $.get(`${recipeDetailApiUrl}/steps/${recipeId}`, function (response) {
+            // 載入並顯示食譜的步驟
+            const stepsResponse = await $.get(`${recipeDetailApiUrl}/steps/${recipeId}`);
             $('#detailStepsList').empty();
-            response.$values.forEach(step => {
+            stepsResponse.$values.forEach(step => {
                 $('#detailStepsList').append(`<li>${step.step_number}. ${step.description}</li>`);
             });
-        });
 
-        // 載入並顯示食譜的食材
-        $.get(`${recipeDetailApiUrl}/ingredients/${recipeId}`, function (response) {
+            // 載入並顯示食譜的食材
+            const ingredientsResponse = await $.get(`${recipeDetailApiUrl}/ingredients/${recipeId}`);
             $('#detailIngredientsList').empty();
-            response.$values.forEach(ingredient => {
+            ingredientsResponse.$values.forEach(ingredient => {
                 $('#detailIngredientsList').append(`<li>${ingredient.ingredient_name} - ${ingredient.amount} ${ingredient.unit}</li>`);
             });
-        });
 
-        // 載入並顯示食譜的調味料
-        $.get(`${recipeDetailApiUrl}/seasonings/${recipeId}`, function (response) {
+            // 載入並顯示食譜的調味料
+            const seasoningsResponse = await $.get(`${recipeDetailApiUrl}/seasonings/${recipeId}`);
             $('#detailSeasoningsList').empty();
-            response.$values.forEach(seasoning => {
+            seasoningsResponse.$values.forEach(seasoning => {
                 $('#detailSeasoningsList').append(`<li>${seasoning.seasoning_name} - ${seasoning.amount} ${seasoning.unit}</li>`);
             });
-        });
 
-        // 顯示食譜詳細資訊的模態視窗
-        const recipeDetailModal = new bootstrap.Modal(document.getElementById('recipeDetailModal'));
-        recipeDetailModal.show();
+            // 顯示食譜詳細資訊的模態視窗
+            const recipeDetailModal = new bootstrap.Modal(document.getElementById('recipeDetailModal'));
+            recipeDetailModal.show();
+        } catch (error) {
+            console.error('Failed to load recipe details:', error);
+        }
     }
-    //更新點菜清單顯示
+    // 更新點菜清單顯示，新增「取消」按鈕
     function updateOrderListDisplay() {
         $('#orderList').empty();
 
-        // 如果點菜清單非空，逐一顯示已點食譜
         if (orderList.length > 0) {
             orderList.forEach(order => {
                 $('#orderList').append(`
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${order.recipeName} - <strong>${order.recipeCategory}</strong>
-                </li>
-            `);
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${order.recipeName} - <strong>${order.recipeCategory}</strong>
+                        <button type="button" class="btn btn-danger btn-sm removeFromOrder" data-id="${order.recipeId}">取消</button>
+                    </li>
+                `);
             });
         } else {
             $('#orderList').append('<li class="list-group-item">目前沒有點菜</li>');
         }
     }
-
 
     // 點擊事件：顯示特定食譜的詳細資訊
     $('#recipeListItems').on('click', '.viewRecipeDetail', function () {
@@ -193,11 +197,16 @@
         const recipeName = $(this).data('name');
         const recipeCategory = $(this).data('category');
 
-        // 防止重複添加
         if (!orderList.some(order => order.recipeId === recipeId)) {
             orderList.push({ recipeId, recipeName, recipeCategory });
             updateOrderListDisplay();
         }
     });
 
+    // 點擊事件：從點菜清單中移除食譜
+    $('#orderList').on('click', '.removeFromOrder', function () {
+        const recipeId = $(this).data('id');
+        orderList = orderList.filter(order => order.recipeId !== recipeId); // 移除指定食譜
+        updateOrderListDisplay(); // 更新顯示
+    });
 });
