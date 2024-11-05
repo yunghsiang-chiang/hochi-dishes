@@ -1,1 +1,12 @@
 ﻿
+/* Add a top margin to avoid overlap with the fixed-top navbar */
+.body-content {
+    margin-top: 70px; /* Adjust this value based on the navbar height */
+}
+
+/* Optional: Adjust footer spacing if needed */
+footer {
+    padding-top: 20px;
+}
+
+
