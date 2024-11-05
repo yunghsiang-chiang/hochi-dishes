@@ -8,6 +8,7 @@
     let categories = [];
     let recipes = [];
     let orderList = []; // 儲存點菜清單
+    let currentUnit = 'grams'; // 預設單位
 
     // 初始化並載入主要資料
     await loadMainIngredients();
@@ -42,6 +43,22 @@
             console.error('Failed to load recipes:', error);
         }
     }
+
+    // 單位換算與中文名稱
+    const unitConversion = {
+        grams: { factor: 1, name: '克' },
+        kilograms: { factor: 0.001, name: '公斤' },
+        pounds: { factor: 0.00220462, name: '磅' },
+        ounces: { factor: 0.035274, name: '盎司' },
+        tael: { factor: 0.0267, name: '兩' },
+        catty: { factor: 0.00167, name: '台斤' }
+    };
+
+    //單位換算選擇
+    $('#unitSelector').change(function () {
+        currentUnit = $(this).val();
+        updateIngredientDisplay(); // 更新食材顯示
+    });
 
     // 根據分類顯示主食材清單
     function displayMainIngredientsByCategory() {
@@ -149,6 +166,8 @@
             // 載入並顯示食譜的食材
             const ingredientsResponse = await $.get(`${recipeDetailApiUrl}/ingredients/${recipeId}`);
             $('#detailIngredientsList').empty();
+            $('#detailIngredientsList').data('ingredients', ingredientsResponse.$values);
+            updateIngredientDisplay();
             ingredientsResponse.$values.forEach(ingredient => {
                 $('#detailIngredientsList').append(`<li>${ingredient.ingredient_name} - ${ingredient.amount} ${ingredient.unit}</li>`);
             });
@@ -167,6 +186,18 @@
             console.error('Failed to load recipe details:', error);
         }
     }
+    //更新食材顯示
+    function updateIngredientDisplay() {
+        $('#detailIngredientsList').empty();
+        const ingredients = $('#detailIngredientsList').data('ingredients') || [];
+
+        ingredients.forEach(ingredient => {
+            const convertedAmount = (ingredient.amount * unitConversion[currentUnit].factor).toFixed(2);
+            $('#detailIngredientsList').append(`<li>${ingredient.ingredient_name} - ${convertedAmount} ${unitConversion[currentUnit].name}</li>`);
+        });
+    }
+
+
     // 更新點菜清單顯示，新增「取消」按鈕
     function updateOrderListDisplay() {
         $('#orderList').empty();

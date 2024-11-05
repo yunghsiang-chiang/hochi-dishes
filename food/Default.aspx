@@ -86,6 +86,15 @@
                     <p><strong>Category:</strong> <span id="detailCategory"></span></p>
                     <p><strong>Chef:</strong> <span id="detailChef"></span></p>
                     <p><strong>Description:</strong> <span id="detailDescription"></span></p>
+                    <h6>Unit Conversion</h6>
+                    <select id="unitSelector" class="form-select mb-3">
+                        <option value="grams">克</option>
+                        <option value="kilograms">公斤</option>
+                        <option value="pounds">磅</option>
+                        <option value="ounces">盎司</option>
+                        <option value="tael">兩</option>
+                        <option value="catty">台斤</option>
+                    </select>
                     <h6>Steps</h6>
                     <ul id="detailStepsList" class="list-group"></ul>
                     <h6>Ingredients</h6>
@@ -93,6 +102,7 @@
                     <h6>Seasonings</h6>
                     <ul id="detailSeasoningsList" class="list-group"></ul>
                 </div>
+
             </div>
         </div>
     </div>
