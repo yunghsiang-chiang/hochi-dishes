@@ -163,58 +163,57 @@
             return;
         }
 
-        // 保存步骤
-        $.ajax({
-            url: stepApiUrl,
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(steps),
-            success: function () {
-                alert('Steps saved successfully!');
-            },
-            error: function (xhr) {
-                alert('Error saving steps: ' + xhr.responseText);
-            }
-        });
-
-        // 保存食材
-        $.ajax({
-            url: ingredientApiUrl,
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(ingredients),
-            success: function () {
-                alert('Ingredients saved successfully!');
-            },
-            error: function (xhr) {
-                alert('Error saving ingredients: ' + xhr.responseText);
-            }
-        });
-
-        // 保存調味料
-        $.ajax({
-            url: seasoningApiUrl,
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(seasonings),
-            success: function () {
-                alert('Seasonings saved successfully!');
-                resetForm();
-                $('#step2Section').hide();  // 重置並隱藏第二階段
-            },
-            error: function (xhr) {
-                alert('Error saving seasonings: ' + xhr.responseText);
-            }
+        // 使用 Promise.all 確保所有請求完成後再執行 resetForm()
+        Promise.all([
+            $.ajax({
+                url: stepApiUrl,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(steps),
+            }),
+            $.ajax({
+                url: ingredientApiUrl,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(ingredients),
+            }),
+            $.ajax({
+                url: seasoningApiUrl,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(seasonings),
+            })
+        ]).then(() => {
+            alert('Recipe steps, ingredients, and seasonings saved successfully!');
+            resetForm(); // 所有資料成功提交後重置表單
+        }).catch(error => {
+            alert('Error saving data: ' + error.responseText);
         });
     });
 
+
     // 重置表单
     function resetForm() {
+        // 重置表單欄位
         $('#recipeForm')[0].reset();
         $('#recipeStepsTable tbody').empty();
         $('#ingredientsTable tbody').empty();
         $('#seasoningsTable tbody').empty();
+
+        // 隱藏第二階段表格
+        $('#step2Section').hide();
+
+        // 重置當前食譜ID
+        currentRecipeId = null;
+
+        // 清空顯示的欄位或任何表單狀態
+        $('#recipe_name').val('');
+        $('#main_ingredient_id').val('');
+        $('#category').val('');
+        $('#chef_id').val('');
+        $('#description').val('');
     }
+
 
     // 添加步驟到表格
     function addStepRow() {
