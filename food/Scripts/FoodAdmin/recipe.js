@@ -196,8 +196,12 @@
     function resetForm() {
         console.log("Resetting form...");
 
-        // 重置表單欄位
-        $('#recipeForm')[0].reset();
+        // 手動清空每個欄位，替代 .reset()
+        $('#recipe_name').val('');
+        $('#main_ingredient_id').val('');
+        $('#category').val('');
+        $('#chef_id').val('');
+        $('#description').val('');
         console.log("Form fields reset.");
 
         // 清空步驟、食材和調味料表格
@@ -214,16 +218,9 @@
         currentRecipeId = null;
         console.log("Current recipe ID reset.");
 
-        // 清空顯示的欄位或任何表單狀態
-        $('#recipe_name').val('');
-        $('#main_ingredient_id').val('');
-        $('#category').val('');
-        $('#chef_id').val('');
-        $('#description').val('');
-        console.log("Input fields cleared.");
-
         console.log("Form reset completed.");
     }
+
 
 
     // 添加步驟到表格
