@@ -194,17 +194,25 @@
 
     // 重置表单
     function resetForm() {
+        console.log("Resetting form...");
+
         // 重置表單欄位
         $('#recipeForm')[0].reset();
+        console.log("Form fields reset.");
+
+        // 清空步驟、食材和調味料表格
         $('#recipeStepsTable tbody').empty();
         $('#ingredientsTable tbody').empty();
         $('#seasoningsTable tbody').empty();
+        console.log("Tables cleared.");
 
         // 隱藏第二階段表格
         $('#step2Section').hide();
+        console.log("Step 2 section hidden.");
 
         // 重置當前食譜ID
         currentRecipeId = null;
+        console.log("Current recipe ID reset.");
 
         // 清空顯示的欄位或任何表單狀態
         $('#recipe_name').val('');
@@ -212,6 +220,9 @@
         $('#category').val('');
         $('#chef_id').val('');
         $('#description').val('');
+        console.log("Input fields cleared.");
+
+        console.log("Form reset completed.");
     }
 
 
