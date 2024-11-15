@@ -10,6 +10,13 @@
                     <ul id="orderList" class="list-group">
                         <!-- 已點的食譜會顯示在這裡 -->
                     </ul>
+                    <div class="mb-3">
+                        <label for="activitySelector" class="form-label">選擇活動</label>
+                        <select id="activitySelector" class="form-select">
+                            <option value="">請選擇活動</option>
+                        </select>
+                    </div>
+                    <button type="button" id="submitOrder" class="btn btn-primary mt-3">提交點菜清單</button>
                 </div>
             </div>
 

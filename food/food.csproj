@@ -183,6 +183,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Dishes_picture_introduction.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="FoodAdmin\activity.aspx" />
     <Content Include="FoodAdmin\category.aspx" />
     <Content Include="FoodAdmin\chef.aspx" />
     <Content Include="FoodAdmin\dashboard.aspx" />
@@ -248,6 +249,7 @@
     <Content Include="images\紅燒.webp" />
     <Content Include="images\熱炒.webp" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\FoodAdmin\activity.js" />
     <Content Include="Scripts\FoodAdmin\category.js" />
     <Content Include="Scripts\FoodAdmin\chef.js" />
     <Content Include="Scripts\FoodAdmin\dashboard.js" />
@@ -358,6 +360,13 @@
     </Compile>
     <Compile Include="Dishes_picture_introduction.aspx.designer.cs">
       <DependentUpon>Dishes_picture_introduction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FoodAdmin\activity.aspx.cs">
+      <DependentUpon>activity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FoodAdmin\activity.aspx.designer.cs">
+      <DependentUpon>activity.aspx</DependentUpon>
     </Compile>
     <Compile Include="FoodAdmin\category.aspx.cs">
       <DependentUpon>category.aspx</DependentUpon>

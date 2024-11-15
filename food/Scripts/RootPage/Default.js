@@ -3,6 +3,9 @@
     const categoriesApiUrl = 'http://internal.hochi.org.tw:8082/api/Categories/categories';
     const recipeDetailApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes';
     const mainIngredientsApiUrl = 'http://internal.hochi.org.tw:8082/api/MainIngredients';
+    const pendingActivitiesApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/pending-recipes';
+    const submitOrderApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/activity-meal-recipes';
+
 
     let mainIngredients = [];
     let categories = [];
@@ -15,6 +18,8 @@
     await loadCategories();
     await loadRecipes();
     displayMainIngredientsByCategory(); // 顯示主食材的分類
+    // 呼叫 loadPendingActivities 以載入活動清單
+    await loadPendingActivities();
 
     // 使用 async/await 改寫載入資料的函數
     async function loadMainIngredients() {
@@ -41,6 +46,21 @@
             recipes = response.$values;
         } catch (error) {
             console.error('Failed to load recipes:', error);
+        }
+    }
+
+    // 載入未關聯活動清單
+    async function loadPendingActivities() {
+        try {
+            const response = await $.get(pendingActivitiesApiUrl);
+            const activities = response.$values;
+            $('#activitySelector').empty().append('<option value="">請選擇活動</option>');
+            activities.forEach(activity => {
+                const optionText = `${activity.activity_name} - ${activity.activity_date.split('T')[0]} - ${activity.meal_type}`;
+                $('#activitySelector').append(`<option value="${activity.activity_meal_id}">${optionText}</option>`);
+            });
+        } catch (error) {
+            console.error('Failed to load pending activities:', error);
         }
     }
 
@@ -197,7 +217,6 @@
         });
     }
 
-
     // 更新點菜清單顯示，新增「取消」按鈕
     function updateOrderListDisplay() {
         $('#orderList').empty();
@@ -211,10 +230,58 @@
                     </li>
                 `);
             });
+            console.log(orderList);
         } else {
             $('#orderList').append('<li class="list-group-item">目前沒有點菜</li>');
         }
     }
+
+    // 提交點菜清單到所選活動
+    $('#submitOrder').click(async function () {
+        const selectedActivityId = $('#activitySelector').val();
+        if (!selectedActivityId) {
+            alert('請先選擇活動');
+            return;
+        }
+
+        if (orderList.length === 0) {
+            alert('點菜清單為空，請至少加入一筆食譜');
+            return;
+        }
+
+        // 構建提交資料的結構
+        const payload = orderList.map(order => ({
+            activity_meal_id: parseInt(selectedActivityId),
+            recipe_id: order.recipeId,
+            recipe_category: order.recipeCategory
+        }));
+
+        try {
+            await $.ajax({
+                url: submitOrderApiUrl,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                success: function () {
+                    alert('點菜清單已成功提交！');
+                    resetOrderList();
+                    loadPendingActivities(); // 重新載入活動清單以更新
+                },
+                error: function (xhr) {
+                    alert('提交點菜清單失敗: ' + xhr.responseText);
+                }
+            });
+        } catch (error) {
+            console.error('Failed to submit order:', error);
+        }
+    });
+
+    // 重置點菜清單
+    function resetOrderList() {
+        orderList = [];
+        updateOrderListDisplay();
+    }
+
 
     // 點擊事件：顯示特定食譜的詳細資訊
     $('#recipeListItems').on('click', '.viewRecipeDetail', function () {
