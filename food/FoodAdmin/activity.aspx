@@ -31,5 +31,27 @@
 
         <!-- 儲存活動按鈕 -->
         <button type="button" class="btn btn-success mt-4" id="saveActivities" style="display: none;">儲存活動</button>
+
+        <hr />
+        
+        <!-- 活動列表區 -->
+        <div id="activityListArea" class="mt-4">
+            <h4>活動清單</h4>
+            <div id="activityListContainer" class="list-group"></div>
+        </div>
+    </div>
+    <!-- 餐點對應食譜模態視窗 -->
+    <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recipeModalLabel">活動餐點對應食譜</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="recipeList" class="list-group"></ul>
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>

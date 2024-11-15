@@ -1,5 +1,9 @@
 ﻿$(document).ready(function () {
     const apiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/activity-meals';
+    const activityMealsApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/activity-meals';
+    const activityMealRecipesApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/activity-meal-recipes';
+    const recipesApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/all';
+
 
     // 當按下生成餐點選擇按鈕時
     $('#generateMeals').click(function () {
@@ -94,4 +98,103 @@
         $('#mealSelectionArea').hide();
         $('#saveActivities').hide();
     }
+
+    // 載入活動清單
+    async function loadActivityMeals() {
+        try {
+            const response = await $.get(activityMealsApiUrl);
+            const activities = response.$values;
+
+            // 清空活動清單區域
+            $('#activityListContainer').empty();
+
+            // 以 activity_name、start_date 和 end_date 分組
+            const groupedActivities = activities.reduce((acc, activity) => {
+                const key = `${activity.activity_name}_${activity.start_date}_${activity.end_date}`;
+                acc[key] = acc[key] || [];
+                acc[key].push(activity);
+                return acc;
+            }, {});
+
+            // 生成活動清單
+            for (const groupKey in groupedActivities) {
+                const activityGroup = groupedActivities[groupKey];
+                const { activity_name, start_date, end_date } = activityGroup[0];
+                const formattedStartDate = start_date.split('T')[0];
+                const formattedEndDate = end_date.split('T')[0];
+
+                // 顯示活動名稱和起訖日期
+                $('#activityListContainer').append(`
+                    <div class="list-group-item">
+                        <h5>${activity_name}</h5>
+                        <p>${formattedStartDate} 至 ${formattedEndDate}</p>
+                        <div id="${groupKey}-buttons" class="d-flex flex-wrap"></div>
+                    </div>
+                `);
+
+                // 生成對應的按鈕
+                const fragment = document.createDocumentFragment();
+                activityGroup.forEach(activity => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'btn btn-outline-primary me-2 mt-2 activity-btn';
+                    button.dataset.id = activity.activity_meal_id;
+                    button.dataset.date = activity.activity_date.split('T')[0];
+                    button.dataset.meal = activity.meal_type;
+                    button.textContent = `${activity.activity_date.split('T')[0]} ${activity.meal_type}`;
+                    fragment.appendChild(button);
+                });
+                document.getElementById(`${groupKey}-buttons`).appendChild(fragment);
+            }
+
+            // 綁定按鈕點擊事件 在清空按鈕之前，先移除現有事件
+            $('.activity-btn').off('click').on('click', function () {
+                const activityMealId = $(this).data('id');
+                loadActivityMealRecipes(activityMealId);
+            });
+
+        } catch (error) {
+            console.error('Failed to load activity meals:', error);
+            alert('載入活動清單失敗，請稍後再試。');
+        }
+
+    }
+
+    // 點擊 activity_date 和 meal_type 按鈕後，通過 API 顯示對應的食譜清單，並根據 recipe_id 對應 recipe_name
+    async function loadActivityMealRecipes(activityMealId) {
+        try {
+            const [recipesResponse, response] = await Promise.all([
+                $.get(recipesApiUrl),
+                $.get(`${activityMealRecipesApiUrl}/${activityMealId}`)
+            ]);
+
+            const allRecipes = recipesResponse.$values;
+            const mealRecipes = response.$values;
+
+            // 清空並顯示對應食譜清單
+            $('#recipeList').empty();
+            mealRecipes.forEach(mealRecipe => {
+                const recipe = allRecipes.find(r => r.recipe_id === mealRecipe.recipe_id);
+                if (recipe) {
+                    $('#recipeList').append(`
+                        <li class="list-group-item">
+                            <strong>${recipe.recipe_name}</strong> - ${mealRecipe.recipe_category}
+                        </li>
+                    `);
+                }
+            });
+
+            // 顯示模態視窗
+            const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
+            recipeModal.show();
+        } catch (error) {
+            console.error('Failed to load activity meal recipes:', error);
+            alert('載入食譜清單失敗，請稍後再試。');
+        }
+    }
+
+
+    // 呼叫載入活動清單
+    loadActivityMeals();
+
 });
