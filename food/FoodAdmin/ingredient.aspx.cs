@@ -7,15 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace food.FoodAdmin
 {
-    public partial class activity : System.Web.UI.Page
+    public partial class ingredient : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-    }
-
-    public class Class1
-    {
     }
 }

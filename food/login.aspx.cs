@@ -88,4 +88,5 @@ namespace food
             Response.Write("<script>alert('功能撰寫中...\\n帳號:" + str_accound + "\\n密碼:" + str_password + "');</script>");
         }
     }
+
 }

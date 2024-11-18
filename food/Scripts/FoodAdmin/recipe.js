@@ -14,6 +14,7 @@
 
     let currentRecipeId = null;
     let chefMap = {}; // 用來儲存 chef_id 和 name 的對應關係
+    let foodNutritionData = [];
 
     // 加载所有下拉数据
     loadMainIngredients();
@@ -23,6 +24,50 @@
     loadAllRecipes();
     // 初始化載入所有廚師和食譜資料
     loadChefs();
+    // 初始化載入數據
+    loadFoodNutrition();
+    // 調用初始化函數
+    initializeIngredientAutocomplete();
+
+    // 載入食材數據
+    function loadFoodNutrition() {
+        const foodNutritionApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/food-nutrition';
+        return $.get(foodNutritionApiUrl, function (response) {
+            foodNutritionData = response.$values || [];
+        });
+    }
+
+    // 初始化自動完成功能
+    function initializeIngredientAutocomplete() {
+        $('#ingredientsTable').on('focus', '.ingredientName', function () {
+            const $input = $(this);
+
+            // 檢查是否已初始化過自動完成
+            if (!$input.data('ui-autocomplete')) {
+                $input.autocomplete({
+                    source: function (request, response) {
+                        const term = request.term.toLowerCase();
+                        const results = foodNutritionData.filter(item => {
+                            return (
+                                item.ingredient_name.toLowerCase().includes(term) ||
+                                (item.common_name && item.common_name.toLowerCase().includes(term))
+                            );
+                        }).map(item => ({
+                            label: `${item.ingredient_name} (${item.common_name || '無俗稱'})`,
+                            value: item.ingredient_name
+                        }));
+                        response(results);
+                    },
+                    minLength: 1,
+                    select: function (event, ui) {
+                        $input.val(ui.item.value); // 選擇後填入值
+                        return false;
+                    }
+                });
+            }
+        });
+    }
+
 
     // 通过API加载主要食材
     function loadMainIngredients() {
@@ -244,7 +289,7 @@
     function addIngredientRow() {
         $('#ingredientsTable tbody').append(`
             <tr>
-                <td><input type="text" class="form-control ingredientName" /></td>
+                <td><input type="text" class="form-control ingredientName" autocomplete="off" /></td>
                 <td><input type="text" class="form-control ingredientAmount" /></td>
                 <td><input type="text" class="form-control ingredientUnit" /></td>
                 <td><button class="btn btn-danger removeIngredient">Remove</button></td>
@@ -395,7 +440,7 @@
             ingredientsList.forEach(function (ingredient) {
                 $('#ingredientsTable tbody').append(`
                     <tr>
-                        <td><input type="text" class="form-control ingredientName" value="${ingredient.ingredient_name}" /></td>
+                        <td><input type="text" class="form-control ingredientName" value="${ingredient.ingredient_name}" autocomplete="off" /></td>
                         <td><input type="text" class="form-control ingredientAmount" value="${ingredient.amount}" /></td>
                         <td><input type="text" class="form-control ingredientUnit" value="${ingredient.unit}" /></td>
                         <td><button class="btn btn-danger removeIngredient">Remove</button></td>

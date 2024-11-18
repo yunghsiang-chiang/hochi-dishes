@@ -187,6 +187,7 @@
     <Content Include="FoodAdmin\category.aspx" />
     <Content Include="FoodAdmin\chef.aspx" />
     <Content Include="FoodAdmin\dashboard.aspx" />
+    <Content Include="FoodAdmin\ingredient.aspx" />
     <Content Include="FoodAdmin\main_ingredient.aspx" />
     <Content Include="FoodAdmin\recipe.aspx" />
     <Content Include="Global.asax" />
@@ -253,6 +254,7 @@
     <Content Include="Scripts\FoodAdmin\category.js" />
     <Content Include="Scripts\FoodAdmin\chef.js" />
     <Content Include="Scripts\FoodAdmin\dashboard.js" />
+    <Content Include="Scripts\FoodAdmin\ingredient.js" />
     <Content Include="Scripts\FoodAdmin\main_ingredient.js" />
     <Content Include="Scripts\FoodAdmin\recipe.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -388,6 +390,13 @@
     </Compile>
     <Compile Include="FoodAdmin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FoodAdmin\ingredient.aspx.cs">
+      <DependentUpon>ingredient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FoodAdmin\ingredient.aspx.designer.cs">
+      <DependentUpon>ingredient.aspx</DependentUpon>
     </Compile>
     <Compile Include="FoodAdmin\main_ingredient.aspx.cs">
       <DependentUpon>main_ingredient.aspx</DependentUpon>
