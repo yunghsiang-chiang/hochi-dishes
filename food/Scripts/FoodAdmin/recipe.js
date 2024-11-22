@@ -68,7 +68,6 @@
         });
     }
 
-
     // 通过API加载主要食材
     function loadMainIngredients() {
         $.get(mainIngredientApiUrl, function (response) {
@@ -101,15 +100,29 @@
         });
     }
 
+    // 預設情況下，使用 portion_size = 10
+    $('#portion_size_checkbox').change(function () {
+        if ($(this).is(':checked')) {
+            $('#portion_size_group').hide();
+            $('#portion_size').val('10'); // 預設值為 10
+        } else {
+            $('#portion_size_group').show();
+            $('#portion_size').val(''); // 清空輸入框，讓用戶輸入
+        }
+    });
+
     // 保存Recipe
     $('#saveRecipeBtn').click(function () {
+        const portionSize = $('#portion_size_checkbox').is(':checked') ? 10 : $('#portion_size').val();
+
         const recipeData = {
             recipe_id: currentRecipeId, // 加入 currentRecipeId，若為 null，後端會自動新增
             recipe_name: $('#recipe_name').val(),
             main_ingredient_id: $('#main_ingredient_id').val(),
             category: $('#category').val(),
             chef_id: $('#chef_id').val(),
-            description: $('#description').val() // 改為選取的值
+            description: $('#description').val(), // 改為選取的值
+            portion_size: portionSize // 新增 portion_size
         };
 
         // 發送 POST 請求保存 Recipe
@@ -406,6 +419,13 @@
             } else {
                 alert(`Description "${recipe.description}" does not match any available options.`);
                 $('#description').val(""); // 若不存在則清空選擇（可根據需求調整）
+            }
+            // 回填 portion_size
+            if (recipe.portion_size === 10) {
+                $('#portion_size_checkbox').prop('checked', true).trigger('change');
+            } else {
+                $('#portion_size_checkbox').prop('checked', false).trigger('change');
+                $('#portion_size').val(recipe.portion_size);
             }
             // 顯示第二階段區域
             $('#step2Section').show();

@@ -53,6 +53,19 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="portion_size_checkbox">Set Portion Size</label>
+                            <div class="form-check">
+                                <input type="checkbox" id="portion_size_checkbox" class="form-check-input" checked />
+                                <label class="form-check-label" for="portion_size_checkbox">Default to 10 people</label>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2" id="portion_size_group" style="display: none;">
+                            <label for="portion_size">Portion Size (Number of People)</label>
+                            <input type="number" id="portion_size" name="portion_size" class="form-control" min="1" />
+                        </div>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-primary mt-2" id="saveRecipeBtn">Save Recipe</button>
             </div>
