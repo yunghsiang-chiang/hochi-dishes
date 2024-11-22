@@ -104,6 +104,7 @@
     // 保存Recipe
     $('#saveRecipeBtn').click(function () {
         const recipeData = {
+            recipe_id: currentRecipeId, // 加入 currentRecipeId，若為 null，後端會自動新增
             recipe_name: $('#recipe_name').val(),
             main_ingredient_id: $('#main_ingredient_id').val(),
             category: $('#category').val(),
@@ -118,9 +119,10 @@
             contentType: 'application/json',
             data: JSON.stringify(recipeData),
             success: function (response) {
-                currentRecipeId = response.recipe_id;
+                currentRecipeId = response.recipe_id; // 保存返回的 recipe_id，供後續使用
                 alert('Recipe saved successfully!');
                 $('#step2Section').show();  // 顯示第二階段
+                loadAllRecipes(); // 重新載入所有食譜列表
             },
             error: function (xhr) {
                 alert('Error: ' + xhr.responseText);
@@ -239,31 +241,23 @@
 
     // 重置表单
     function resetForm() {
-        console.log("Resetting form...");
-
         // 手動清空每個欄位，替代 .reset()
         $('#recipe_name').val('');
         $('#main_ingredient_id').val('');
         $('#category').val('');
         $('#chef_id').val('');
         $('#description').val('');
-        console.log("Form fields reset.");
-
         // 清空步驟、食材和調味料表格
         $('#recipeStepsTable tbody').empty();
         $('#ingredientsTable tbody').empty();
         $('#seasoningsTable tbody').empty();
-        console.log("Tables cleared.");
 
         // 隱藏第二階段表格
         $('#step2Section').hide();
-        console.log("Step 2 section hidden.");
 
         // 重置當前食譜ID
-        currentRecipeId = null;
-        console.log("Current recipe ID reset.");
+        currentRecipeId = null; // 重置當前的 recipe_id
 
-        console.log("Form reset completed.");
     }
 
 
