@@ -109,7 +109,7 @@
             main_ingredient_id: $('#main_ingredient_id').val(),
             category: $('#category').val(),
             chef_id: $('#chef_id').val(),
-            description: $('#description').val()
+            description: $('#description').val() // 改為選取的值
         };
 
         // 發送 POST 請求保存 Recipe
@@ -400,8 +400,13 @@
             $('#main_ingredient_id').val(recipe.main_ingredient_id);
             $('#category').val(recipe.category);
             $('#chef_id').val(recipe.chef_id);
-            $('#description').val(recipe.description);
-
+            // 設置 description，下拉框的選項值需驗證是否存在
+            if ($('#description option[value="' + recipe.description + '"]').length > 0) {
+                $('#description').val(recipe.description);
+            } else {
+                alert(`Description "${recipe.description}" does not match any available options.`);
+                $('#description').val(""); // 若不存在則清空選擇（可根據需求調整）
+            }
             // 顯示第二階段區域
             $('#step2Section').show();
         });

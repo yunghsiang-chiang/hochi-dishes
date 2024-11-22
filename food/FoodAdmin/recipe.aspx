@@ -40,7 +40,17 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input type="text" id="description" name="description" class="form-control" />
+                            <select id="description" name="description" class="form-control">
+                                <option value="主食">主食</option>
+                                <option value="冷盤">冷盤</option>
+                                <option value="熱炒">熱炒</option>
+                                <option value="主菜">主菜</option>
+                                <option value="炸類">炸類</option>
+                                <option value="時蔬">時蔬</option>
+                                <option value="麵點">麵點</option>
+                                <option value="湯品">湯品</option>
+                                <option value="甜湯">甜湯</option>
+                            </select>
                         </div>
                     </div>
                 </div>
