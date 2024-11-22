@@ -116,23 +116,33 @@
                 return acc;
             }, {});
 
+            let index = 0; // 初始化索引计数器
+
             // 生成活動清單
             for (const groupKey in groupedActivities) {
                 const activityGroup = groupedActivities[groupKey];
+                const sanitizedGroupKey = `${groupKey.replace(/[^a-zA-Z0-9_-]/g, '_')}_${index}`;
                 const { activity_name, start_date, end_date } = activityGroup[0];
                 const formattedStartDate = start_date.split('T')[0];
                 const formattedEndDate = end_date.split('T')[0];
 
-                // 顯示活動名稱和起訖日期
+                // 创建活动清单区域
                 $('#activityListContainer').append(`
-                    <div class="list-group-item">
-                        <h5>${activity_name}</h5>
-                        <p>${formattedStartDate} 至 ${formattedEndDate}</p>
-                        <div id="${groupKey}-buttons" class="d-flex flex-wrap"></div>
-                    </div>
-                `);
+        <div class="list-group-item">
+            <h5>${activity_name}</h5>
+            <p>${formattedStartDate} 至 ${formattedEndDate}</p>
+            <div id="${sanitizedGroupKey}-buttons" class="d-flex flex-wrap"></div>
+        </div>
+    `);
 
-                // 生成對應的按鈕
+                // 检查容器是否存在
+                const container = document.getElementById(`${sanitizedGroupKey}-buttons`);
+                if (!container) {
+                    console.error(`Container not found: ${sanitizedGroupKey}-buttons`);
+                    continue; // 跳过当前循环
+                }
+
+                // 添加对应的活动按钮
                 const fragment = document.createDocumentFragment();
                 activityGroup.forEach(activity => {
                     const button = document.createElement('button');
@@ -144,14 +154,97 @@
                     button.textContent = `${activity.activity_date.split('T')[0]} ${activity.meal_type}`;
                     fragment.appendChild(button);
                 });
-                document.getElementById(`${groupKey}-buttons`).appendChild(fragment);
+                container.appendChild(fragment);
+
+                // 添加 "显示食材统计" 按钮
+                $(`#${sanitizedGroupKey}-buttons`).append(`
+    <button type="button" class="btn btn-info mt-2 show-ingredients-btn" data-group="${groupKey}">
+        显示食材统计
+    </button>
+`);
+
+
+                index++; // 增加索引
             }
+
 
             // 綁定按鈕點擊事件 在清空按鈕之前，先移除現有事件
             $('.activity-btn').off('click').on('click', function () {
                 const activityMealId = $(this).data('id');
                 loadActivityMealRecipes(activityMealId);
             });
+
+            // 绑定 "显示食材统计" 按钮的事件
+            $('.show-ingredients-btn').off('click').on('click', async function () {
+                const groupKey = $(this).data('group'); // 直接使用原始的 groupKey
+                const activityGroup = groupedActivities[groupKey]; // 根据 groupKey 获取活动组
+
+                if (!activityGroup || activityGroup.length === 0) {
+                    console.error(`groupedActivities[${groupKey}] is undefined or empty.`);
+                    alert('無法取得該活動區間資料，請檢查後再試。');
+                    return;
+                }
+
+                // 收集所有活动的 activity_meal_id
+                const activityMealIds = activityGroup.map(activity => activity.activity_meal_id).join('%2C');
+
+                if (!activityMealIds) {
+                    alert('沒有可用的活動編號。');
+                    return;
+                }
+
+                try {
+                    // 调用两个 API 获取数据
+                    const recipeCountUrl = `http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/recipe-count?activityMealIds=${activityMealIds}`;
+                    const recipeIngredientsUrl = `http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/recipe-ingredients?activityMealIds=${activityMealIds}`;
+
+                    const [recipeCountResponse, recipeIngredientsResponse] = await Promise.all([
+                        $.get(recipeCountUrl),
+                        $.get(recipeIngredientsUrl)
+                    ]);
+
+                    const recipeCounts = recipeCountResponse.$values;
+                    const recipeIngredients = recipeIngredientsResponse.$values;
+
+                    // 计算总食材数量
+                    const ingredientTotals = {};
+
+                    recipeIngredients.forEach(ingredient => {
+                        const recipeQty = recipeCounts.find(r => r.recipeId === ingredient.recipeId)?.recipeQty || 1;
+                        const key = `${ingredient.ingredientName}-${ingredient.unit}`;
+
+                        if (!ingredientTotals[key]) {
+                            ingredientTotals[key] = {
+                                ingredientName: ingredient.ingredientName,
+                                unit: ingredient.unit,
+                                totalAmount: 0
+                            };
+                        }
+
+                        ingredientTotals[key].totalAmount += ingredient.amount * recipeQty;
+                    });
+
+                    // 排序和显示结果
+                    const sortedIngredients = Object.values(ingredientTotals).sort((a, b) => a.ingredientName.localeCompare(b.ingredientName));
+
+                    $('#recipeList').empty();
+                    sortedIngredients.forEach(item => {
+                        $('#recipeList').append(`
+                <li class="list-group-item">
+                    <strong>${item.ingredientName}</strong>: ${item.totalAmount} ${item.unit}
+                </li>
+            `);
+                    });
+
+                    const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
+                    recipeModal.show();
+                } catch (error) {
+                    console.error('Failed to calculate ingredients:', error);
+                    alert('無法顯示食材統計，請稍後再試。');
+                }
+            });
+
+            console.log('Generated Group Keys:', Object.keys(groupedActivities));
 
         } catch (error) {
             console.error('Failed to load activity meals:', error);
@@ -192,6 +285,172 @@
             alert('載入食譜清單失敗，請稍後再試。');
         }
     }
+
+    // 當按下查詢活動按鈕時
+    $('#queryActivities').click(async function () {
+        const startDate = $('#start_date').val();
+        const endDate = $('#end_date').val();
+
+        if (!startDate || !endDate) {
+            alert('請填寫起始日期和結束日期。');
+            return;
+        }
+
+        const queryUrl = `${activityMealsApiUrl}/date-range?startDate=${startDate}&endDate=${endDate}`;
+
+        try {
+            const response = await $.get(queryUrl);
+            const activities = response.$values;
+
+            if (activities.length === 0) {
+                alert('查無符合條件的活動。');
+                $('#activityListContainer').empty();
+                return;
+            }
+
+            // 清空活動清單區域
+            $('#activityListContainer').empty();
+
+            // 以 activity_name、start_date 和 end_date 分組
+            const groupedActivities = activities.reduce((acc, activity) => {
+                const key = `${activity.activity_name}_${activity.start_date}_${activity.end_date}`;
+                acc[key] = acc[key] || [];
+                acc[key].push(activity);
+                return acc;
+            }, {});
+
+            let index = 0; // 初始化索引計數器
+
+            // 生成活動清單
+            for (const groupKey in groupedActivities) {
+                const activityGroup = groupedActivities[groupKey];
+                const sanitizedGroupKey = `${groupKey.replace(/[^a-zA-Z0-9_-]/g, '_')}_${index}`;
+                const { activity_name, start_date, end_date } = activityGroup[0];
+                const formattedStartDate = start_date.split('T')[0];
+                const formattedEndDate = end_date.split('T')[0];
+
+                // 创建活动清单区域
+                $('#activityListContainer').append(`
+                <div class="list-group-item">
+                    <h5>${activity_name}</h5>
+                    <p>${formattedStartDate} 至 ${formattedEndDate}</p>
+                    <div id="${sanitizedGroupKey}-buttons" class="d-flex flex-wrap"></div>
+                </div>
+            `);
+
+                // 检查容器是否存在
+                const container = document.getElementById(`${sanitizedGroupKey}-buttons`);
+                if (!container) {
+                    console.error(`Container not found: ${sanitizedGroupKey}-buttons`);
+                    continue; // 跳过当前循环
+                }
+
+                // 添加对应的活动按钮
+                const fragment = document.createDocumentFragment();
+                activityGroup.forEach(activity => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'btn btn-outline-primary me-2 mt-2 activity-btn';
+                    button.dataset.id = activity.activity_meal_id;
+                    button.dataset.date = activity.activity_date.split('T')[0];
+                    button.dataset.meal = activity.meal_type;
+                    button.textContent = `${activity.activity_date.split('T')[0]} ${activity.meal_type}`;
+                    fragment.appendChild(button);
+                });
+                container.appendChild(fragment);
+
+                // 添加 "显示食材统计" 按钮
+                $(`#${sanitizedGroupKey}-buttons`).append(`
+                <button type="button" class="btn btn-info mt-2 show-ingredients-btn" data-group="${groupKey}">
+                    顯示食材統計
+                </button>
+            `);
+
+                index++; // 增加索引
+            }
+
+            // 綁定按鈕點擊事件 在清空按鈕之前，先移除現有事件
+            $('.activity-btn').off('click').on('click', function () {
+                const activityMealId = $(this).data('id');
+                loadActivityMealRecipes(activityMealId);
+            });
+
+            // 綁定 "顯示食材統計" 按鈕的事件
+            $('.show-ingredients-btn').off('click').on('click', async function () {
+                const groupKey = $(this).data('group');
+                const activityGroup = groupedActivities[groupKey];
+
+                if (!activityGroup || activityGroup.length === 0) {
+                    console.error(`groupedActivities[${groupKey}] is undefined or empty.`);
+                    alert('無法取得該活動區間資料，請檢查後再試。');
+                    return;
+                }
+
+                // 收集所有活动的 activity_meal_id
+                const activityMealIds = activityGroup.map(activity => activity.activity_meal_id).join('%2C');
+
+                if (!activityMealIds) {
+                    alert('沒有可用的活動編號。');
+                    return;
+                }
+
+                try {
+                    // 调用两个 API 获取数据
+                    const recipeCountUrl = `http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/recipe-count?activityMealIds=${activityMealIds}`;
+                    const recipeIngredientsUrl = `http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/recipe-ingredients?activityMealIds=${activityMealIds}`;
+
+                    const [recipeCountResponse, recipeIngredientsResponse] = await Promise.all([
+                        $.get(recipeCountUrl),
+                        $.get(recipeIngredientsUrl)
+                    ]);
+
+                    const recipeCounts = recipeCountResponse.$values;
+                    const recipeIngredients = recipeIngredientsResponse.$values;
+
+                    // 计算总食材数量
+                    const ingredientTotals = {};
+
+                    recipeIngredients.forEach(ingredient => {
+                        const recipeQty = recipeCounts.find(r => r.recipeId === ingredient.recipeId)?.recipeQty || 1;
+                        const key = `${ingredient.ingredientName}-${ingredient.unit}`;
+
+                        if (!ingredientTotals[key]) {
+                            ingredientTotals[key] = {
+                                ingredientName: ingredient.ingredientName,
+                                unit: ingredient.unit,
+                                totalAmount: 0
+                            };
+                        }
+
+                        ingredientTotals[key].totalAmount += ingredient.amount * recipeQty;
+                    });
+
+                    // 排序和显示结果
+                    const sortedIngredients = Object.values(ingredientTotals).sort((a, b) => a.ingredientName.localeCompare(b.ingredientName));
+
+                    $('#recipeList').empty();
+                    sortedIngredients.forEach(item => {
+                        $('#recipeList').append(`
+                        <li class="list-group-item">
+                            <strong>${item.ingredientName}</strong>: ${item.totalAmount} ${item.unit}
+                        </li>
+                    `);
+                    });
+
+                    const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
+                    recipeModal.show();
+                } catch (error) {
+                    console.error('Failed to calculate ingredients:', error);
+                    alert('無法顯示食材統計，請稍後再試。');
+                }
+            });
+
+        } catch (error) {
+            console.error('Failed to query activities:', error);
+            alert('查詢活動失敗，請稍後再試。');
+        }
+    });
+
 
 
     // 呼叫載入活動清單

@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="活動設定" Language="C#" MasterPageFile="~/wpadmin.Master" AutoEventWireup="true" CodeBehind="activity.aspx.cs" Inherits="food.FoodAdmin.activity" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../Scripts/FoodAdmin/activity.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-5">
         <h2 class="mb-4">活動設定</h2>
-        
+
         <!-- 活動設定輸入區 -->
         <div class="mb-3">
             <label for="activity_name" class="form-label">活動名稱</label>
@@ -21,8 +22,10 @@
                 <input type="date" class="form-control" id="end_date" required>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" id="generateMeals">生成餐點選擇</button>
-
+        <div class="d-flex mb-3">
+            <button type="button" class="btn btn-primary me-2" id="generateMeals">生成餐點選擇</button>
+            <button type="button" class="btn btn-secondary" id="queryActivities">查詢活動</button>
+        </div>
         <!-- 餐點選擇區域 -->
         <div class="mt-4" id="mealSelectionArea" style="display: none;">
             <h4>選擇餐別</h4>
@@ -33,7 +36,7 @@
         <button type="button" class="btn btn-success mt-4" id="saveActivities" style="display: none;">儲存活動</button>
 
         <hr />
-        
+
         <!-- 活動列表區 -->
         <div id="activityListArea" class="mt-4">
             <h4>活動清單</h4>
@@ -54,4 +57,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>
