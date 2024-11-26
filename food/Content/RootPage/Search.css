@@ -1,0 +1,15 @@
+﻿/* 搜尋結果表格樣式 */
+#resultTable {
+    margin-top: 20px;
+}
+
+    #resultTable th, #resultTable td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+/* Dialog 樣式 */
+#dialog th {
+    width: 150px;
+    text-align: left;
+}
