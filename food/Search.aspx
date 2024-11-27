@@ -45,8 +45,20 @@
         <!-- Dialog -->
         <div id="dialog" title="活動詳細資訊">
             <p>活動 ID: <span id="dialogItem"></span></p>
-            <ul id="dialogRecipeList"></ul>
+            <ul id="dialogRecipeList">
+            </ul>
+
             <div id="dialogFooter"></div>
+
+            <div class="mb-3 mt-3">
+                <label for="activitySelector" class="form-label">選擇活動</label>
+                <select id="activitySelector" class="form-select">
+                    <option value="">請選擇活動</option>
+                </select>
+            </div>
+
+            <button type="button" id="submitOrder" class="btn btn-primary mt-3">提交點菜清單</button>
+            
         </div>
 
         <div id="addRecipeDialog" title="新增菜色" style="display: none;">
@@ -61,7 +73,8 @@
 
             <label for="recipeNameSelect">菜名:</label>
             <select id="recipeNameSelect" class="form-control"></select>
-            
+
+
         </div>
     </div>
 

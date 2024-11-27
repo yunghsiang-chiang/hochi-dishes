@@ -147,7 +147,7 @@
     }
 
     // 查看按鈕點擊事件
-    $(document).on("click", ".viewBtn", function () {
+    $(document).off("click").on("click", ".viewBtn", function () {
         const activityMealId = $(this).data("activity-meal-id");// 獲取活動 ID
         loadActivityMealDetails(activityMealId);// 加載活動餐點詳細資料
     });
@@ -192,12 +192,12 @@
                 }
             }
         });
-
+        // 動態生成新增菜色按鈕
         $("#dialogFooter").html(`
             <button class="btn btn-primary addRecipeBtn">新增菜色</button>
         `);
 
-        $("#dialogFooter").on("click", ".addRecipeBtn", function () {
+        $("#dialogFooter").off("click").on("click", ".addRecipeBtn", function () {
             showAddRecipeDialog(activityMealId);// 顯示新增菜色對話框
         });
 
@@ -232,16 +232,6 @@
         $.get("http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/pending-recipes")
             .done(function (data) {
                 const activities = data.$values || []; // 確保資料結構符合
-
-                const dateList = ` <div class="mb-3">
-                        <label for="activitySelector" class="form-label">選擇活動</label>
-                        <select id="activitySelector" class="form-select">
-                            <option value="">請選擇活動</option>
-                        </select>
-                    </div>
-                    <button type="button" id="submitOrder" class="btn btn-primary mt-3">提交點菜清單</button>`;
-
-                $("#dialogFooter").append(dateList);
 
                 const activitySelector = $("#activitySelector");
 
@@ -291,11 +281,6 @@
                         const method = $("#methodSelect").val();
                         const recipeName = $("#recipeNameSelect").val();
 
-                        console.log(mainIngredient); // 檢查主食材
-                        console.log(category); // 檢查類型
-                        console.log(method); // 檢查方式
-                        console.log(recipeName); // 檢查菜名
-
                         if (!mainIngredient || !category || !method || !recipeName ) {
                             alert("請選擇完整的資訊！");
                             return;
@@ -311,7 +296,16 @@
                         };
 
                         orderList.push(newRecipe); // 更新點菜清單
-                        updateOrderListDisplay();
+
+                        // 更新活動詳細資訊的清單
+                        $("#dialogRecipeList").append(`
+                            <li data-recipe-id="${newRecipe.recipe_id}">
+                                <strong>${newRecipe.recipe_name}</strong> (${newRecipe.mainIngredientName || "無主食材"}) - ${newRecipe.category}
+                                <br>
+                                描述: ${newRecipe.description || "無描述"}
+                                <button class="btn btn-danger removeRecipeBtn" data-recipe-id="${newRecipe.recipe_id}">刪除</button>
+                            </li>
+                        `);
 
                         $(this).dialog("close");
                     },
@@ -323,6 +317,101 @@
         });
     }
 
+    // 提交點菜清單到所選活動
+    $('#submitOrder').click(async function () {
+        // 獲取選擇的活動 ID
+        const selectedActivityId = $('#activitySelector').val();
+
+        // 檢查是否有選擇活動
+        if (!selectedActivityId) {
+            alert('請先選擇活動');
+            return;
+        }
+
+        // 從 dialogRecipeList 取得所有項目
+        const dialogRecipes = $('#dialogRecipeList li');
+        if (dialogRecipes.length === 0) {
+            alert('點菜清單為空，請至少加入一筆食譜');
+            return;
+        }
+
+        // 構建提交資料的結構
+        const payload = [];
+        dialogRecipes.each(function () {
+            const recipeId = $(this).data('recipe-id'); // 獲取食譜 ID
+            const descriptionText = $(this).find('br').get(0).nextSibling.nodeValue.trim(); // 獲取描述的完整文字
+            const recipeCategory = descriptionText.split(',')[0].replace('描述: ', '').trim(); // 解析類型
+
+            payload.push({
+                activity_meal_id: parseInt(selectedActivityId, 10),
+                recipe_id: recipeId,
+                recipe_category: recipeCategory
+            });
+        });
+
+        console.log('提交資料:', payload); // 調試用，檢查提交的資料結構
+
+        // 發送 POST 請求
+        try {
+            await $.ajax({
+                url: "http://internal.hochi.org.tw:8082/api/Recipes/activity-meal-recipes", // 提交點菜清單的 API URL
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload), // 將資料轉為 JSON 格式
+                success: function () {
+                    alert('點菜清單已成功提交！');
+
+                    // 清空 dialogRecipeList
+                    $('#dialogRecipeList').empty();
+
+                    // 重新載入活動清單
+                    loadPendingActivities();
+                },
+                error: function (xhr) {
+                    alert('提交點菜清單失敗: ' + xhr.responseText); // 錯誤提示
+                }
+            });
+        } catch (error) {
+            console.error('Failed to submit order:', error); // 錯誤處理
+        }
+    });
+
+
+
+    // 重置點菜清單
+    function resetOrderList() {
+        orderList = []; // 清空點菜清單
+        updateOrderListDisplay(); // 更新畫面上的點菜清單顯示
+    }
+
+    // 載入待處理的活動清單
+    function loadPendingActivities() {
+        $.get("http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/pending-recipes")
+            .done(function (data) {
+                const activities = data.$values || []; // 確保資料結構正確
+                const activitySelector = $('#activitySelector');
+
+                // 清空並重新初始化活動選單
+                activitySelector.empty().append('<option value="">請選擇活動</option>');
+
+                // 如果沒有待處理活動，顯示提示
+                if (activities.length === 0) {
+                    console.warn('目前沒有待處理的活動');
+                    alert('目前沒有可選活動！');
+                    return;
+                }
+
+                // 填充活動選單
+                activities.forEach(activity => {
+                    const optionText = `${activity.activity_name} (${activity.activity_date.split('T')[0]}) - ${activity.meal_type}`;
+                    activitySelector.append(`<option value="${activity.activity_meal_id}">${optionText}</option>`);
+                });
+            })
+            .fail(function (xhr, status, error) {
+                console.error('無法加載待處理活動:', error);
+                alert('無法加載活動清單，請稍後再試！');
+            });
+    }
 
 
 });
