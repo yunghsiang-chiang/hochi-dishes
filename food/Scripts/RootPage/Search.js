@@ -7,6 +7,9 @@
     let recipesData = []; // 用來儲存 API 返回的詳細食譜資料
     let orderList = []; // 點菜清單
 
+    // 頁面載入後立即執行一次活動清單載入
+    loadActivitySelector();
+
     // 加載詳細食譜資料
     $.get("http://internal.hochi.org.tw:8082/api/Recipes/detailed-recipes", function (data) {
         recipesData = data.$values; // 儲存 API 返回的食譜資料
@@ -90,7 +93,6 @@
             recipeNameSelect.append(`<option value="${recipe.recipe_id}">${recipe.recipe_name}</option>`);
         });
     });
-
 
     // 提交按鈕點擊事件
     $("#searchBtn").click(function () {
@@ -209,24 +211,6 @@
         });
     }
 
-    // 更新點菜清單的顯示
-    function updateOrderListDisplay() {
-        $("#orderList").empty();
-
-        if (orderList.length > 0) {
-            orderList.forEach(order => {
-                $("#orderList").append(`
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        ${order.recipe_name} - ${order.category} (${order.description})
-                        <button class="btn btn-danger btn-sm removeFromOrder" data-id="${order.recipe_id}">取消</button>
-                    </li>
-                `);
-            });
-        } else {
-            $("#orderList").append('<li class="list-group-item">目前沒有點菜</li>');
-        }
-    }
-
     // 加載活動選擇清單
     function loadActivitySelector(callback) {
         $.get("http://internal.hochi.org.tw:8082/api/Recipes/activity-meals/pending-recipes")
@@ -258,8 +242,6 @@
                 alert("無法加載活動清單，請稍後再試！");
             });
     }
-
-
 
     // 顯示「新增菜色」Dialog
     function showAddRecipeDialog(activityMealId) {
@@ -366,6 +348,9 @@
 
                     // 重新載入活動清單
                     loadPendingActivities();
+
+                    // 關閉對話框
+                    $("#dialog").dialog("close");
                 },
                 error: function (xhr) {
                     alert('提交點菜清單失敗: ' + xhr.responseText); // 錯誤提示
@@ -375,14 +360,6 @@
             console.error('Failed to submit order:', error); // 錯誤處理
         }
     });
-
-
-
-    // 重置點菜清單
-    function resetOrderList() {
-        orderList = []; // 清空點菜清單
-        updateOrderListDisplay(); // 更新畫面上的點菜清單顯示
-    }
 
     // 載入待處理的活動清單
     function loadPendingActivities() {
@@ -412,6 +389,5 @@
                 alert('無法加載活動清單，請稍後再試！');
             });
     }
-
 
 });
