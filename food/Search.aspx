@@ -50,15 +50,15 @@
 
             <div id="dialogFooter"></div>
 
-            <div class="mb-3 mt-3">
+            <div class="mb-3 mt-3" id="activitySelectorContainer" style="display: none;">
                 <label for="activitySelector" class="form-label">選擇活動</label>
                 <select id="activitySelector" class="form-select">
                     <option value="">請選擇活動</option>
                 </select>
             </div>
 
-            <button type="button" id="submitOrder" class="btn btn-primary mt-3">提交點菜清單</button>
-            
+            <button type="button" id="submitOrder" class="btn btn-primary mt-3" style="display: none;">提交點菜清單</button>
+
         </div>
 
         <div id="addRecipeDialog" title="新增菜色" style="display: none;">

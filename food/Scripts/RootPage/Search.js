@@ -185,18 +185,29 @@
 
         $("#dialogRecipeList").html(recipeList); // 將清單加入到對話框
 
+        // 顯示活動選擇器並載入選項
+        loadActivitySelector(() => {
+            $("#activitySelectorContainer").show();
+            $("#submitOrder").show(); // 顯示提交按鈕
+        });
+
+        // 顯示對話框
         $("#dialog").dialog({
             modal: true,
             width: 800,
             buttons: {
                 Close: function () {
                     $(this).dialog("close");
+                    $("#activitySelectorContainer").hide(); // 關閉時隱藏
+                    $("#submitOrder").hide(); // 關閉時隱藏提交按鈕
                 }
             }
         });
+
+
         // 動態生成新增菜色按鈕
         $("#dialogFooter").html(`
-            <button class="btn btn-primary addRecipeBtn">新增菜色</button>
+            //<button class="btn btn-primary addRecipeBtn">新增菜色</button>
         `);
 
         $("#dialogFooter").off("click").on("click", ".addRecipeBtn", function () {
