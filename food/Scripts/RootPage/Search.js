@@ -207,7 +207,7 @@
 
         // 動態生成新增菜色按鈕
         $("#dialogFooter").html(`
-            //<button class="btn btn-primary addRecipeBtn">新增菜色</button>
+            <button class="btn btn-primary addRecipeBtn">新增菜色</button>
         `);
 
         $("#dialogFooter").off("click").on("click", ".addRecipeBtn", function () {

@@ -66,7 +66,7 @@
     </div>
 
     <!-- 食譜列表模態視窗 -->
-    <div class="modal fade" id="recipeListModal" tabindex="-1" role="dialog" aria-labelledby="recipeListModalLabel" aria-hidden="true">
+    <div class="modal fade" id="recipeListModal" tabindex="-1" role="dialog" aria-labelledby="recipeListModalLabel" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -81,7 +81,7 @@
     </div>
 
     <!-- 食譜詳細資訊模態視窗 -->
-    <div class="modal fade" id="recipeDetailModal" tabindex="-1" role="dialog" aria-labelledby="recipeDetailModalLabel" aria-hidden="true">
+    <div class="modal fade" id="recipeDetailModal" tabindex="-1" role="dialog" aria-labelledby="recipeDetailModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">

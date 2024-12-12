@@ -148,6 +148,7 @@
         });
 
         const recipeListModal = new bootstrap.Modal(document.getElementById('recipeListModal'));
+
         recipeListModal.show();
     }
 
@@ -219,33 +220,29 @@
 
     // 更新點菜清單顯示，新增「取消」按鈕
     function updateOrderListDisplay() {
-        $('#orderList').empty();
+        const $orderList = $('#orderList');
+        $orderList.empty();
 
-        if (orderList.length > 0) {
+        if (orderList.length === 0) {
+            $orderList.append('<li class="list-group-item">目前沒有點菜</li>');
+        } else {
             orderList.forEach(order => {
-                $('#orderList').append(`
+                $orderList.append(`
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         ${order.recipeName} - <strong>${order.recipeCategory}</strong>
                         <button type="button" class="btn btn-danger btn-sm removeFromOrder" data-id="${order.recipeId}">取消</button>
                     </li>
                 `);
             });
-            console.log(orderList);
-        } else {
-            $('#orderList').append('<li class="list-group-item">目前沒有點菜</li>');
         }
     }
 
     // 提交點菜清單到所選活動
     $('#submitOrder').click(async function () {
         const selectedActivityId = $('#activitySelector').val();
-        if (!selectedActivityId) {
-            alert('請先選擇活動');
-            return;
-        }
 
-        if (orderList.length === 0) {
-            alert('點菜清單為空，請至少加入一筆食譜');
+        if (!selectedActivityId || orderList.length === 0) {
+            alert('請選擇活動並至少加入一筆食譜');
             return;
         }
 
@@ -264,7 +261,8 @@
                 data: JSON.stringify(payload),
                 success: function () {
                     alert('點菜清單已成功提交！');
-                    resetOrderList();
+                    orderList = [];
+                    updateOrderListDisplay();
                     loadPendingActivities(); // 重新載入活動清單以更新
                 },
                 error: function (xhr) {
@@ -275,13 +273,6 @@
             console.error('Failed to submit order:', error);
         }
     });
-
-    // 重置點菜清單
-    function resetOrderList() {
-        orderList = [];
-        updateOrderListDisplay();
-    }
-
 
     // 點擊事件：顯示特定食譜的詳細資訊
     $('#recipeListItems').on('click', '.viewRecipeDetail', function () {

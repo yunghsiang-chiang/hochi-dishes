@@ -4,6 +4,15 @@
     const activityMealRecipesApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/activity-meal-recipes';
     const recipesApiUrl = 'http://internal.hochi.org.tw:8082/api/Recipes/all';
 
+    // 单位换算与中文名称
+    const unitConversion = {
+        grams: { factor: 1, name: '克' },
+        kilograms: { factor: 1000, name: '公斤' },
+        pounds: { factor: 453.592, name: '磅' },
+        ounces: { factor: 28.3495, name: '盎司' },
+        tael: { factor: 37.5, name: '兩' }, // 每兩等於 37.5 克
+        catty: { factor: 600, name: '台斤' } // 每台斤等於 600 克
+    };
 
     // 當按下生成餐點選擇按鈕時
     $('#generateMeals').click(function () {
@@ -88,6 +97,21 @@
             }
         });
     });
+
+    // 將任意單位轉換為目標單位（如 tael 或 catty），不支持的單位返回 null
+    function convertUnit(amount, fromUnit, toUnit) {
+        const fromFactor = unitConversion[fromUnit]?.factor;
+        const toFactor = unitConversion[toUnit]?.factor;
+
+        // 如果無法轉換，返回 null
+        if (!fromFactor || !toFactor) return null;
+
+        // 如果單位相同，直接返回原始值
+        if (fromUnit === toUnit) return amount;
+
+        // 轉換單位
+        return (amount * fromFactor) / toFactor;
+    }
 
     // 重置表單
     function resetForm() {
@@ -208,20 +232,36 @@
 
                     // 计算总食材数量
                     const ingredientTotals = {};
+                    const targetUnit = 'tael'; // 目标单位，默认是 "兩"
 
                     recipeIngredients.forEach(ingredient => {
                         const recipeQty = recipeCounts.find(r => r.recipeId === ingredient.recipeId)?.recipeQty || 1;
-                        const key = `${ingredient.ingredientName}-${ingredient.unit}`;
 
-                        if (!ingredientTotals[key]) {
-                            ingredientTotals[key] = {
-                                ingredientName: ingredient.ingredientName,
-                                unit: ingredient.unit,
-                                totalAmount: 0
-                            };
+                        // 嘗試轉換單位
+                        const convertedAmount = convertUnit(ingredient.amount * recipeQty, ingredient.unit, targetUnit);
+
+                        if (convertedAmount !== null) {
+                            // 單位可以轉換的情況
+                            if (!ingredientTotals[ingredient.ingredientName]) {
+                                ingredientTotals[ingredient.ingredientName] = {
+                                    ingredientName: ingredient.ingredientName,
+                                    totalAmount: 0,
+                                    unit: targetUnit // 統一單位
+                                };
+                            }
+                            ingredientTotals[ingredient.ingredientName].totalAmount += convertedAmount;
+                        } else {
+                            // 單位無法轉換的情況
+                            const key = `${ingredient.ingredientName}-${ingredient.unit}`;
+                            if (!ingredientTotals[key]) {
+                                ingredientTotals[key] = {
+                                    ingredientName: ingredient.ingredientName,
+                                    totalAmount: 0,
+                                    unit: ingredient.unit // 原始單位
+                                };
+                            }
+                            ingredientTotals[key].totalAmount += ingredient.amount * recipeQty; // 保留原始單位數值
                         }
-
-                        ingredientTotals[key].totalAmount += ingredient.amount * recipeQty;
                     });
 
                     // 排序和显示结果
@@ -230,10 +270,10 @@
                     $('#recipeList').empty();
                     sortedIngredients.forEach(item => {
                         $('#recipeList').append(`
-                <li class="list-group-item">
-                    <strong>${item.ingredientName}</strong>: ${item.totalAmount} ${item.unit}
-                </li>
-            `);
+                            <li class="list-group-item">
+                                <strong>${item.ingredientName}</strong>: ${item.totalAmount.toFixed(2)} ${item.unit}
+                            </li>
+                        `);
                     });
 
                     const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
@@ -450,8 +490,6 @@
             alert('查詢活動失敗，請稍後再試。');
         }
     });
-
-
 
     // 呼叫載入活動清單
     loadActivityMeals();
