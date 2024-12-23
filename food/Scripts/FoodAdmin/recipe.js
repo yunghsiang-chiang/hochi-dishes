@@ -115,15 +115,20 @@
     $('#saveRecipeBtn').click(function () {
         const portionSize = $('#portion_size_checkbox').is(':checked') ? 10 : $('#portion_size').val();
 
-        const recipeData = {
-            recipe_id: currentRecipeId, // 加入 currentRecipeId，若為 null，後端會自動新增
+        // 構建 recipe 資料
+        let recipeData = {
             recipe_name: $('#recipe_name').val(),
             main_ingredient_id: $('#main_ingredient_id').val(),
             category: $('#category').val(),
             chef_id: $('#chef_id').val(),
-            description: $('#description').val(), // 改為選取的值
-            portion_size: portionSize // 新增 portion_size
+            description: $('#description').val(),
+            portion_size: portionSize
         };
+
+        // 如果 currentRecipeId 不為 null，則添加 recipe_id
+        if (currentRecipeId) {
+            recipeData.recipe_id = currentRecipeId;
+        }
 
         // 發送 POST 請求保存 Recipe
         $.ajax({

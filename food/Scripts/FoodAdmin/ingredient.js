@@ -66,6 +66,7 @@
 
     // 儲存食材
     function saveIngredient(data) {
+        console.log(JSON.stringify(data));
         $.ajax({
             url: saveIngredientApiUrl,
             type: 'POST',
