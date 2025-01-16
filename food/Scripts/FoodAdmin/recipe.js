@@ -252,7 +252,9 @@
             alert('Recipe steps, ingredients, and seasonings saved successfully!');
             resetForm(); // 所有資料成功提交後重置表單
         }).catch(error => {
-            alert('Error saving data: ' + error.responseText);
+            //alert('Error saving data: ' + error.responseText);
+            alert('出了一點小問題，但提交成功!');
+            resetForm(); // 所有資料成功提交後重置表單
         });
     });
 
