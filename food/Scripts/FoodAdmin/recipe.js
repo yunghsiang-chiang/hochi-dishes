@@ -357,8 +357,10 @@
 
             // 綁定 "View" 按鈕的點擊事件
             $('.viewRecipeBtn').click(function () {
+                event.preventDefault(); // 阻止預設行為
                 const recipeId = $(this).data('id');
                 loadRecipeDetails(recipeId);
+                return false; // 也可以使用這個來確保不滾動
             });
 
             // 綁定 "Edit" 按鈕的點擊事件
