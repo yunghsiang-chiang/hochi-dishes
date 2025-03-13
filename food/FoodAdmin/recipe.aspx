@@ -50,6 +50,7 @@
                                 <option value="麵點">麵點</option>
                                 <option value="湯品">湯品</option>
                                 <option value="甜湯">甜湯</option>
+                                <option value="飲品">飲品</option>
                             </select>
                         </div>
                     </div>
