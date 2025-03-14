@@ -22,8 +22,6 @@
     loadCategories();
     // 初始載入所有食譜列表
     loadAllRecipes();
-    // 初始化載入所有廚師和食譜資料
-    loadChefs();
     // 初始化載入數據
     loadFoodNutrition();
     // 調用初始化函數
@@ -70,6 +68,7 @@
 
     // 通过API加载主要食材
     function loadMainIngredients() {
+        $('#main_ingredient_id').empty();
         $.get(mainIngredientApiUrl, function (response) {
             var ingredients = response.$values;
             ingredients.forEach(function (ingredient) {
@@ -80,6 +79,7 @@
 
     // 通过API加载廚師
     function loadChefs() {
+        $('#chef_id').empty(); // 清空原本的選項，避免重複
         $.get(chefApiUrl, function (response) {
             var chefs = response.$values;
             chefs.forEach(function (chef) {
@@ -92,6 +92,7 @@
 
     // 通过API加载分类
     function loadCategories() {
+        $('#category').empty();
         $.get(categoryApiUrl, function (response) {
             var categories = response.$values;
             categories.forEach(function (category) {
