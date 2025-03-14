@@ -182,10 +182,14 @@
 
                 // 添加 "显示食材统计" 按钮
                 $(`#${sanitizedGroupKey}-buttons`).append(`
-    <button type="button" class="btn btn-info mt-2 show-ingredients-btn" data-group="${groupKey}">
-        显示食材统计
+    <button type="button" class="btn btn-info mt-2 show-ingredients-btn me-2" data-group="${groupKey}">
+        顯示食材統計
+    </button>
+    <button type="button" class="btn btn-danger mt-2 delete-activity-btn" data-group="${groupKey}">
+        刪除
     </button>
 `);
+
 
 
                 index++; // 增加索引
@@ -283,6 +287,34 @@
                     alert('無法顯示食材統計，請稍後再試。');
                 }
             });
+
+            // 綁定 "刪除" 按鈕事件
+            $('.delete-activity-btn').off('click').on('click', async function () {
+                const groupKey = $(this).data('group');
+                const activityGroup = groupedActivities[groupKey];
+
+                if (!activityGroup || activityGroup.length === 0) {
+                    alert('無法取得活動資料。');
+                    return;
+                }
+
+                if (!confirm('確定要刪除此活動及其所有餐別嗎？')) return;
+
+                try {
+                    for (const activity of activityGroup) {
+                        await $.ajax({
+                            url: `${activityMealsApiUrl}/${activity.activity_meal_id}`,
+                            type: 'DELETE'
+                        });
+                    }
+                    alert('刪除成功！');
+                    loadActivityMeals(); // 重新載入清單
+                } catch (error) {
+                    console.error('刪除失敗：', error);
+                    alert('刪除過程中發生錯誤，請稍後再試。');
+                }
+            });
+
 
             console.log('Generated Group Keys:', Object.keys(groupedActivities));
 
@@ -401,10 +433,14 @@
 
                 // 添加 "显示食材统计" 按钮
                 $(`#${sanitizedGroupKey}-buttons`).append(`
-                <button type="button" class="btn btn-info mt-2 show-ingredients-btn" data-group="${groupKey}">
-                    顯示食材統計
-                </button>
-            `);
+    <button type="button" class="btn btn-info mt-2 show-ingredients-btn me-2" data-group="${groupKey}">
+        顯示食材統計
+    </button>
+    <button type="button" class="btn btn-danger mt-2 delete-activity-btn" data-group="${groupKey}">
+        刪除
+    </button>
+`);
+
 
                 index++; // 增加索引
             }
