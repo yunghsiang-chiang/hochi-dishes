@@ -118,6 +118,7 @@
 
         // 構建 recipe 資料
         let recipeData = {
+            recipe_id: $('#recipe_id').val(),
             recipe_name: $('#recipe_name').val(),
             main_ingredient_id: $('#main_ingredient_id').val(),
             category: $('#category').val(),
@@ -126,10 +127,10 @@
             portion_size: portionSize
         };
 
-        // 如果 currentRecipeId 不為 null，則添加 recipe_id
-        if (currentRecipeId) {
-            recipeData.recipe_id = currentRecipeId;
-        }
+        //// 如果 currentRecipeId 不為 null，則添加 recipe_id
+        //if (currentRecipeId) {
+        //    recipeData.recipe_id = currentRecipeId;
+        //}
 
         // 發送 POST 請求保存 Recipe
         $.ajax({
@@ -344,7 +345,7 @@
 
                 $('#recipeListTable tbody').append(`
                     <tr>
-                        <td>${recipe.recipe_id}</td>
+                        <td>${recipe.recipe_code || recipe.recipe_id}</td>  // 改為 code，fallback 用 id
                         <td>${recipe.recipe_name}</td>
                         <td>${recipe.category}</td>
                         <td>${chefName}</td>
@@ -419,6 +420,8 @@
 
         // 取得基本食譜資訊並回填 step1Section
         $.get(`${singleRecipeApiUrl}/${recipeId}`, function (recipe) {
+            $('#recipe_code').val(recipe.recipe_code);
+            $('#recipe_id').val(recipe.recipe_id); // 還是用來發送儲存
             $('#recipe_name').val(recipe.recipe_name);
             $('#main_ingredient_id').val(recipe.main_ingredient_id);
             $('#category').val(recipe.category);

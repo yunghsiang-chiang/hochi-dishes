@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\egrou\\source\\repos\\food\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\scripts\\foodadmin\\recipe.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\scripts\\foodadmin\\recipe.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\scripts\\foodadmin\\recipe.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|c:\\users\\egrou\\source\\repos\\food\\food\\foodadmin\\recipe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|C:\\Users\\egrou\\source\\repos\\food\\food\\foodadmin\\recipe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{D6A6DA6F-5C15-437C-89A4-8C007CE75213}|food\\food.csproj|solutionrelative:food\\foodadmin\\recipe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
@@ -45,7 +45,7 @@
               "RelativeDocumentMoniker": "food\\Scripts\\FoodAdmin\\recipe.js",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\recipe.js",
               "RelativeToolTip": "food\\Scripts\\FoodAdmin\\recipe.js",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAAAF4AAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAEYBAAAAAAAAAAAowFABAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-02-11T09:21:43.492Z",
               "EditorCaption": ""

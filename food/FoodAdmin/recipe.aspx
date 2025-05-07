@@ -15,6 +15,13 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
+                            <label for="recipe_code">Recipe Code</label>
+                            <input type="text" id="recipe_code" class="form-control" disabled />
+                        </div>
+                        <input type="hidden" id="recipe_id" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
                             <label for="recipe_name">Recipe Name</label>
                             <input type="text" id="recipe_name" name="recipe_name" class="form-control" required />
                         </div>
