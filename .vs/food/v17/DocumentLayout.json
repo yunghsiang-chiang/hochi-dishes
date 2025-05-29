@@ -34,8 +34,7 @@
               "RelativeToolTip": "food\\FoodAdmin\\recipe.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-02-11T09:22:45.238Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T09:22:45.238Z"
             },
             {
               "$type": "Document",
@@ -45,7 +44,7 @@
               "RelativeDocumentMoniker": "food\\Scripts\\FoodAdmin\\recipe.js",
               "ToolTip": "C:\\Users\\egrou\\source\\repos\\food\\food\\Scripts\\FoodAdmin\\recipe.js",
               "RelativeToolTip": "food\\Scripts\\FoodAdmin\\recipe.js",
-              "ViewState": "AgIAAEYBAAAAAAAAAAAowFABAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-02-11T09:21:43.492Z",
               "EditorCaption": ""

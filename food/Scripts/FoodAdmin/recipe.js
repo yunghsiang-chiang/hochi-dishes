@@ -116,9 +116,10 @@
     $('#saveRecipeBtn').click(function () {
         const portionSize = $('#portion_size_checkbox').is(':checked') ? 10 : $('#portion_size').val();
 
+        let rawRecipeId = $('#recipe_id').val();
         // 構建 recipe 資料
         let recipeData = {
-            recipe_id: $('#recipe_id').val(),
+            recipe_id: rawRecipeId ? parseInt(rawRecipeId) : 0, // 空字串改為 0 表示新增
             recipe_name: $('#recipe_name').val(),
             main_ingredient_id: $('#main_ingredient_id').val(),
             category: $('#category').val(),
